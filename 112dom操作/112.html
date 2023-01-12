@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom</title>
+</head>
+<body>
+   <!-- <div>
+        this is comment
+        <span>1</span>
+        <strong>2</strong>
+   </div> -->
+    <script>
+        // var div = document.getElementById('jr');
+        // console.log(div);
+
+        // var divCollection = document.getElementsByTagName('div') [0];
+        
+        
+        // var divCollection = document.getElementsByTagName('div');
+        //当使用queryAll的时候是静态的
+        // var divCollection = document.querySelectorAll('div');
+        // var divjr = document.getElementById('jr');
+        // var div = document.getElementsByTagName('div')[0];
+
+        // 如何把div当中的元素节点拿出来
+        function retchild (elem) {
+            var child = elem.childNodes;
+            var len = child.length;
+            var arr = [];
+            for(var i = 0; i < len; i ++) {
+                if(child[i].nodeType === 1) {
+                    arr.push(child[i]);
+                }
+            }
+            return arr;
+        }
+    </script>
+</body>
+</html>
