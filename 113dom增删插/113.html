@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div>
+        <span>1</span>
+        <strong>2</strong>
+        <em></em>
+        <i></i>
+        <b></b>
+    </div> -->
+    <div>
+        <span></span>
+    </div>
+    <p></p>
+    <script>
+        //封装函数,返回元素e的第n层祖先节点
+        // function retParent(e,n) {
+        // //每次循环到while的时候都会先判断一下e的值,当e的值是null的时候,也就不会执行循环
+        //     while( e && n ) {
+        // //因为每一次都是要找e的父亲节点,那么就每次找到之后把它再次赋给e,所以每次都是取e的父节点
+        //         e = e.parentNode;
+        //         n --;
+        //     }
+        //     return e;
+        // }
+        // var span = document.getElementsByTagName('span') [0];
+
+
+        //封装函数,返回元素e的第n个兄弟元素节点,n为正,返回后面的兄弟元素节点,n为负,返回前面的,n为0,返回自己
+        // function retSibling(e , n) {
+        // //我们需要用这一步来控制容错
+        //     while ( e && n ) {
+        // //由题意可知,当n大于0的时候我们要返回后面的兄弟元素节点也就是nextElementSibling
+        //         if( n > 0 ) {
+        //             e = e.nextElementSibling;
+        //             n --;
+        // //否则我们就返回前面的兄弟元素节点
+        //         } else {
+        //             e = e.previousElementSibling;
+        //             n ++;
+        //         }
+        //     }
+        //     return e;
+        // }
+        // var em = document.getElementsByTagName('em') [0];
+
+
+        // 封装函数,返回元素e的第n个兄弟元素节点,n为正,返回后面的兄弟元素节点,n为负,返回前面的,n为0,返回自己,兼容版本
+        // function retSibling( e , n ) {
+        // //这一步用来控制容错
+        //     while ( e && n ) {
+        //         if( n > 0 ) {
+        // //来判断当前环境是否兼容该方法
+        //             if(e.nextElementSibling) {
+        //                 e = e.nextElementSibling;
+        // //如果不兼容那我们就要用老方法,来判断它的兄弟节点而非兄弟元素节点,利用for循环,来控制它的循环,用nodetype来判断节点的类型,如果是元素,那么就结束,反之继续
+        //             } else {
+        //                 for(e = e.nextSibling; e && e.nextSibling != 1; e.nextSibling) {}
+        //             }
+        //             n --;
+        //         } else {
+        //             if(e.previousElementSibling) {
+        //                 e = e.previousElementSibling;
+        //             } else {
+        //                 for(e = e.perviousSibling; e && e.perviousSibling != 1; e.perviousSibling) {}
+        //             }
+        //             n ++;
+        //         }
+        //     }
+        //     return e;
+        // }
+        // var span = document.getElementsByTagName('span') [0];
+
+
+        //编辑函数,封装myChildren功能,解决以前部分浏览器的兼容性功能
+        //通用的方法都在原型链上编程
+        // Node.prototype.mychild = function () {
+        // //谁调用的就指向谁
+        //     var child = this.childNodes;
+        //     var len = child.length;
+        // //这里面我们定义一个类数组
+        //     var obj = {
+        //         length : 0,
+        //         push : Array.prototype.push,
+        // //这步用splice方法使该类数组更像数组
+        //         splice : Array.prototype.splice
+        //     }
+        //     for(var i = 0 ; i < len; i ++ ) {
+        // //这一步用来判断当前的节点是不是元素节点,如果是那就放进类数组当中
+        //         if(child[i].nodeType == 1) {
+        //             obj.push(child[i]);
+        //         }
+        //     }
+        //     return obj;
+        // }
+        // var div = document.getElementsByTagName('div') [0];
+
+
+        // 增
+        // var div = document.createElement('div');
+        // var text = document.createTextNode('你好');
+        // var comment = document.createComment('this is comment');
+
+        //插
+        // document.body.appendChild(div);
+        // document.body.appendChild(comment);
+        // document.body.appendChild(text);
+        // var div = document.getElementsByTagName('div') [0];
+        // var p = document.getElementsByTagName('p') [0];
+        // var span = document.getElementsByTagName('span') [0];
+        // div.appendChild(p);
+        // var strong = document.createElement('strong');
+        // div.insertBefore(strong,span);
+        // div.insertBefore(p,strong);
+
+        // 删除
+        // var div = document.getElementsByTagName('div') [0];
+        // var span = document.getElementsByTagName('span') [0];
+        // div.removeChild(span);
+
+        // 替换
+        // var div = document.getElementsByTagName('div')[0];
+        // var span = document.getElementsByTagName('span')[0];
+        // var p = document.getElementsByTagName('p')[0];
+        // div.replaceChild(p,span);
+    </script>
+</body>
+</html>
