@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div>1</div>
+    <div>3</div>
+    <div>6</div>
+    <div>9</div>
+    <div>8</div> -->
+    
+    
+    <!-- minute:<input value="0">
+    second:<input value="1"> -->
+
+
+    <!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+
+
+    <div style="width: 100px; height: 100px;background-color: red;"></div>
+    <script>
+        //封装函数,返回元素e的祖先节点n
+        // function retParent(e,n) {
+        //     while( e && n) {
+        //         e = e.parentNode;
+        //         n --;
+        //     }
+        //     return e;
+        // }
+        // var  span = document.getElementsByTagName('span') [0];
+        // var strong = document.getElementsByTagName('strong')[0];
+
+        
+        //封装函数,返回元素e的第n个兄弟元素节点,n为正,返回后面的兄弟元素节点,n为负,返回前面的,n为0,返回自己
+        // function retSibling(e,n) {
+        //     if( n > 0 ) {
+        //         e = e.nextElementSibling;
+        //         n --;
+        //     } else {
+        //         e = e.previousElementSibling;
+        //         n ++;
+        //     }
+        //     return e;
+        // }
+        // var span = document.getElementsByTagName('span')[0];
+        // var strong = document.getElementsByTagName('strong')[0];
+
+        
+        // 封装函数,返回元素e的第n个兄弟元素节点,n为正,返回后面的兄弟元素节点,n为负,返回前面的,n为0,返回自己,兼容版本
+        // function retSibling(e,n) {
+        //     if( n > 0 ) {
+        //         if(e.nextElementSibling) {
+        //             e = e.nextElementSibling;
+        //         } else {
+        //            for( e = e.nextSibling; !e.nextSibling == 1; e = e.nextSibling) {}
+        //         }
+        //         n --;
+        //     }  else {
+        //         if(e.previousElementSibling) {
+        //             e = e.previousElementSibling;
+        //         } else {
+        //             for(e = e.previousSibling; !e.previousSibling == 1; e = e.previousSibling) {}
+        //         }
+        //         n ++;
+        //     }
+        //     return e;
+        // }
+        // var span = document.getElementsByTagName('span')[0];
+        // var strong = document.getElementsByTagName('strong')[0];
+
+
+        // 封装一个mychildren方法
+        // Node.prototype.mychildren = function () {
+        //     var child = this.childNodes;
+        //     var len = child.length;
+        //     var obj = {
+        //         length : 0,
+        //         push : Array.prototype.push,
+        //         splice : Array.prototype.splice
+        //     }
+        //     for(var i = 0; i < len; i ++) {
+        //         if(child[i].nodeType == 1) {
+        //             obj.push(child[i]);
+        //         }
+        //     }
+        //     return obj;
+        // }
+        // var div = document.getElementsByTagName('div')[0];
+
+
+        //封装一个insertafter()方法
+        // var em = document.createElement('em');
+        // var div = document.getElementsByTagName('div')[0];
+        // var span = document/getElementsByTagName('span')[0];
+        // var strong = document.getElementsByTagName('strong')[0];
+        // Node.prototype.insertAfter = function (target,afterNode) {
+        //     var nextNode = afterNode.nextElementSibling;
+        //     if(nexrNode) {
+        //         this.insertBefore(target,nextNode);
+        //     } else {
+        //         this.appendChild(target);
+        //     }
+        // }
+
+
+        // 如何让div当中的内容按顺序排列
+        // var divCol = document.getElementsByTagName('div');
+        // var arr = Array.prototype.slice.call(divCol);
+        // arr.sort ( function (a,b) {
+        //     return  parseInt(a.innerText) - parseInt(b.innerText);
+        // })
+
+
+        // 定时器弹窗
+        // var date = new Date();
+        // //getTime是获取从计算机元年到现在的时间,加5000毫秒也就是五秒,这段代码的意思也就是从运行开始算5秒之后
+        // date.setTime(date.getTime() + 5000);
+        // setInterval(function () {
+        //     if(new Date().getTime() > date.getTime()) {
+        //         alert('happey Christmas');
+        //     }
+        // })
+
+
+    //    setInterval(function () {
+    //     console.log('a');
+    //    },10);
+    //    console.log('b');
+
+
+    // setTimeout(function () {
+    //     console.log('666');
+    // },1000);
+
+
+    //实现一个定时器
+    // var secondDom = document.getElementsByTagName('input') [1];
+    // var minuteDom = document.getElementsByTagName('input') [0];
+    // var second = 0;
+    // var minute = 0;
+    // var timer = setInterval(function () {
+    //     second ++;
+    //     if(second == 60) {
+    //         minute ++;
+    //         second = 0;
+    //     }
+    //     if(minute == 1) {
+    //         clearInterval(timer);
+    //     }
+    //     secondDom.value = second;
+    //     minuteDom.value = minute;
+    // },100);
+
+
+    // 封装兼容性方法,求滚动轮滚动离getScrollOffset()
+    // function getScorllOffset() {
+    //     if(window.pageXOffset) {
+    //         return {
+    //             x : window.pageXOffset,
+    //             y : window.pageYOffset
+    //         }
+    //     } else {
+    //         return {
+    //             x : document.body.scrollLeft + document.documentElement.scrollLeft,
+    //             y : document.body.scrollTop  + document.documentElement.scrollTop
+    //         }
+    //     }
+    // }
+
+
+    // 封装兼容性方法,返回浏览器视口尺寸
+    // function getViewportOffset() {
+    //     if(window.innerWidth && 0) {
+    //         return {
+    //             w : window.innerWidth,
+    //             h : window.innerHeight
+    //         }
+    //     //用这一步来判断,是什么模式
+    //     } else if(document.compatMode === 'CSS1compat') {
+    //             return {
+    //                 w : document.documentElement.clientWidth,
+    //                 h : document.documentElement.clientHeight
+    //             }
+    //         } else {
+    //             return {
+    //                 w : document.body.clientWidth,
+    //                 h : document.body.clientHeight
+    //             }
+    //         }
+    //     }
+
+
+    var div = document.getElementsByTagName('div')[0];
+    </script>
+</body>
+</html>
