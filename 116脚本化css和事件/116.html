@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* div {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border: 2px solid black;
+        }
+        div::after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            background-color: red;
+            top: 0;
+            left: 0;
+        }
+        .demo::after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            background-color: red;
+            top: 90px;
+            left: 90px;
+        } */
+
+        /* * {
+            margin: 0;
+            padding: 0;
+        }
+        li:nth-of-type(2n){
+            background-color: red;
+        }
+        li:nth-of-type(2n+1){
+            background-color: green;
+        } */
+
+
+    </style>
+</head>
+<!-- <div style="width : 100px; height: 100px; background-color: red;" onclick="div.style.backgroundColor = 'green'"></div> -->
+
+<!-- <ul>
+    <li>a</li>
+    <li>a</li>
+    <li>a</li>
+    <li>a</li>
+</ul> -->
+
+
+<body>
+    <script>
+
+        //封装一个getStyle(elem,prop);
+        // function getStyle(elem,prop) {
+        //     if(window.getComputedStyle) {
+        //        return window.getComputedStyle(elem,null)[prop];
+        //     } else {
+        //         return elem.currentStyle[prop];
+        //     }
+        // }
+
+        
+        // 用事件实现伪元素来回动
+        // var div = document.getElementsByTagName('div')[0];
+        // div.onmouseenter = function () {
+        //     this.className = "demo";
+        // }
+        // div.onmouseleave = function () {
+        //     this.className = "";
+        // }
+
+
+        // var div = document.getElementsByTagName('div') [0];
+        // div.onclick = function () {
+        //     this.style.backgroundColor = "green";
+        // }
+
+
+        // var div = document.getElementsByTagName('div')[0];
+        // div.addEventListener('click',function (){
+        //     console.log('a');
+        // },false);
+        // div.addEventListener('click',function() {
+        //     console.log('666');
+        // },false);
+
+
+        // var liCol = document.getElementsByTagName('li');
+        // var len = liCol.length;
+        // for(var i = 0; i < len; i ++) {
+        //     (function (canshu) {
+        //         liCol[canshu].addEventListener('click',function(){
+        //         alert(canshu);
+        //     },false);
+        //     }(i))
+        // }
+
+
+        // 封装兼容性的addEvent(elem,type,handle);方法    handle是处理的意思
+        function addEvent() {
+            if(elem.addEventListener) {
+                elem.addEventListener(type,handle,false);
+            } else if(elem.attachEvent) {
+        //提取出来为了解绑更方便
+                elem['temp'] = function () {
+                    handle.call(elem);
+                }
+                elem.attachEvent('on' + type,elem['temp']);
+            } else {
+                elem[ 'on' + type ] = handle;
+            }
+        }
+    </script>
+</body>
+</html>
