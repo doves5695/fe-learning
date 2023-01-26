@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+ * {
+ padding: 0;
+ margin: 0;
+ }
+ .wrap {
+  width: 300px;
+ height: 200px;
+ /* 超出你也没隐藏啊 */
+ overflow: hidden;
+ }
+ .pic {
+width: 300px;
+ height: 200px;
+ float: left;
+ }
+ .pic-wrap {
+ width: 1800px;
+ height: 200px;
+ /* 为啥absolute不行 */
+ position: relative;
+ }
+ .pic1 {
+ background-color: red;
+ }
+ .pic2 {
+ background-color: orange;
+ }
+ .pic3 {
+ background-color: yellow;
+ }
+ .pic4 {
+ background-color: greenyellow;
+}
+.pic5 {
+ background-color: blue;
+ }
+</style>
+</head>
+<div class="wrap">
+ <div class="pic-wrap">
+ <div id="one" class="pic pic1"></div>
+ <div id="two" class="pic pic2"></div>
+ <div id="three" class="pic pic3"></div>
+ <div id="four" class="pic pic4"></div>
+ <div id="five" class="pic pic5"></div>
+ <!-- 这里为什么要加一个one -->
+ <!-- <div id="one" class="pic pic1"></div> -->
+ <div></div>
+ </div>
+</div>
+<div id="scroll">点我轮播一下</div>
+<body>
+ <script>
+ const picWrap = document.getElementsByClassName('pic-wrap')[0];
+ 
+ // var offsetleft = 0;
+ // var timer =  setInterval(function () {
+ //     offsetleft -= 1;
+ //     picWrap.style.left = offsetleft + 'px';
+ // },200);
+ // if(picWrap.style.left == -1500 + 'px') {
+ //     clearInterval(timer);
+// }
+
+ // 我加的
+ const scrollDom = document.getElementById('scroll')
+ var maxOffset = 0;
+ scrollDom.onclick = function() {
+ var timer = setInterval(function () {
+    maxOffset -= 1;
+ picWrap.style.left = maxOffset + 'px';
+ if (maxOffset % 300 == 0) {
+ clearInterval(timer)
+ if (maxOffset / 5 / 300 === -1) {
+ picWrap.style.left = 0 + 'px';
+ maxOffset = 0
+  }
+ }
+ },0);
+ }
+ </script> 
+</body>
+</html> 

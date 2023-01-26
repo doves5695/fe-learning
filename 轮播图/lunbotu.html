@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+        .wrap {
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        .pic {
+            width: 300px;
+            height: 200px;
+            float: left;
+            behavior: "smooth";
+            background-size: cover;
+        }
+        .picList {
+            width: 1800px;
+            height: 200px;
+            position: relative;
+        }
+        /* .pic1 {
+            background-color: red;
+        }
+        .pic2 {
+            background-color: orange;
+        }
+        .pic3 {
+            background-color: yellow;
+        }
+        .pic4 {
+            background-color: greenyellow;
+        }
+        .pic5 {
+            background-color: blue;
+        }
+        .pic6 {
+            background-color: red;
+        } */
+        .picList img {
+            width: 300px;
+            height: 200px;
+        }
+        .wrap .button {
+            display: inline-block;
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            margin-top: -10px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .wrap .leftbutton {
+            left: 0;
+            cursor: pointer;
+        }
+        .wrap .rightbutton {
+            right: 0;
+            cursor: pointer;
+        }
+        .wrap .button img {
+            width: 20px;
+            height: 20px;
+        }
+        .wrap ul {
+            position: absolute;
+            width: 100px;
+            height: 10px;
+            bottom: 0;
+            left: 50%;
+            margin-left: -50px;
+        }
+        ul li {
+            float: left;
+            width: 6px;
+            height: 6px;
+            border-radius: 20px;
+            background-color: rgb(170, 167, 167);
+            cursor: pointer;
+            margin: 0px 5px ;
+        }
+    </style>
+</head>
+<div class="wrap">
+    <div class="picList">
+        <div id="one" class="pic pic1">
+            <img src="../IMG/first.jpg" alt="">
+        </div>
+        <div id="two" class="pic pic2">
+            <img src="../IMG/second.jpg" alt="">
+        </div>
+        <div id="three" class="pic pic3">
+            <img src="../IMG/third.jpg" alt="">
+        </div>
+        <div id="four" class="pic pic4">
+            <img src="../IMG/fourth.jpg" alt="">
+        </div>
+        <div id="five" class="pic pic5">
+            <img src="../IMG/fifth.jpg" alt="">
+        </div>
+        <div id="six" class="pic pic6">
+            <img src="../IMG/first.jpg" alt="">
+        </div>
+    </div>
+    <div id="left" class="button leftbutton">
+        <img src="../IMG/left-button.jpg" alt="">
+    </div>
+    <div id="right" class="button rightbutton">
+        <img src="../IMG/right-button.jpg" alt="">
+    </div>
+    <ul class="buttonlist">
+        <li class="picone"></li>
+        <li class="pictwo"></li>
+        <li class="picthree"></li>
+        <li class="picfour"></li>
+        <li class="picfive"></li>
+    </ul>
+</div>
+<body>
+    <script>
+    //自动滚动
+     const picList = document.getElementsByClassName('picList')[0];
+     var left = 0;
+     picList.onclick = function () {
+        var timer = setInterval(function () {
+        left -= 10;
+        picList.style.left = left + 'px';
+        if(picList.style.left == (-1500 + 'px')) {
+            clearInterval(timer);
+            picList.style.left = 0 + 'px';
+            left = 0
+        }
+     },100);
+     }
+     //左右按钮
+     const leftButton = document.getElementsByClassName('leftbutton')[0];
+     const rightbutton = document.getElementsByClassName('rightbutton')[0];
+     function imgposition(n) {
+        left = - (n * 300);
+        picList.style.left = left + 'px';
+     }
+     leftButton.onclick = function () {
+        var leftButtonpositon = Math.floor( -left / 300 ) -1;
+        if(leftButtonpositon == -1) {
+            leftButtonpositon = 4;
+        }
+        imgposition(leftButtonpositon);
+     }
+     rightbutton.onclick = function () {
+        var rightButtonpositon = Math.floor( -left / 300 ) +1;
+        if(rightButtonpositon == 5) {
+            rightButtonpositon = 0;
+        }
+        imgposition(rightButtonpositon);
+     }
+     //跳转
+     var picOne = document.getElementsByClassName('picone')[0];
+     var picTwo = document.getElementsByClassName('pictwo')[0];
+     var picThree = document.getElementsByClassName('picthree')[0];
+     var picFour = document.getElementsByClassName('picfour')[0];
+     var picFive = document.getElementsByClassName('picfive')[0];
+     picOne.onclick = function () {
+        picList.style.left = 0 + 'px';
+     }
+     picTwo.onclick = function () {
+        picList.style.left = -300 + 'px';
+     }
+     picThree.onclick = function () {
+        picList.style.left = -600 + 'px';
+     }
+     picFour.onclick = function () {
+        picList.style.left = -900 + 'px';
+     }
+     picFive.onclick = function () {
+        picList.style.left = -1200 + 'px';
+     }
+    </script> 
+     
+</body>
+</html>

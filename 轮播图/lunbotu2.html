@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图2</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+        }
+        .bgplate {
+            position: relative;
+            width: 1000px;
+            height: 700px;
+            overflow: hidden;
+        }
+        .picCol {
+            width: 6000px;
+            height: 700px;
+            position: relative;
+            cursor: pointer;
+        }
+        .pic {
+            width: 1000px;
+            height: 700px;
+            float: left;
+            behavior: "smooth";
+            background-size:cover;
+        }
+        li img {
+            width: 1000px;
+            height: 700px;
+        }
+        .bgplate .button {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            top: 50%;
+            margin-top: -40px;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+        .bgplate .leftbutton {
+            left:  0;
+            cursor: pointer;
+        }
+        .bgplate .rightbutton {
+            right: 0;
+            cursor: pointer;
+        }
+        .bgplate .button img {
+            width: 60px;
+            height: 60px;
+        }
+        .bgplate .buttonList {
+            position: absolute;
+            width: 200px;
+            height: 30px;
+            bottom: 0;
+            left: 50%;
+            margin-left: -100px;
+        }
+        .bgplate .buttonList li {
+            width: 30px;
+            height: 30px;
+            margin: 0px 5px;
+            border-radius: 20px;
+            float: left;
+            cursor: pointer;
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+<div class="bgplate">
+    <ul class="picCol">
+        <li class="pic pic1">
+            <img src="../IMG/one.jpg" alt="">
+        </li>
+        <li class="pic pic2">
+            <img src="../IMG//two.jpg" alt="">
+        </li>
+        <li class="pic pic3">
+            <img src="../IMG/three.jpg" alt="">
+        </li>
+        <li class="pic pic4">
+            <img src="../IMG//four.jpg" alt="">
+        </li>
+        <li class="pic pic5">
+            <img src="../IMG/five.jpg" alt="">
+        </li>
+        <li class="pic pic6">
+            <img src="../IMG/one.jpg" alt="">
+        </li>
+    </ul>
+    <div class="button leftbutton">
+        <img src="../IMG/left-button.jpg" alt="">
+    </div>
+    <div class="button rightbutton">
+        <img src="../IMG/right-button.jpg" alt="">
+    </div>
+    <ul class="buttonList">
+        <li class="butone"></li>
+        <li class="buttwo"></li>
+        <li class="butthree"></li>
+        <li class="butfour"></li>
+        <li class="butfive"></li>
+    </ul>
+</div>
+<body>
+    <script>
+        var picCol = document.getElementsByClassName('picCol')[0];
+        var left = 0;
+        picCol.onclick = function () {
+            var timer = setInterval(function () {
+                left -= 10;
+                picCol.style.left = left + 'px';
+                if(picCol.style.left == (-5000 + 'px')) {
+                    clearInterval(timer);
+                    picCol.style.left = 0 + 'px';
+                    left = 0;
+                }
+            },100);
+        }
+        var leftButton = document.getElementsByClassName('leftbutton')[0];
+        var rightButton = document.getElementsByClassName('rightbutton')[0];
+        function picposition(n) {
+            left = - (n *1000);
+            picCol.style.left = left + 'px';
+        }
+        leftButton.onclick = function () {
+            var leftButtonposition = Math.floor( -left / 1000 ) -1;
+            if(leftButtonposition == -1) {
+                leftButtonposition = 4;
+            }
+            picposition(leftButtonposition);
+        }
+        rightButton.onclick = function () {
+            var rightButtonposition = Math.floor( -left / 1000) + 1;
+            if(rightButtonposition == 5) {
+                rightButtonposition = 0;
+            }
+            picposition(rightButtonposition);
+        }
+        var butone = document.getElementsByClassName('butone')[0];
+        var buttwo = document.getElementsByClassName('buttwo')[0];
+        var butthree = document.getElementsByClassName('butthree')[0];
+        var butfour = document.getElementsByClassName('butfour')[0];
+        var butfive = document.getElementsByClassName('butfive')[0];
+        butone.onclick = function () {
+            picCol.style.left = 0 + 'px';
+        }
+        buttwo.onclick = function () {
+            picCol.style.left = -1000 + 'px';
+        }
+        butthree.onclick = function () {
+            picCol.style.left = -2000 + 'px';
+        }
+        butfour.onclick = function () {
+            picCol.style.left = -3000 + 'px';
+        }
+        butfive.onclick = function () {
+            picCol.style.left = -4000 + 'px';
+        }
+    </script>
+</body>
+</html>

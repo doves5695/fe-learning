@@ -6,45 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        * {
-            padding: 0;
-            margin: 0;
+        #wrap {
+         width: 200px;
+         height: 100px;
+         overflow: hidden;
+         }
+        .box {
+         width: 200px;
+         height: 100px;
+         float: left;
+         behavior: "smooth"
+         }
+         .box-wrap {
+         position: relative;
+         width: 600px;
+         height: 100px;
+         left: 10px
+         }
+        .box1{
+         background-color: red;
+       }
+         .box2{
+        background-color: green;
         }
-        .wrapper {
-            position: relative;
-            width: 500px;
-            height: 300px;
-            border: 2px solid black;
-            overflow: hidden;
-        }
-        ul {
-            position: absolute;
-            display: inline-block;
-            height: 40px;
-            width: 200px;
-            background-color:aliceblue;
-            bottom: 0;
-            left: 150px;
-            border-radius: 0px 20px;
-           
-
-        }
-        li {
-            position: absolute;
-            left: 0;
-        }
+         .box3{
+        background-color: blue;
+       }
     </style>
 </head>
-<div class="wrapper">
-    <ul class="demo">
-        <li class="first"></li>
-        <li class="second"></li>
-        <li class="third"></li>
-        <li class="fourth"></li>
-        <li class="fifth"></li>
-    </ul>
-</div>
+<div id="wrap">
+     <div class="box-wrap">
+            <div id="one" class="box box1"></div>
+            <div id="two" class="box box2"></div>
+            <div id="third" class="box box3"></div>
+     </div>
 <body>
-    
+    <script>
+        const boxWrapDom = document.getElementsByClassName('box-wrap')[0];
+        var offsetleft = 0;
+        var timer =  setInterval(function () {
+            offsetleft -= 1;
+            boxWrapDom.style.left = offsetleft + 'px';
+        },14);
+    </script>
 </body>
 </html>
