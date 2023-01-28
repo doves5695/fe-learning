@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        /* div {
+            position: absolute;
+            left: 0;
+            top: 0;
+        } */
+        /* input {
+            border: 2px solid black;
+        }
+        .color {
+            color: red;
+        } */
+    </style>
+</head>
+<!-- <div style="width: 100px;height: 100px;background-color: red;"></div> -->
+<!-- <input type="text" value="请输入姓名" class="color"> -->
+<!-- <br> -->
+<body>
+    <script>
+        //拖拽
+        // var div = document.getElementsByTagName('div')[0];
+        // function getStyle(elem,prop) {
+        //     if(window.getComputedStyle) {
+        //         return window.getComputedStyle(elem,null)[prop];
+        //     } else {
+        //         return elem.currentstyle[prop];
+        //     }
+        // }
+        // function addEvent(elem,type,handle) {
+        //     if(elem.addEventlistener) {
+        //         elem.addEventlistener(type,handle,false) 
+        //     } else if (elem.attachEvent){
+        //         elem['temp'] = function () {
+        //             handle.call(elem);
+        //         }
+        //         elem.attachEvent( 'on' + type,elem['temp']);
+        //     } else {
+        //         elem['on' + type] = handle;
+        //     }
+        // }
+        // function removeEvent(elem,type,handle) {
+        //     if(elem.removeEventlistener) {
+        //         elem.removeEventlistener(type,handle,false);
+        //     } else if (elem.detachEvent) {
+        //         elem.detachEvent('on' + type,handle);
+        //     } else {
+        //         elem['on' + type] = null;
+        //     }
+        // }
+        // function drag (elem) {
+        //     addEvent(elem,'mousedown',function (e) {
+        //         var disX,
+        //             disY,
+        //             event = e || window.event;
+        //             disX = event.clientX - parseInt(getStyle(elem,'left'));
+        //             disY = event.clientY - parseInt(getStyle(elem,'top'));
+        //             addEvent(document,'mousemove',mouseMove);
+        //             addEvent(document,'mouseup',mouseUp);
+        //                 function mouseUp(e) {
+        //                 var event = e || window.event;
+        //                 removeEvent(document,'mousemove',mouseMove);
+        //                 removeEvent(document,'mouseup',mouseUp);
+        //             }
+        //                 function mouseMove(e) {
+        //                 var event = e || window.event;
+        //                 elem.style.left = event.clientX - disX + 'px';
+        //                 elem.style.top = event.clientY - disY + 'px';
+        //             }
+        //             //取消默认事件
+        //             event.preventDefault();
+        //             //阻止冒泡 
+        //             event.stopPropagation();
+        //     });
+        // }
+        // drag(div);
+
+
+        //可以打印处理你按的是什么按键
+        // document.onkeypress = function (e) {
+        //     console.log(String.fromCharCode(e.charCode));
+        // }
+        //通过keydown来判断上下左右
+        // document.onkeydown = function (e) {
+        //     if(e.which == 40) {
+        //         console.log('down');
+        //     } else if (e.which == 38) {
+        //         console.log('top');
+        //     } else if (e.which == 37) {
+        //         console.log('left');
+        //     } else if (e.which == 39) {
+        //         console.log('right');
+        //     }
+        // }
+
+
+        // document.onkeydown = function (e) {
+        //     console.log(e);
+        // }
+        // document.onkeyup = function () {
+        //     console.log('keyup');
+        // }
+
+
+    // 文本框
+    //     var input = document.getElementsByTagName('input')[0];
+    //     input.onfocus = function () {
+    //         if(this.value == "请输入姓名") {
+    //         this.value = "";
+    //         this.color = " ";
+    //     }
+    // }
+    //     input.onblur = function () {
+    //         if(this.value == "") {
+    //         this.value = "请输入姓名"
+    //         this.color = "color";
+    //     }
+    // }
+
+
+    // 滚动条
+    // window.onscroll = function () {
+    //     console.log(window.pageYOffset);
+    // }
+    </script>
+</body>
+</html>
