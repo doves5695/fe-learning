@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二级菜单</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+        }
+        .wrapper {
+            width: 100%;
+            height: 50px;
+            background-color: #eee;
+        }
+        .menu {
+            width: 1000px;
+            height: 50px;
+            /* background-color: yellow; */
+            margin: 0 auto;
+        }
+        .menu ul {
+            background-color: #f5f5f5;
+        }
+        .menu>ul>li {
+            display: inline-block;
+            position: relative;
+        }
+        .menu ul li a {
+            color: black;
+            font-weight: bold;
+            text-align: center;
+            line-height: 50px;
+            margin: 0 65px;
+        }
+        .menu ul li a:hover {
+            color: #f40;
+        }
+        .menu ul .cou ul {
+            display: block;
+            position: absolute;
+            width: 180px;
+            left: 50px;
+        }
+        .menu ul .country ul{
+            display: none;
+            position: absolute;
+            width: 180px;
+            left: 50px;
+        }
+        .menu ul .fam ul {
+            display: block;
+            position: absolute;
+            width: 170px;
+            left: 100px;
+        }
+        .menu ul .family ul {
+            display: none;
+            position: absolute;
+            width: 170px;
+            left: 100px;
+        }
+        .menu ul .se ul {
+            display: block;
+            position: absolute;
+            width: 150px;
+            left: 100px;
+        }
+        .menu ul .sex ul {
+            display: none;
+            position: absolute;
+            width: 150px;
+            left: 100px;
+        }
+        .menu ul .bir ul {
+            display: block;
+            position: absolute;
+            width: 150px;
+            left: 100px;
+        }
+        .menu ul .birthday ul {
+            display: none;
+            position: absolute;
+            width: 150px;
+            left: 100px;
+        }
+        .menu ul .sha ul {
+            display: block;
+            position: absolute;
+            width: 180px;
+            left: 100px;
+        }
+        .menu ul .shape ul {
+            display: none;
+            position: absolute;
+            width: 170px;
+            left: 100px;
+        }
+    </style>
+</head>
+<div class="wrapper">
+    <div class="menu">
+        <ul>
+            <li class="cou country">
+                <a href="">国家</a>
+                <ul>
+                    <li>
+                        <a href="">中国</a>
+                    </li>
+                    <li>
+                        <a href="">美国</a>
+                    </li>
+                    <li>
+                        <a href="">俄罗斯</a>
+                    </li>
+                    <li>
+                        <a href="">德国</a>
+                    </li>
+                    <li>
+                        <a href="">法国</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="fam family">
+                <a href="">家属</a>
+                <ul>
+                    <li>
+                        <a href="">父亲</a>
+                    </li>
+                    <li>
+                        <a href="">母亲</a>
+                    </li>
+                    <li>
+                        <a href="">儿子</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="se sex">
+                <a href="">性别</a>
+                <ul>
+                    <li>
+                        <a href="">男</a>
+                    </li>
+                    <li>
+                        <a href="">女</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="bir birthday">
+                <a href="">出生日期</a>
+                <ul>
+                    <li>
+                        <a href="">年</a>
+                    </li>
+                    <li>
+                        <a href="">月</a>
+                    </li>
+                    <li>
+                        <a href="">日</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sha shape">
+                <a href="">体型</a>
+                <ul>
+                    <li>
+                        <a href="">肥胖</a>
+                    </li>
+                    <li>
+                        <a href="">纤瘦</a>
+                    </li>
+                    <li>
+                        <a href="">微胖</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<body>
+    <script>
+        var licou = document.getElementsByClassName('cou')[0];
+        var lifam = document.getElementsByClassName('fam')[0];
+        var lise  = document.getElementsByClassName('se')[0];
+        var libir = document.getElementsByClassName('bir')[0];
+        var lisha = document.getElementsByClassName('sha')[0];
+        licou.onmouseover = function () {
+            if(this.className = 'country') {
+            this.className = 'cou';
+            }
+        }
+        licou.onmouseout = function () {
+            if(this.className = 'cou') {
+                this.className = 'country';
+            }
+        }
+        lifam.onmouseover = function () {
+            if(this.className = 'family') {
+                this.className = 'fam';
+            }
+        }
+        lifam.onmouseout = function () {
+            if(this.className = 'fam') {
+                this.className = 'family';
+            }
+        }
+        lise.onmouseover = function () {
+            if(this.className = 'sex') {
+                this.className = 'se';
+            }
+        }
+        lise.onmouseout = function () {
+            if(this.className = 'se') {
+                this.className = 'sex';
+            }
+        }
+        libir.onmouseover = function () {
+            if(this.className = 'birthday') {
+                this.className = 'bir';
+            }
+        }
+        libir.onmouseout = function () {
+            if(this.className = 'bir') {
+                this.className = 'birthday';
+            }
+        }
+        lisha.onmouseover = function () {
+            if(this.className = 'shape') {
+                this.className = 'sha';
+            } 
+        }
+        lisha.onmouseout = function () {
+            if(this.className = 'sha') {
+                this.className = 'shape';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>思路开发</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+            text-decoration: none;
+            list-style: none;
+        }
+        ul {
+            width: 400px;
+            height: 400px;
+        }
+        ul>li {
+            float: left;
+            width: 38px;
+            height: 38px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<ul>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+    <li color-data="0"></li>
+</ul>
+<body>
+    <script>
+        var ul = document.getElementsByTagName('ul')[0];
+        ul.onmousemove = function (e) {
+            var event = e || window.event;
+            var target = event.target || event.srcElement;
+            target.setAttribute('color-data', parseInt(target.getAttribute('color-data')) + 3);
+            target.style.backgroundColor = "rgb(0,0," + target.getAttribute('color-data') + ")";
+        }
+    </script>
+</body>
+</html>
