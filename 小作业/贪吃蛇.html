@@ -5,8 +5,89 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>贪吃蛇</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+        }
+        .game-area {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            border: 20px solid skyblue;
+            background-color: blue;
+            margin: 20px auto;
+        }
+        .game-area button {
+            cursor: pointer;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+        }
+        .beginBtn {
+            width: 200px;
+            height: 80px;
+            background: url(../IMG/begingame.jpg) center/contain no-repeat;
+            border-radius: 50px;
+            margin-left: -100px;
+            margin-top: -40px;
+            display: none;
+        }
+        .startBtn {
+            width: 70px;
+            height: 70px;
+            background: url(../IMG/pause.jpg) center/contain no-repeat;
+            border-radius: 50px;
+            margin-left: -35px;
+            margin: top -35px;
+            display: none;
+        }
+    </style>
 </head>
+<div class="game-area">
+    <button class="beginBtn">
+        <!-- <img src="../IMG/begingame.jpg" alt=""> -->
+    </button>
+    <button class="startBtn">
+        <!-- <img src="../IMG/pause.jpg" alt=""> -->
+    </button>
+</div>
 <body>
-    
+    <script>
+       var beginBtn = document.getElementsByClassName('beginBtn')[0];
+       var startBtn = document.getElementsByClassName('startBtn')[0];
+    //    beginBtn.onclick = function () {
+    //     if(beginBtn.style.display = 'block') {
+    //         beginBtn.style.display = 'none';
+    //     } 
+    //     if(startBtn.style.display = 'none') {
+    //         startBtn.style.display = 'block';
+    //     }
+    //    }
+    //    startBtn.onclick = function () {
+    //     if(startBtn.style.display = 'block') {
+    //         startBtn.style.display = 'none';
+    //     }
+    //    }
+       var gaArr = [];
+       var tr = 30;
+       var td = 30;
+       var snakebody = 20;
+       for( var i = 0; i < tr; i ++) {
+        for( var j = 0; j < tr; j ++) {
+            gaArr.push({
+                x : i,
+                y : j
+            });
+        }
+       }
+       function initGame () {
+
+       }
+       console.log(gaArr);
+    //    首先,把背景版分成格子,然后记录他们的坐标位置,记录最初始的射的位置,设置初始的苹果位置
+    </script>
 </body>
 </html>
