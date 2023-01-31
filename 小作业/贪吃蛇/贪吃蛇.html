@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+        }
+        .game-area {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            border: 20px solid darkorange;
+            background-color:lightgreen;
+            margin: 20px auto;
+        }
+        .game-area button {
+            cursor: pointer;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+        }
+        .beginBtn {
+            width: 200px;
+            height: 80px;
+            background: url(../贪吃蛇/img/begingame.jpg) center/contain no-repeat;
+            border-radius: 50px;
+            margin-left: -100px;
+            margin-top: -40px;
+            display: block;
+        }
+        .startBtn {
+            width: 70px;
+            height: 70px;
+            background: url(../贪吃蛇/img/pause.jpg) center/contain no-repeat;
+            border-radius: 50px;
+            margin-left: -35px;
+            margin: top -35px;
+            display: none;
+        }
+        .btn {
+            position: absolute;
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            background: url(../贪吃蛇/img/start.jpg) center/contain no-repeat;
+            top: 20px;
+            left: 560px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<div class="game-area">
+    <button class="beginBtn">
+    </button>
+    <button class="startBtn">
+    </button>
+</div>
+<div class="btn"></div>
+<body>
+    <script>
+       var beginBtn = document.getElementsByClassName('beginBtn')[0];
+       var startBtn = document.getElementsByClassName('startBtn')[0];
+       var gamearea = document.getElementsByClassName('game-area')[0];
+       var btn = document.getElementsByClassName('btn')[0];
+    beginBtn.onclick = function () {
+        if(beginBtn.style.display = 'block') {
+            beginBtn.style.display = 'none';
+        }
+    }
+    btn.onclick = function () {
+        if(startBtn.style.display = 'none') {
+            startBtn.style.display = 'block';
+        }
+    }
+    startBtn.onclick = function () {
+        if(startBtn.style.display = 'block') {
+            startBtn.style.display = 'none';
+        }
+    }
+       var gaArr = [];
+       var tr = 30;
+       var td = 30;
+       var snakebody = 20;
+       function initGap () {
+        for(var i = 0; i < tr; i ++) {
+            for(var j = 0; j < td; j ++) {
+                gaArr.push({
+                    x : j,
+                    y : i
+                });
+            }
+        }
+       }
+       initGap();
+       var snake = {
+        // dircetion : dircetionNum.right,
+        snakePos : [
+            { x : 0 , y : 0 ,domContent: "" ,sign : 'body' },
+            { x : 1 , y : 0 ,domContent: "" ,sign : 'body' },
+            { x : 2 , y : 0 ,domContent: "" ,sign : 'body' },
+            { x : 3 , y : 0 ,domContent: "" ,sign : 'head' },
+        ]
+       }
+       var snakeDom = snake.snakePos;
+       function drawSnake (snake) {
+        for(var i = 0; i < snakeDom.length; i ++) {
+            if(!snakeDom[i].domContent) {
+                snakeDom[i].domContent = document.createElement('div');
+                snakeDom[i].domContent.style.position = 'absolute';
+                snakeDom[i].domContent.style.width = snakebody + 'px';
+                snakeDom[i].domContent.style.height = snakebody + 'px';
+                snakeDom[i].domContent.style.left = snake.snakePos[i].x * snakebody + 'px';
+                snakeDom[i].domContent.style.top = snake.snakePos[i].y * snakebody + 'px';
+                if(snakeDom[i].sign === 'head') {
+                    snakeDom[i].domContent.style.background = 'url("../贪吃蛇/img/snake.jpg") center/contain no-repeat';
+                    snakeDom[i].domContent.style.borderRadius = '50%';
+                } else {
+                    snakeDom[i].domContent.style.backgroundColor = 'red';
+                    snakeDom[i].domContent.style.borderRadius = '50%';
+                }
+            }
+            document.querySelector(".game-area").append(snakeDom[i].domContent);
+        }
+       }
+       drawSnake(snake);
+    var food = { x : 0 , y : 0, domContent : "" };
+    function drawFood (food) {
+        food.x = Math.floor(Math.random() * tr);
+        food.y = Math.floor(Math.random() * td);
+        while(true) {
+            var isReapt = false;
+            for(var i = 0; i < snakeDom.length; i ++ ) {
+                if( snakeDom[i].x === food.x && snakeDom[i].y === food.y) {
+                    isReapt = true;
+                    break;
+                }
+            }
+            if(!isReapt) {
+                break;
+            }
+        }
+        if(!food.domContent){
+            food.domContent = document.createElement("div");
+            food.domContent.style.position = 'absolute';
+            food.domContent.style.width = snakebody + 'px';
+            food.domContent.style.height = snakebody + 'px';
+            food.domContent.style.background = 'url("../贪吃蛇/img/food.jpg") center/contain no-repeat';
+            document.querySelector('.game-area').append(food.domContent);
+        }
+        food.domContent.style.left = food.x * snakebody + 'px';
+        food.domContent.style.top = food.y * snakebody + 'px';
+    }
+    drawFood(food);
+    function bindEvent () {
+        document.onkeydown = function (e) {
+            var event = e || window.event;
+            if(e.key === 'ArrowUp' || e.key === 'w') {
+                snake.dircetion = dircetionNum.up;
+            }
+            if(e.key === 'ArrowDown' || e.key === 's') {
+                snake.dircetion = dircetionNum.down;
+            }
+            if(e.key === 'ArrowLeft' || e.key === 'a') {
+                snake,dircetion = dircetionNum.left;
+            }
+            if(e.key === 'ArrowRight' || e.key === 'd') {
+                snake.dircetion = dircetionNum.right;
+            }
+        }
+    }
+    bindEvent();
+    var dircetionNum = {
+        left : { x : -1 , y : 0 , sign : 'left'},
+        right : { x : 1 , y : 0, sign : 'right'},
+        up : { x : 0 , y : -1, sign : 'top'},
+        down : { x : 0 , y : 1, sign : 'down'}
+    }
+    // function snakeMove () {
+    //     var oldHead = snakeDom[snakeDom.length - 1];
+    //     var newHead = {
+    //         x : oldHead.x + snake.dircetion.x,
+    //         y : oldHead.y + snake.dircetion.y,
+    //         domContent : "",
+    //         sign : 'head'
+    //     }
+    //     oldHead.sign = 'body';
+    //     oldHead.domContent.style.backgroundColor = 'red';
+    //     oldHead.domContent.style.borderRadius = '50%';
+    //     snakeDom.push(newHead);
+    //     drawSnake(snake);
+    // }
+    // snakeMove();
+    </script>
+</body>
+</html>
