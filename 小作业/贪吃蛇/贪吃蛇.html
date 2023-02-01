@@ -51,7 +51,7 @@
             height: 70px;
             background: url(../贪吃蛇/img/start.jpg) center/contain no-repeat;
             top: 20px;
-            left: 560px;
+            left: 360px;
             border-radius: 50%;
             cursor: pointer;
         }
@@ -89,6 +89,7 @@
        var tr = 30;
        var td = 30;
        var snakebody = 20;
+       var score = 0;
        function initGap () {
         for(var i = 0; i < tr; i ++) {
             for(var j = 0; j < td; j ++) {
@@ -100,13 +101,19 @@
         }
        }
        initGap();
+       var dircetionNum = {
+        left : {x : -1 ,y : 0 , sign : 'left'},
+        right : {x : 1 ,y : 0, sign : 'right'},
+        up : {x : 0 ,y : -1, sign : 'up'},
+        down : {x : 0 ,y : 1, sign : 'down'}
+    }
        var snake = {
-        // dircetion : dircetionNum.right,
+        dircetion : dircetionNum.right,
         snakePos : [
             { x : 0 , y : 0 ,domContent: "" ,sign : 'body' },
             { x : 1 , y : 0 ,domContent: "" ,sign : 'body' },
             { x : 2 , y : 0 ,domContent: "" ,sign : 'body' },
-            { x : 3 , y : 0 ,domContent: "" ,sign : 'head' },
+            { x : 3 , y : 0 ,domContent: "" ,sign : 'head' }
         ]
        }
        var snakeDom = snake.snakePos;
@@ -122,6 +129,25 @@
                 if(snakeDom[i].sign === 'head') {
                     snakeDom[i].domContent.style.background = 'url("../贪吃蛇/img/snake.jpg") center/contain no-repeat';
                     snakeDom[i].domContent.style.borderRadius = '50%';
+                    switch (snake.dircetion.sign) {
+                        case 'up' : {
+                            snakeDom[i].domContent.style.transform = 'rotate(-90deg)';
+                            break;
+                        }
+
+                        case 'down' : {
+                            snakeDom[i].domContent.style.transform = 'rotate(90deg)';
+                            break;
+                        }
+                        case 'left' : {
+                            snakeDom[i].domContent.style.transform = 'rotateY(180deg)';
+                            break;
+                        }
+                        case 'right' : {
+                            snakeDom[i].domContent.style.transform = 'rotate(0deg)';
+                            break;
+                        }
+                    }
                 } else {
                     snakeDom[i].domContent.style.backgroundColor = 'red';
                     snakeDom[i].domContent.style.borderRadius = '50%';
@@ -169,35 +195,80 @@
                 snake.dircetion = dircetionNum.down;
             }
             if(e.key === 'ArrowLeft' || e.key === 'a') {
-                snake,dircetion = dircetionNum.left;
+                snake.dircetion = dircetionNum.left;
             }
             if(e.key === 'ArrowRight' || e.key === 'd') {
                 snake.dircetion = dircetionNum.right;
             }
+            snakeMove();
         }
     }
-    bindEvent();
-    var dircetionNum = {
-        left : { x : -1 , y : 0 , sign : 'left'},
-        right : { x : 1 , y : 0, sign : 'right'},
-        up : { x : 0 , y : -1, sign : 'top'},
-        down : { x : 0 , y : 1, sign : 'down'}
+    bindEvent();  
+    function isBoom (newHead) {
+        var boomCheck = {
+            isBoom : false,
+            isEat : false
+        }
+        if(newHead.x < 0 || newHead.x >= td || newHead.y < 0 || newHead.y >= tr) {
+            boomCheck.isBoom = true;
+            return boomCheck;
+        }
+        for(var i = 0; i < snakeDom.length; i ++) {
+            if(newHead.x === snakeDom[i].x && newHead.y === snakeDom[i].y) {
+                boomCheck.isBoom = true;
+                return boomCheck;
+            }
+        }
+        if(newHead.x === food.x && newHead.y === food.y) {
+            boomCheck.isEat = true;
+            score++;
+        }
+        return boomCheck;
     }
-    // function snakeMove () {
-    //     var oldHead = snakeDom[snakeDom.length - 1];
-    //     var newHead = {
-    //         x : oldHead.x + snake.dircetion.x,
-    //         y : oldHead.y + snake.dircetion.y,
-    //         domContent : "",
-    //         sign : 'head'
-    //     }
-    //     oldHead.sign = 'body';
-    //     oldHead.domContent.style.backgroundColor = 'red';
-    //     oldHead.domContent.style.borderRadius = '50%';
-    //     snakeDom.push(newHead);
-    //     drawSnake(snake);
-    // }
-    // snakeMove();
-    </script>
+    function snakeMove () {
+        var oldHead = snakeDom[snakeDom.length-1];
+        var newHead = {
+            x : oldHead.x + snake.dircetion.x,
+            y : oldHead.y + snake.dircetion.y,
+            domContent : "",
+            sign : 'head'
+        }
+        var boomCheckResult = isBoom(newHead);
+        if(boomCheckResult.isBoom) {
+            if(window.confirm(`游戏结束,您当前的得分是${score}分,是否重新开始游戏`)) {
+                document.querySelector('.game-area').innerHTML = "";
+                score = 0;
+                snake = {
+        dircetion : dircetionNum.right,
+        snakePos : [
+            { x : 0 , y : 0 ,domContent: "" ,sign : 'body' },
+            { x : 1 , y : 0 ,domContent: "" ,sign : 'body' },
+            { x : 2 , y : 0 ,domContent: "" ,sign : 'body' },
+            { x : 3 , y : 0 ,domContent: "" ,sign : 'head' }
+        ]
+       }
+       food = {x : 0, y : 0, domContent : ""}
+       drawFood(food);
+       drawSnake(snake);
+       initGap();
+            } else {
+                document.onkeydown = null;
+            }
+            return ;
+         }
+        oldHead.sign = 'body';
+        oldHead.domContent.style.background = 'red';
+        oldHead.domContent.style.borderRadius = '50%';
+        snakeDom.push(newHead);
+        if(boomCheckResult.isEat) {
+            drawFood(food);
+        } else {
+            document.querySelector('.game-area').removeChild(snakeDom[0].domContent);
+            snakeDom.shift();
+        }
+        drawSnake(snake);
+    }
+
+</script>
 </body>
 </html>
