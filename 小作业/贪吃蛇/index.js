@@ -10,9 +10,7 @@ function initGame () {
     // console.log(gaArr);
     drawSnake(snake);
     drawFood();
-   
 }
-initGame();
 //画🐍
 function drawSnake(snake) {
     for(var i = 0; i < snakeDom.length; i ++) {
@@ -85,16 +83,16 @@ function drawFood() {
 function bindEvent () {
     document.onkeydown = function (e) {
         var event = e || window.event;
-        if((e.key === 'ArrowUp' || e.key === 'w') && snake.direction.sign !== 'down') {
+        if((e.key === 'ArrowUp' || e.key.toLocaleLowerCase() === 'w') && snake.direction.sign !== 'down') {
             snake.direction = directionNum.up;
         }
-        if((e.key === 'ArrowDown' || e.key === 's') && snake.direction.sign !== 'up') {
+        if((e.key === 'ArrowDown' || e.key.toLocaleLowerCase() === 's') && snake.direction.sign !== 'up') {
             snake.direction = directionNum.down;
         }
-        if((e.key === 'ArrowLeft' || e.key === 'a') && snake.direction.sign !== 'right') {
+        if((e.key === 'ArrowLeft' || e.key.toLocaleLowerCase() === 'a') && snake.direction.sign !== 'right') {
             snake.direction = directionNum.left;
         }
-        if((e.key === 'ArrowRight' || e.key === 'd') && snake.direction.sign !== 'left') {
+        if((e.key === 'ArrowRight' || e.key.toLocaleLowerCase() === 'd') && snake.direction.sign !== 'left') {
             snake.direction = directionNum.right;
         }
     }
@@ -109,7 +107,7 @@ function bindEvent () {
         }
     } 
 }
-bindEvent();
+// bindEvent();
 // 检查碰撞
 function hasBoom(newHead) {
     var boomCheck = {
@@ -144,24 +142,31 @@ function snakeMove () {
     }
     var boomCheckResult = hasBoom(newHead);
     if(boomCheckResult.isBoom) {
-        if(window.confirm(`
-        游戏结束,您当前的得分是${score},是否继续游戏
-        `)) {
+        if(window.confirm(`游戏结束,您当前的得分是${score},是否继续游戏`)) {
             document.querySelector('.game-area').innerHTML = `
                 <button class="beginBtn" style="display:none"></button>
                 <button class="pauseBtn" style="display:none"></button>`;
             score = 0;
             snake = {
-                direction : directionNum.right,
-                snakePos : [
+                direction : directionNum.right
+                // snakePos : [
+                //     { x :0 , y :0,domContent : "",sign : 'body'},
+                //     { x :1 , y :0,domContent : "",sign : 'body'},
+                //     { x :2 , y :0,domContent : "",sign : 'body'},
+                //     { x :3 , y :0,domContent : "",sign : 'head'},
+                // ]
+            };
+            snakeDom = 
+                 [
                     { x :0 , y :0,domContent : "",sign : 'body'},
                     { x :1 , y :0,domContent : "",sign : 'body'},
                     { x :2 , y :0,domContent : "",sign : 'body'},
                     { x :3 , y :0,domContent : "",sign : 'head'},
-                ]
-            }
-            food = { x : 0 , y : 0 , domContent : ""}
+                ];
+            food = { x : 0 , y : 0 , domContent : "" }
             initGame();
+            // drawFood();
+            // drawSnake(snake1);
             // console.log(score);
         } else {
             document.onkeydown = null;
@@ -185,9 +190,9 @@ function snakeMove () {
 function beginGame () {
     timer = setInterval (function () {
         snakeMove();
-    },1000);
+    },100);
 }
-beginGame();
+// beginGame();
 
 function main () {
     document.querySelector('.beginBtn').onclick = function (e) {
@@ -195,6 +200,7 @@ function main () {
         document.querySelector('.beginBtn').style.display = 'none';
         initGame();
         bindEvent();
+        // beginGame();
     }
 }
 main();
