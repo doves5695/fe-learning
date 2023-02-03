@@ -54,25 +54,42 @@
             float: left;
             width: auto;
             height: auto;
-            margin: 10px 8px;
+            margin: 2px 5.5px;
         }
         .game-area ul li {
             float: left;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             background-color: #7E8B92;
-            /* border: 1px solid #8F999F; */
-            margin: 8px 5px;
+            margin: 2px 0.5px;
+            /* cursor: pointer; */
+        }
+        .content ul li span {
+            display:inline-block;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            margin: auto;
+            background-color: #8F999F;
             cursor: pointer;
+        }
+        /* .content ul li span:hover {
+            background-color: white;
+        } */
+        .control-center .time {
+            text-align: center;
+            font-weight: bold;
+            font-size: 10px;
+            color: red;
         }
     </style>
 </head>
 <div class="game-area">
     <div class="control-center">
         <div class="control-panel">
-            <input type="text">
-            <button></button>
-            <input type="text">
+            <input type="text" class="point">
+            <button>&nbsp;</button>
+            <input type="text" class="time" value="时间:00:00">
         </div>
     </div>
     <div class="content">

@@ -7,7 +7,7 @@ function initGame () {
             });
         }
     }
-    // console.log(gaArr);
+    console.log(gaArr);
     drawSnake(snake);
     drawFood();
 }

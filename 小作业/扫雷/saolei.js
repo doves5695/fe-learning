@@ -1,36 +1,129 @@
 // function qipan() {
-//     for(var i = 0; i < tr; i ++) {
-//         latticetr.domContent = document.createElement("ul");
-//         document.querySelector(".content").append(latticetr.domContent);
-//     //     for(var j = 0; j < td; j ++) {
-//     //     latticetd.domContent = document.createElement("li");
-//     //     tdContent =  document.createElement("span");
-//     //     document.querySelector("ul").append(latticetd.domContent);
-//     //     document.querySelector("li").append(tdContent);
-//     // }
-// }
-// for(var j = 0; j < td; j ++) {
-//     latticetd.domContent = document.createElement("li");
-//     document.querySelector("ul").append(latticetd.domContent);
-//     tdContent =  document.createElement("span");
-//     // document.querySelector("ul").append(latticetd.domContent);
-//     document.querySelector("li").append(tdContent);
-// }
+//     for(var i = 0; i < 9; i ++ ) {
+//         contenthtml += '<ul>';
+//         for(var j = 0; j < 9; j ++ ) {
+//             contenthtml += '<li><span></span></li>';
+//         }
+//         contenthtml += '</ul>';
+//     document.querySelector(".content").innerHTML = contenthtml;
+//     }
 // }
 // qipan();
+// document.onload = function () {
+//     if(window.confirm("开始游戏?")) {
+//         qipan();
+//     }
+// }
+var timeDom = document.getElementsByClassName("time")[0];
+var second = 0;
+var minute = 0;
+function time () {
+        timeStop = setInterval(function () {
+        second ++;
+        if(second === 60) {
+            minute ++;
+            second = 0;
+        }
+        if(second < 10 && minute < 10) {
+            timeDom.value = "时间:" + "0" + minute + ":" + "0" + second;
+        } else if (second >= 10 && minute < 10) {
+            timeDom.value = "时间:" + "0" + minute + ":" + second;
+        } else if (second < 10 && minute >= 10) {
+            timeDom.value = "时间:" + minute + ":" + "0" + second;
+        } else if (second >= 10 && minute >= 10) {
+            timeDom.value = "时间:" + minute + ":" + second;
+        }
+    },1000);
+}
+// time();
+var BtnDom = document.getElementsByTagName("button")[0];
+function Btn () {
+   BtnDom.onmousedown = function (e) {
+    if(e.button == 0) {
+        clearInterval(timeStop);
+        if(window.confirm("游戏已暂停,是否继续游戏")) {
+            time();
+        } else {
+            console.log('2');
+            second = 0;
+            minute = 0;
+            timeDom.value = "时间:" + "0" + minute + ":" + "0" + second;
+        clearInterval(timeStop);
+            //游戏重新开始,翻转过来的span回归初始状态,计时器归零
+        }
+    } else if (e.button == 2) {
+        console.log('2');
+        second = 0;
+        minute = 0;
+        timeDom.value = "时间:" + "0" + minute + ":" + "0" + second;
+        clearInterval(timeStop);
+        //翻转过来的span转回去了
+    }
+   }
+   document.oncontextmenu = function (e) {
+    e.preventDefault();
+   }
+}
+Btn();
 function qipan() {
-    for(var i = 0; i < 9; i ++) {
+    for(var i = 0; i < tr; i++) {
         latticetr.domContent = document.createElement("ul");
-        // latticetr.domContent.className = "hang";
         document.querySelector(".content").append(latticetr.domContent);
-        for(var j = 0; j < 9; j ++) {
+        for(var j = 0; j < td; j++) {
             latticetd.domContent = document.createElement("li");
-            // latticetd.domContent.className = "lie";
-            document.querySelector("ul").append(latticetd.domContent);
+            var ulCol = document.querySelectorAll("ul");
+            for(var u = 0; u < ulCol.length; u ++) {
+                ulCol[u].append(latticetd.domContent);
+            }
             tdContent.domContent = document.createElement("span");
-            tdContent.domContent.textContent = "1";
-            document.querySelector("li").append(tdContent.domContent);
+            var liCol = document.querySelectorAll("li");
+            for(var l = 0; l < liCol.length; l ++) {
+                liCol[l].append(tdContent.domContent);
+                // console.log(tdContent.domContent);
+            }
         }
     }
 }
 qipan();
+//棋盘的事件
+function flip() {
+    tdContent.domContent = document.getElementsByTagName("span");
+    // tdContent.domContent.onclick = function () {
+    //     console.log('6');
+    // }
+    for(var i = 0; i < tdContent.domContent.length; i ++) {
+        tdContent.domContent[i].onmousedown = function (e) {
+            if(e.button == 0) {
+                console.log("6");
+            } else if (e.button == 2) {
+                console.log("7");
+                tdContent.domContent[i].style.background = 'url("../扫雷/img/qizi.jpg") center/contain no-repeat';
+            }
+            // tdContent.domContent.style.backgroundColor = "red";
+        }
+        }
+    }
+    
+flip();
+//给雷盘编上坐标
+function myArr() {
+    for(var i = 0; i < tr; i ++) {
+        for(var j = 0; j < td; j ++) {
+            latticeArr.push({
+                x : i,
+                y : j
+            });
+        }
+    }
+    console.log(latticeArr);
+}
+myArr();
+function drawLei () {
+    var leix = Math.floor(Math.random() * tr);
+    var leiy = Math.floor(Math.random() * td);
+    var lei = { x : leix , y : leiy , domContent : ""};
+    
+}
+// function main () {
+
+// }
