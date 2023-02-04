@@ -1,19 +1,4 @@
-// function qipan() {
-//     for(var i = 0; i < 9; i ++ ) {
-//         contenthtml += '<ul>';
-//         for(var j = 0; j < 9; j ++ ) {
-//             contenthtml += '<li><span></span></li>';
-//         }
-//         contenthtml += '</ul>';
-//     document.querySelector(".content").innerHTML = contenthtml;
-//     }
-// }
-// qipan();
-// document.onload = function () {
-//     if(window.confirm("开始游戏?")) {
-//         qipan();
-//     }
-// }
+//计时器
 var timeDom = document.getElementsByClassName("time")[0];
 var second = 0;
 var minute = 0;
@@ -85,25 +70,22 @@ function qipan() {
     }
 }
 qipan();
-//棋盘的事件
+//棋盘翻转事件
 function flip() {
     tdContent.domContent = document.getElementsByTagName("span");
-    // tdContent.domContent.onclick = function () {
-    //     console.log('6');
-    // }
-    for(var i = 0; i < tdContent.domContent.length; i ++) {
-        tdContent.domContent[i].onmousedown = function (e) {
-            if(e.button == 0) {
-                console.log("6");
-            } else if (e.button == 2) {
-                console.log("7");
-                tdContent.domContent[i].style.background = 'url("../扫雷/img/qizi.jpg") center/contain no-repeat';
+    for(var i = 0; i <tdContent.domContent.length; i ++) {
+        (function (canshu) {
+            tdContent.domContent[canshu].onmousedown = function (e) {
+                // console.log("6");
+                if(e.button == 0) {
+                    tdContent.domContent[canshu].style.backgroundColor = "#8F999F";
+                } else if (e.button == 2) {
+                    tdContent.domContent[canshu].style.background = 'url("../扫雷/img/qizi.jpg") center/contain no-repeat';
+                }
             }
-            // tdContent.domContent.style.backgroundColor = "red";
-        }
+        }(i))
         }
     }
-    
 flip();
 //给雷盘编上坐标
 function myArr() {
@@ -115,15 +97,55 @@ function myArr() {
             });
         }
     }
-    console.log(latticeArr);
+    // console.log(latticeArr);
 }
 myArr();
 function drawLei () {
-    var leix = Math.floor(Math.random() * tr);
-    var leiy = Math.floor(Math.random() * td);
-    var lei = { x : leix , y : leiy , domContent : ""};
-    
+    // var firstOpen = true;
+    // tdContent.domContent = document.getElementsByTagName("span");
+    // for(var i = 0; i < tdContent.domContent.length; i ++) {
+    //     (function (canshu) {
+    //         tdContent.domContent[canshu].onmousedown = function (e) {
+    //             if(e.button == 0) {
+    //                 if(firstOpen) {
+    //                     firstOpen = false;
+    //                     var leishu = 0;
+    //                     while(leishu < maxLei) {
+    //                         lei.x = Math.floor(Math.random() * tr);
+    //                         lei.y = Math.floor(Math.random() * td);
+    //                         for(var j = 0; j < tdContent.domContent.length; j ++) {
+    //                             (function (canshu) {
+    //                                 tdContent.domContent[canshu].style.background = 'url("../扫雷/lei.jpg") center/contain no-repeat';
+    //                             },(j))
+    //                         }
+    //                     }
+    //                 }
+    //                 // tdContent.domContent[canshu].style.backgroundColor = "#8F999F";
+    //             } else if (e.button == 2) {
+    //                 tdContent.domContent[canshu].style.background = 'url("../扫雷/img/qizi.jpg") center/contain no-repeat';
+    //             }
+    //         }
+    //     }(i))
+    //     }
+    flip();
+    lei.x = Math.floor(Math.random() * tr);
+    lei.y = Math.floor(Math.random() * td);
+    for(var i = 0; i < tr; i ++) {
+        for(var j = 0; j < td; j ++) {
+            (function (canshuyi,canshuer) {
+                tdContent.domContent[canshuyi][canshuer].innerHtml = function (e) {
+                    // console.log("6");
+                    if(e.button == 0) {
+                        tdContent.domContent[canshu].style.backgroundColor = "#8F999F";
+                    } else if (e.button == 2) {
+                        tdContent.domContent[canshu].style.background = 'url("../扫雷/img/qizi.jpg") center/contain no-repeat';
+                    }
+                }
+            }(i,j))
+        }
+    }
 }
+drawLei();
 // function main () {
 
 // }

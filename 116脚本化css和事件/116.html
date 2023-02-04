@@ -49,12 +49,12 @@
 </head>
 <!-- <div style="width : 100px; height: 100px; background-color: red;" onclick="div.style.backgroundColor = 'green'"></div> -->
 
-<!-- <ul>
+<ul>
     <li>a</li>
     <li>a</li>
     <li>a</li>
     <li>a</li>
-</ul> -->
+</ul>
 
 
 <body>
@@ -95,15 +95,15 @@
         // },false);
 
 
-        // var liCol = document.getElementsByTagName('li');
-        // var len = liCol.length;
-        // for(var i = 0; i < len; i ++) {
-        //     (function (canshu) {
-        //         liCol[canshu].addEventListener('click',function(){
-        //         alert(canshu);
-        //     },false);
-        //     }(i))
-        // }
+        var liCol = document.getElementsByTagName('li');
+        var len = liCol.length;
+        for(var i = 0; i < len; i ++) {
+            (function (canshu) {
+                liCol[canshu].addEventListener('click',function(){
+                alert(canshu);
+            },false);
+            }(i))
+        }
 
 
         // 封装兼容性的addEvent(elem,type,handle);方法    handle是处理的意思

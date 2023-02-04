@@ -9,3 +9,4 @@ var timeStop = null;
 var latticeArr = [];
 var maxLei = 6;
 // var spanDom = { domContent : "" }
+var lei = { x : 0,y : 0, domContent: ""}
