@@ -1,12 +1,8 @@
 var tr = 9;
 var td = 9;
-var latticetr = { domContent : "" }
-var latticetd = { domContent : "" }
-var tdContent = { domContent : "" }
-// var content = {domContent : ""}
-// var contenthtml = "";
 var timeStop = null;
-var latticeArr = [];
-var maxLei = 6;
-// var spanDom = { domContent : "" }
-var lei = { x : 0,y : 0, domContent: ""}
+var maxMine = 6;
+// var mineObj = {};
+var mineX = Math.floor(Math.random() * td);
+var mineY = Math.floor(Math.random() * tr);
+var minePos = {x : 0 , y : 0 , count : 0 , isMine : false};  
