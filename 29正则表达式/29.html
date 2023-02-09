@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var reg = /a/g;
+        // var str = "aaaab";
+        // console.log(str.match(reg));
+
+        // var reg = /abce/m;
+        // //在这里面把reg作为参数传进去,只是看着形式上一样,但是理论上是两个不同的正则函数,在这要是把new去掉了,他们俩就完全指代一个了
+        // var reg1 = new RegExp(reg);
+
+
+        //修饰符i   忽视大小写
+        // var reg = /ABCdE/i;
+        // var str = "abcdef";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+        
+        // 修饰符g     全局变量加上g之后会把字符串当中所有符合的全部拿出来
+        // var reg = /a/g;
+        // var str = "aaa";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+        
+        // 修饰符m      执行多行匹配只有在//后面有m的时候里面加上换行符,它才会意识到这是换行了\n后面的a是新的一行
+        // var reg = /^a/mg;
+        // var str = "abcde\nab";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+        
+        // 表达式[abc]    查找方括号之间的任何字符
+        // var reg = /[0-9]/g;
+        // var str = "123456";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+        
+        // 表达式[^abc]    查找不在方括号之间的任何字符;
+        // var reg = /[^123]/g;
+        // var str = "123456";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+        
+        //这个方括号[]里面写的其实是范围    例如[0-9][A-Z][a-z][A-z];
+        //这样写的意思其实就是三位连着的符合该范围的字符串(一个方括号代表一位ie,里面的东西就是区间)
+        // var reg = /[0-9A-z][0-9A-z][0-9A-z]/g;
+        // var str = "sd12ko12214j1o4k1o4j169";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+        
+        //^这个符号就是正常的!(符号)
+        // var reg = /[^a][^b][^c]/g;
+        // var str = "abcderfag";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+        
+        //|这一个竖杠表示的就是||这个或的意思
+        // var reg = /(jingrui|duoduo)/g;
+        // var str = "jingrui666duoduo";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+       
+        // 元字符
+        // \w    用来查找单词字符     一个\w表示一个字母     它完全等于[0-9A-z_]
+        // var reg = /\w\w\w\w\w/g;
+        // var str = "jingrui";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+        
+        // \W     用来查找非单词字符    也就是\w没有的东西它可以有
+        // var reg = /\W/g;
+        // var str = "abc+123";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+        
+        // \d       用来查找数组
+        // var reg = /\d/g;
+        // var str = "123";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+        
+        // \D         用来查找非数字   也就是非0-9
+        // var reg = /\D/g;
+        // var str = "acbakd1e14123+";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+        
+        
+        // \s       用来找空白字符       根据这个可以算出来一个Tab等于4个空格
+        // 一个\s等于   空格符(就是空格)   制表符(\t)  回车符(\r)  换行符(\n)  换页符(\f)   垂直换页符(\v)
+        // var reg = /\s/g;
+        // var str = "a    b";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+        
+        
+        // \S   用来查找非空白字符       
+        // var reg = /\S/g;
+        // var str = "123 ada";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+        
+        
+        // \b    用来找单词边界
+        // var reg = /\bddef/g;
+        // var str = "abc  ddef";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+        
+        
+        // \B      用来找非单词边界
+        // var reg = /\Bc/g;
+        // var str = "abc   cdefg";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+        
+
+        // /\t     制表符
+        // var reg = /\tc/g;
+        // var str = "abc\tcadad";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str)); 
+
+        
+        // \n    换行符
+        // var reg = /\nc/g;
+        // var str = "ab\nc"
+        // console.log(str.match(reg));
+        // console.log(reg.test(str)); 
+
+
+        // \r    回车符
+        // var reg = /\r/g;
+        // var str = "ab\rc"
+        // console.log(str.match(reg));
+        // console.log(reg.test(str)); 
+
+        
+        //\uxxxx     现在已经有16层编码了
+
+        
+        //.可以查找单个字符,除了换行和行结束符     . === [^\r\n];
+        // var reg = /./g;
+        // var str = "abc";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str)); 
+
+        
+        // 量词
+        // n+    匹配任何包含至少含有一个n的字符串   {1,无穷}
+        // var reg = /\w+/g;
+        // var str = "abcadaa";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str)); 
+
+
+        // n*   匹配任何包含0个或多个n的字符串     {0,无穷}    因为读完你想要的东西会有一个逻辑上的距离那个距离会读出来
+        // var reg = /\w*/g;
+        // var reg = /\d*/g;
+        // var str = "acafd";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str)); 
+
+
+        // n?   匹配包含0个或一个n的字符串
+        // var reg = /\w?/g;
+        // var str = "dsahdif";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str)); 
+
+
+        //贪婪原则能多就不少
+        //n{X}  匹配包含X个n的序列的字符串
+        // var reg = /\w{6}/g;
+        // var str = "abcdfg";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str)); 
+
+
+        //n{X,Y}   匹配包含X至Y个n的序列的字符串
+        // var reg = /\w{1,6}/g;
+        // var str = "abcghr";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+
+        //n{x, }   匹配包含至少X个n的序列的字符串    能多就不少
+        // var reg = /\w{5,}/g;
+        // var str = "abcdgdsff6a5656cnaifiajfqowqokgqokdobniqm2235hi3h5i3h3u5hi2362ih5i";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+    
+        //n$       匹配任何结尾为n的字符串
+        // var reg = /c$/g;
+        // var str = "csfwqidhfic";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+
+        //^n      匹配任何开头为n的字符串
+        // var reg = /^j/g;
+        // var str = "jingrui"
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+
+        // 属性
+        //global    判断表达式里面有没有g
+        // var reg = /\w\w\w/g;
+        // var str = "abc";
+        // console.log(reg.global);
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+
+        //ignoreCase   判断表达式里面有没有i大小写这个
+        // var reg = /\w\w\w/i;
+        // var str = "abc";
+        // console.log(reg.ignoreCase);
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+
+        //multiline    判断表达式里面有没有m匹配多行这个
+        // var reg = /\w\w\w/m;
+        // var str = "abc";
+        // console.log(reg.multiline);
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+
+        //source    正则表达式的文本
+        // var reg = /\w\w\w/img;
+        // var str = "abc";
+        // console.log(reg.source);
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+
+        //lastIndex   找你游标的位置,跟exec配合用
+
+
+        //方法
+        //compile    
+        //test方法检验用的
+        //exec    检索字符串中指定的值,返回找到的值,并确定其位置
+        //它的index是告诉你它是在你游标的哪个位置上匹配的ad,当你游标滚完一遍就又回到初始位置了,如果你不加g这个全局的话,它的游标一值在0上
+        // var reg = /ab/g;
+        // var str = "abababab";
+        // console.log(reg.lastIndex);
+        // console.log(reg.exec(str));
+        // console.log(reg.lastIndex);
+        // console.log(reg.exec(str));
+        // console.log(reg.lastIndex);
+        // console.log(reg.exec(str));
+        // console.log(reg.lastIndex);
+        // console.log(reg.exec(str));
+        // console.log(reg.lastIndex);
+        // console.log(reg.exec(str));
+        // console.log(reg.lastIndex);
+        // console.log(reg.exec(str));
+        // console.log(reg.lastIndex);
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+
+        //()括号也叫子表达式    \1叫做匹配第一个子表达式当中的内容  \2就是第二个
+        // var reg = /(a)\1\1/g;
+        // var str = "aaaaaa";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+        // var reg = /(\w)\1(\w)\2/g;
+        // var str = "aabb";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+
+        //支持正则表达式的String对象的方法
+        //search    索与正则表达式相匹配的值     返回匹配到的位置，如果是-1那么就是没匹配到
+        //match     找到一个或多个正则表达式的匹配      在这里面如果有g的话会去掉那些累赘信息,没有的话就会和exec一样
+        // var reg = /(\w)\1(\w)\2/;
+        // var str = "aabb";
+        // console.log(str.match(reg));
+
+        
+        //replace   替换与正则表达式匹配的子串     在这里面如果不结合正则表示的全局去使用的话它没有权利访问全局所以只能改变第一个,有了全局之后就能改了
+        // var reg = /a/g;
+        // var str = "aabb";
+        // console.log(str.replace(reg,'b'));
+
+
+
+        //spilt     把字符串分割为字符串数组      按照你的正则表达式去拆你表达式写的啥就拆成啥
+        // var reg = /aabbcc/g;
+        // var str = "aabbccddeeff";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+   
+        
+        // aabb变成bbaa
+        // var str = "6688";
+        // //在这一步先变成全局
+        // var reg = /(\w)\1(\w)\2/g;
+        // //$你前面选出来的刚才那个子表达式的内容
+        // // console.log(str.replace(reg,'$2$2$1$1'));
+        // //第一个参数是正则表达式的全局,第二个参数是第一个子表达式的内容,以此类推
+        // console.log(str.replace(reg,function ($,$1,$2) {
+        //     return $2+$2+$1+$1;
+        // }));
+
+
+
+        //检查一个字符串首位是否含有数字
+        // var reg = /^\d|\d$/g;
+        // var str = "123abc123";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+
+        //检查一个字符串首尾是否都含有字符串
+        // var reg = /^\d[\w\W]+\d$/g;
+        // var str = "123abc123";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+
+
+        // 把the-first-name变成小驼峰式
+        //  var str = "the-first-name";
+        //  var reg = /-(\w)/g;
+        // //  console.log(str.match(reg));
+        // //  console.log(str.replace(reg,function($,$1){
+        // //     return $1.toUpperCase();
+        // //  }));
+    </script>
+</body>
+</html>

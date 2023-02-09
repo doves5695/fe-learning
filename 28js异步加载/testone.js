@@ -13,3 +13,13 @@
 
 // alert('666');
 // document.write('a');
+
+// console.log('nihao');
+// for(var i =0; i < 10; i ++) {
+//     for(var j = 0;j < 10; j ++) {
+//         for(var m = 0; m < 10; m ++) {
+//             console.log('666');
+//         }
+//     }
+// }
+console.log('123');
