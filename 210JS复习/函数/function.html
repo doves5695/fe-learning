@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // JavaScript 函数是通过function 关键词定义的
+        // 我们可以使用函数声明或函数表达式
+        // 函数声明是不可执行的语句,函数表达式可以在变量中存储
+        // var x = function(a,b) {
+        //     return a*b
+        // }
+        // var z = x(4,3);
+        // console.log(z);
+
+
+        // 函数有匿名函数和命名函数
+
+
+        // 立即执行函数
+        // (function () {
+        //     var x = 'hello';
+        //     console.log(x);
+        // }());
+
+
+        //toString方法以字符串返回函数
+        // function test(a,b) {
+        //     return a * b;
+        // }
+        // var a = test.toString();
+
+
+
+        // 如果你函数调用的参数太多了,我们可以用arguments对象来表示这些参数
+        // 在JavaScript当中有一个arguments对象,它用来表示的是实参的集合,不管你传进来多少参数,它都会以数组的形式传给arguments,当你改形参的值的时候,arguments也会改变不是因为他们是一个值,而是因为他们当中存在强映射关系,改变arguments形参也会发生变化
+
+        // function test() {
+        //     var sum = 0;
+        //     for(var i = 0; i < arguments.length; i ++) {
+        //         sum += arguments[i];
+        //     }
+        //     console.log(sum);
+        // }
+        // test(1,2,3);
+
+
+        //在对象当中也可以给对象的属性设置方法然后来调用它
+        // var person = {
+        //     name : 'jingrui',
+        //     age : '20',
+        //     sex : 'male',
+        //     changname : function (name) {
+        //         this.name = name ;
+        //         console.log(this);
+
+        //     }
+        // }
+        // person.changname('666');
+
+
+
+        // 通过函数构造器来调用函数
+        // function Car (carname,owner,color) {
+        //     this.carname = carname;
+        //     this.owner = owner;
+        //     this.color = color;
+        // }
+        // //这看着像你整出来一个函数,其实是new出来一个新的对象
+        // var car = new Car('audi','mine','blue');
+        // console.log(car.carname);
+        // //类型是对象
+        // console.log( typeof(car));
+    </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //数据类型分为原始值和引用值
+        //原始值包括 number string  boolean  undefined  null
+        //引用值包括 object array function() 包装类Number/String/Boolean
+
+        //JavaScript中有五种可包含值的数据类型
+        // 字符串(String)    数字(Number)    布尔(Boolean)   对象(Object)   函数(function)
+
+        // 三种对象类型
+        // 对象(Object)   日期(Date)   数组(Array)
+
+        // 两种不能包含值的数据类型
+        // null
+        // undefined
+
+
+        //类型转换
+        // 分为显示类似转换和隐士类型转换
+        // 显示类型转换 number parseInt parseFloat toString String  boolean
+        // 隐式类型转换 isNaN  ++/--/+/-    +     -*/%   !  && ||  >< <= >=   == !=  
+        // 不会发生类型转化的有 === NaN  !==
+
+
+
+        // **************  number 
+        // 当用number转换null的时候
+        // console.log(Number(null));//结果是0
+
+        //用number转换undefined
+        // console.log(Number(undefined));//结果是NaN
+
+        //用number转换字符串
+        // console.log(Number('sfaafafaa'));//结果是NaN,但是为啥里面写数字的时候就不是NAN了
+
+        //parseInt
+        // console.log(parseInt('123456dsadf4949'));//结果是123456,因为它只会转换非数字截至的那一位
+        // console.log(parseInt('12',16));就是把16进制数12转换为10进制数
+        // 逗号后面的这一位,代表进制,范围是2-36,写的是0的话系统默认没有
+
+        // parseFloat
+        // console.log(parseFloat('123456.565654666'));//返回的是浮点数
+
+        // toString
+        // var arr = [1,2,3,4,5,6];
+        // console.log(arr.toString());//'1,2,3,4,5,6';
+        // var obj = {name:'jingrui'};
+        // console.log(obj.toString());//[object Object]
+        // var t = true;
+        // console.log(t.toString());//'true';
+        // var u = undefined;
+        // console.log(u.toString());//写undefined会报错null也是一样
+
+        //String
+        // var arr = [1,2,3];
+        // console.log(String(arr));//'1,2,3'
+        // var obj = {x : '5'};
+        // string(obj);'[object Object]';
+        // var u = undefined;
+        // String(u);//'undefined';
+        // var n = null;
+        // String(n);//'null'
+
+        // boolean        除了NaN/null/undefined/fasle/" "/0这个六个值以外都是true
+        // var arr = [1,2,3];
+        // Boolean(arr);//true;
+
+
+        // 隐式类型转换
+        //isNaN
+        // console.log(isNaN('5'));//isNaN判断是不是nan
+
+        // ++/--/+/-
+        // console.log(+'asd');//   ++/--/+/-这些符号后面的东西,会偷偷调用number转化,如果是字符串的话会转变为nan
+        // console.log(-null);
+
+        //+   什么加字符串都是字符串
+        // console.log(null+'sada');
+  
+        //-*/%     他们出现的时候会把左右的东西都变成数字类型,也会调用number
+        // console.log('a'*'aa');
+
+        // ! && ||   出现的时候会把需要运算的东西变成Boolean
+        // console.log(!6);非后加null/undefined/false/0/""/NaN;才会变成true
+        // console.log(!NaN)
+        // console.log('false'&&8);
+
+        // > <  >= <=    当在比较运算符左右1时候,无论左右有一个是数字类型,那么另一个也会变成数字类型,如果要是都是字符串那么久比较acsii码
+        // console.log(6>'9');//返回的结果是boolean值类型
+        
+        // ==  !==   也是一样
+
+        // NaN六亲不认就算是 === 也是一样
+
+        //=  ==   ===
+        // 一个等号是赋值
+        // 两个==  
+        // 首先如果左右两个值的类型相同再进行(===)的比较
+        // 如果两个值类型不同,需要看看左右是不是null和undefined,如果是那么相等,如果左右是字符串和数字,那么就把字符串转变为数字再判断
+        // console.log(null==undefined);//true;
+        // console.log('6'==6);//true
+
+        // 三个===
+        // 首先如果类型不相同那么就一定不相等
+        // 如果两个值都是数值，而且值相等那么就相等;如果有一个是nan,那么不相等
+        //如果两边都是字符串,而且字符位置和字符都一样那么相等
+        //两边都是true或者false,相等
+        //如果两个值都引用同一个函数或者对象,那么相等，反之不相等
+        //如果两边都是null或者undefined那么相等
+        // console.log('abc'==="abc");//true
+        // console.log(NaN === Number('s'));
+        // console.log(true === true);
+        // console.log(null === null);
+        // function a() {};
+        // var x = a();
+        // var s = a();
+        // console.log(x === s);
+
+
+        // typeof   是一种运算符,可以分辨出是哪种类型,它只能返回6个值
+        // number/string/boolean/undefined/object/function
+        // console.log(typeof('666'));//string
+        // console.log(typeof(6));//number
+        // console.log(typeof(true));//boolean
+        // console.log(typeof(a));//如果a没有定义值的话,是undefined
+        // console.log(typeof([1,2,3,4]));//object
+        // console.log(typeof(function(){}));//function
+        // console.log(typeof(null));//object
+
+        // 在typeof当中null和数字会返回object
+    </script>
+</body>
+</html>

@@ -351,6 +351,19 @@
         // //  console.log(str.replace(reg,function($,$1){
         // //     return $1.toUpperCase();
         // //  }));
+
+          
+        //?=n    匹配任何紧跟其后的指定字符串n的字符串     正向预查
+        // var reg = /a(?=c)/g;
+        // var str = "abacab";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
+
+        //?!n   匹配任何其后没有紧接指定字符串n的字符串
+        // var reg = /a(?!b)/g;
+        // var str = "abaafaafa";
+        // console.log(str.match(reg));
+        // console.log(reg.test(str));
     </script>
 </body>
 </html>
