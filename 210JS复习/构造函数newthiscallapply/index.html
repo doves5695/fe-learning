@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 构造函数
+        // 构造函数为什么叫构造函数呢,它和普通函数的区别并不是开头大写字母
+        // 构造函数的基本原理 1.在函数体最前面隐式的加上this = {}    2.执行this.xxx = xxx;    3.隐式的返回this
+        // 普同函数和构造函数的区别,从形式上看,一个函数被作为构造函数还是普通函数执行的唯一区别就是是否使用new,当我们用new的时候,内部会隐式的发生一些变化 1.会隐式的产生一个新对象   var _this = {};
+        // 2.this指向新创建的对象并且继承了构造函数的原型
+        // 3.然后执行构造函数内部的代码
+
+
+        // 普通函数/构造函数的具体区别划分
+        // 1.var method = Person();    //普通函数不需要new关键字来调用
+        //   var method = new Person(); //构造函数则需要
+        // 2. 在构造函数的内部this执行构造出来的新对象,普通函数内部this指向window
+        // 3.在构造函数中会隐式的返回this,也就是那个新创作的对象,
+        // 4.最后一个就是首字母大小写问题
+
+
+
+        // 实现new
+        // function myNew() {
+        //     // 第一步创建一个新对象
+        //     var newobj = {};
+        //     //创建一个构造函数,把构造函数作为参数传进去,利用数组原型上的剪切方法把第一个剪切下来
+        //     var constructor = Array.prototype.shift.call(arguments);
+        //     //第三部继承构造函数的原型
+        //     newobj.__proto__ = constructor.prototype;
+        //     //第四步改变一些this指向
+        //     constructor.apply(newobj,arguments);
+        //     //最后一步把新创建的对象返回出来
+        //     return newobj;
+        // }
+        // function Person (name,age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // var person = myNew (Person,'jingrui',20);
+
+
+
+        // function Person(name,age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // var person = new person('jingrui',20);
+
+
+
+
+        
+        //this
+        // this为什么很重要因为,this允许重复使用一个函数的时候,使用不同的上下文,也就是说"this"关键字允许在调用函数或者方法的时候决定哪个对象应该是焦点
+        //我们在判断this关键字的引用的时候,要先问自己最重要的一个问题,“这个函数在哪里被调用”,判断this引用唯一的方法就是看“this”这个关键字在哪里被调用了
+        //this的指向并不是在创建的时候就能确立的
+        
+        
+        // this的四种绑定规则
+        // 隐式绑定
+        //例如下面的例子
+        // var obj = {
+        //     name : 'jingrui',
+        //     age : '20',
+        //     method : function () {
+        //         console.log(this.name);
+        //     }
+        // }
+        // obj.method(name);
+        //我们为了判断this的引用,当this所在的方法被调用的时候,我们就主要观察是谁调用了this所在的方法,谁调用了这个方法谁就是this的引用       
+        // 另一个例子
+        // var obj = {
+        //     name : "jingrui",
+        //     age : "20",
+        //     method : function (){ 
+        //         alert(`Hello my name is ${this.name}`);
+        //     },
+        //     mother : {
+        //         name : "mom",
+        //         method : function () {
+        //             alert(`Hello my name is ${this.name}`);
+        //         }
+        //     }
+        // }
+        // obj.method();
+        // obj.mother.method();//name is mom
+        // 为什么第二个this的引用指向mother,因为mother是obj对象当中的一个属性,它是调用自己本身的一个方法,所以是mother去调用的
+        // 在我们判断this的引用的时候,我们都需要查看调用过程
+
+
+        // 例子
+        // var name = 'globalName';
+        // var obj = {
+        //     name : 'jingrui',
+        //     method : function () {
+        //         console.log(this.name);
+        //     }
+        // }
+        // var keng = obj.method;
+        // keng();//globalName    这里为什么打印出来的是globalName,这是因为在虽然把obj对象中的method方法,赋值给了变量keng,但是要切记this指向的是最后调用方法的对象,keng在这之前并没有调用方法,所以最后相当于是window调用的
+        // obj.method();//jingrui
+
+
+
+
+
+
+        // 显示绑定
+        // 如果method不是对象中的一个方法了,它就是一个独立的函数那么会发生什么呢
+        //call    call需要按照形参的个数把实参传进去
+        // function method () {
+        //     alert(`My name is ${this.name}`);
+        // }
+        // var obj = {
+        //     name : 'jingrui',
+        //     age : '20'
+        // }
+        // method();//这会我们会发现没有办法再像之前那样显示出name is jingrui了,因为obj当中并没有method这个方法,更不能使用obj.method,因为这会method是一个独立的函数
+        // 所以JavaScript当中的call方法就应运而生了,call是每个函数都有的一个方法,它允许你在调用函数的时候为这个函数指定上下文。(什么是上下文见另一个文件)
+        // method.call(obj);  call是每个函数都有的一个属性,并且传递给它的第一个参数会作为函数被调用时候的上下文。换句话说就是call的第一个参数代表着this的指向
+        
+        
+        // 假如你想传入更多的参数
+        // function method() {
+        //     alert(`My name is ${this.name} and ${arr[0]},${arr[1]},${arr[2]}`);
+        // }
+        // var obj = {
+        //     name : 'jingrui',
+        //     age : '20'
+        // }
+        // var arr = ['java','c','c++'];
+        // method.call(obj,arr[0],arr[1],arr[2]);   如果我们还是使用call方法的话,如果参数过多会导致操作极其麻烦,在这种情况下我们就可以使用apply方法。
+
+        
+        // apply方法
+        // apply和call的区别在于传参的形式不同,apply哪怕你只要传一个参数那么也是用数组的形式去传
+        // function method() {
+        //     alert(`my name is ${this.name} and ${language[0]},${language[1]},${language[2]}`);
+        // }
+        // var obj = {
+        //     name : 'jingrui',
+        //     age : '20'
+        // }
+        // var language = ['javascript','c++','java'];
+        // method.apply(obj,language);
+        
+        
+        //用arguments来代表实参集合
+        // function method(name,age,sex) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.sex = sex;
+        // }
+        // function Test(name,age,sex,hobbit) {
+        //     // var this = {name :'',age :'',sex:''}
+        //     method.apply(this,arguments);//这里面为什么放this呢,是因为我们new了之后会发生隐式的变化,在函数里面我们写了一个this空对象,我们把method里面的方法都变成属性传到了这个空对象当中,然后return出来,var test就是接收这个对象的变量而已
+        //     this.hobbit = hobbit
+        // }
+        // var test = new Test('jingrui',20,'male','game');
+
+        
+        // bind绑定
+        // 与call完全相同,只是不会立刻去调用,需要我们去定义一个新的函数,来执行
+        // function Test() {
+        //     alert(`my name is ${this.name},${language[0]},${language[1]},${language[2]}`);
+        // }
+        // var obj = {
+        //     name : "jingrui"
+        // }
+        // var language = ['javascript','c++','java'];
+        // var move = Test.bind(obj,language);
+        // move();
+
+        
+        // new绑定      只有有new的时候才可用,因为new会给你隐式的创建一个新对象
+        // function chelun (lunH,lunC) {
+        //     this.lunH = lunH;
+        //     this.lunC = lunC;
+        // }
+        // function zuoyi (shufu,c) {
+        //     this.shufu = shufu;
+        //     this.c = c
+        // }
+        // function Car () {
+        //     chelun.call(this,100,'red');
+        //     zuoyi.call(this,'henshufu','black');
+        // }
+        // var car = new Car();
+
+
+        // window绑定    //当没有任何东西调用方法的时候this指向window
+        // function sayname() {
+        //     console.log(this.age);
+        // }
+        // var obj = {
+        //     name : 'jingrui',
+        //     age : '20',
+        // }
+        // sayname();//     ???????为什么这块放age就是undefined放name不应该也是undefined吗
+        
+        
+        //this总结
+        // 1.我们首先查看this所在的函数在哪里被调用了
+        // 2.我们来看.的左侧有没有对象,如果有那么它就是this的引用,如果没有，进行第三步
+        // 3.该函数是不是用"call","apply"或者"bind"调用的,如果是那么他会显示的指明"this"的指向问题,如果还没有那么看第四步
+        // 4.看看这个东西有没有"new"调用,如果是那么这个this的指向就是哪个新对象,没有那么就看第五步
+        // 5.是否在严格模式下,如果是,"this"指向undefined,如果不是看第六步
+        // 6.如果没有东西调用那么就指向window,自执行也是执行window
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        // function Person (name,age,sex,hobbit) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.sex = sex;
+        //     this.hobbit = hobbit;
+        // }
+        // var person = new Person();
+        // Person.call(person,'jingrui',20,'male','game');
+    </script>
+</body>
+</html>
