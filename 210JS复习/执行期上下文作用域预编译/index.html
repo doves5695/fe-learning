@@ -8,8 +8,155 @@
 </head>
 <body>
     <script>
+        // js运行三部曲
+        // 语法分析(语法)    预编译   解释执行
+        // 语法分析: 检查代码是否存在错误,若存在错误,引擎会抛出语法错误,同时构建一颗抽象语法树(AST)
+        // 预编译
+        // JavaScript是解释性语言,也就是说,编译一行,执行一行,但是js并非上来就进入编译环节,它在编译之前还存在预编译过程
+        //js当中的预编译一般有两种: 全局预编译和函数预编译,分别发生在script内部代码执行前和函数的执行前
+        
+
+        //看到预编译一定要记住一句话: 函数声明整体提升,变量声明提升
+        //预编译四大步骤
+        // 1.在预编译开始,会建立一个AO(Activation Object)对象
+        // 2.找形参和变量声明,使其作为AO的属性名,值赋予undefined
+        // 3.实参和形参相统一(也就是把实参值赋给形参)
+        // 4.找函数声明,函数名作为AO属性名,值赋予函数体
+
+        // 预编译前奏
+        // imply global暗示全局变量:即任何变量,如果未经声明就赋值,那么此变量就为全局对象所有
+        // 一切声明了的全局变量,全是window的属性
+
+        
+        //函数预编译
+        //例子
+        // function test(a) {
+        //     console.log(a);//function a() {}
+        //     var a = 123;
+        //     console.log(a);//123
+        //     function a () {}
+        //     console.log(a);//123
+        //     var b = function () {}
+        //     console.log(b);//function b() {}
+        //     function d() {}
+        // }
+        // test(1);
+        // 首先1.先建立一个AO对象 AO : { a : undefined , b : undefined  },并且把形参和变量声明作为属性名,把undefined赋进去
+        // 2.形参实参相统一  AO : { a : 1 , b : undefined }
+        // 3.找到函数声明,值赋予函数体  AO : { a : function a() {} , b : undefined , d : function d() {}}
+
+
+        //全局预编译
+        //全局当中不存在形参和实参,所以全局预编译只需要处理变量声明和函数声明
+        //全局预编译三部曲
+        // 1.生成GO(Global Object)
+        // 2.找变量声明,由于全局变量默认挂载在window之上,若window当前已存在当前属性,忽略当前操作,若没有,变量作为属性名,值赋予undefined
+        // 3.找函数声明,函数与变量类似,先去window上查看,不存在,函数作为函数名,值为函数体
+
+        //例子
+        // console.log(a);//undefined
+        // var a = 1;
+        // console.log(a);//1
+        // function test(a) {
+        //     console.log(a);
+        //     var a = 123;
+        //     console.log(a);
+        //     function a() {}
+        //     console.log(a);
+        //     console.log(b);
+        //     var b = function() {}
+        //     console.log(b);
+        // }
+        // test(2);
+
+
+        //练习题1
+        // function test() {
+        //     console.log(b);//undefined
+        //     if(a) {
+        //         var b = 100;
+        //     }
+        //     console.log(b);//undefined    因为a是undefined所以if里面不执行
+        //     c = 234;
+        //     console.log(c);//234
+        // }
+        // var a;
+        // test();
+        // a = 10;
+        // console.log(c);//234
+        // GO = { a : undefined , c : undefined};//在这里因为c在赋值之前没有声明
+        // GO = { a : undefined , c : undefined}
+        // AO = { b : undefined }
+        // AO = { b : 100 }
+
+
+        //练习题2
+        // var foo = 1;
+        // function bar() {
+        //     console.log(foo);//undefined
+        //     if(!foo) {
+        //         var foo = 10;
+        //     }
+        //     console.log(foo);//10
+        // }
+        // bar();
+
+
+        //练习题3
+        // var a = 1;
+        // function b() {
+        //     console.log(a);//function a() {}
+        //     a = 10;
+        //     return;
+        //     function a() {}
+        // }
+        // b();
+        // console.log(a);//1
+        
+
+        //练习题4
+        // console.log(foo);//function foo() { console.log('c') }
+        // var foo = "A";
+        // console.log(foo);//A
+        // var foo = function () {
+        //     console.log("B");//B
+        // }
+        // console.log(foo);//function () { console.log('B') }
+        // foo();
+        // function foo() {
+        //     console.log("c");
+        // }
+        // console.log(foo);//function () { console.log('B') }
+        // foo();
+        // 最开始在GO和AO当中foo都是undefined,但是在函数预编译当中,AO里面的foo变成了函数体function foo() {},所以第一个console出来的是function foo() { console.log('c') },然后函数一句一句的往下读,foo被赋值了A,所以第二个是A,然后看到的是第三个console,foo被赋成为了函数,所以打印出来的是function () { console.log('B') },然后foo执行,里面的B被打印出来了,第四个foo打印出来的跟第三个一样因为最开始的function foo() { console.log('c') },已经被赋给,所以打印出来的是function () { console.log('B') },??????????????为啥最后是B啊
+
+
+        //练习题5
+        // var foo = 1;
+        // function bar(a) {
+        //     var a1 = a;
+        //     var a = foo;
+        //     function a() {
+        //         console.log(a);//1
+        //     }
+        //     a();
+        // }
+        // bar(3);
+
+
+        //在预编译大多情况下,我们可以采用   函数声明,整体提升,变量声明,声明提升,如果遇到复杂的情况,就要按照全局预编译的发明的方法去一步步推导
+        //最后,在预编译的时候一定要注意:return / if等代码逻辑判断是在执行时候做的,预编译不管这些,预编译只管变量/形参/函数等.
+        
+      
         //上下文
         // 上下文(Content)并不等于作用域(scope),上下文是用来指定代码某些特定部分中this的值,作用域指的是变量的可访问性,上下文是指this在同一作用域内的值。我们可以使用call、apply、bind、箭头函数等改变上下文.在浏览器中全局作用域中上下文始终是window对象,在node.js当中全局作用域中上下文始终是Global对象
+
+
+        //执行期上下文?????
+
+        
+        // 作用域
+        // 作用域就是变量和函数的可访问范围,控制着变量和函数的可见性与生命周期,作用域决定了代码区块中变量和其他资源的可见性,在JavaScript当中变量的作用域分为全局作用域和局部作用域
     </script>
 </body>
 </html>

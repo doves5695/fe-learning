@@ -212,6 +212,21 @@
         // 4.看看这个东西有没有"new"调用,如果是那么这个this的指向就是哪个新对象,没有那么就看第五步
         // 5.是否在严格模式下,如果是,"this"指向undefined,如果不是看第六步
         // 6.如果没有东西调用那么就指向window,自执行也是执行window
+
+
+        // 实现call
+        Function.prototype.mycall = function (obj) {
+            //让this获取调用mycall的函数
+            obj.method = this;
+            obj.method();
+            delete obj.method;
+            var args = [];
+            //让for循环从1开始把第一个参数过滤下去,因为第一个参数是我们要传的那个对象
+            for(var i = 1; i < arguments.length; i ++) {
+                args.push(args[i]);
+            }
+        }
+        
         
         
         
