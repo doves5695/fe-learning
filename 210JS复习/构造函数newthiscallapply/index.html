@@ -215,17 +215,63 @@
 
 
         // 实现call
-        Function.prototype.mycall = function (obj) {
-            //让this获取调用mycall的函数
-            obj.method = this;
-            obj.method();
-            delete obj.method;
-            var args = [];
-            //让for循环从1开始把第一个参数过滤下去,因为第一个参数是我们要传的那个对象
-            for(var i = 1; i < arguments.length; i ++) {
-                args.push(args[i]);
-            }
-        }
+        //在函数的原型上定义一个方法,我们把this指向的对象作为参数传进来
+        // Function.prototype.mycall = function (obj) {
+        //     var obj = obj || window;
+        //     // 我们用this指代使用mycall方法的函数
+        //     obj.method = this;
+        //     var args = [];
+        //     for(var i = 1; i < arguments.length; i ++) {
+        //         args.push(' arguments[' + i +'] ');
+        //     }
+        //     var result = eval('obj.method(' + args + ')');
+        //     delete obj.method;
+        //     return result;
+        // }
+        // var obj1 = {
+        //     value : 1
+        // }
+        // function person (name,age) {
+        //     console.log(name);
+        //     console.log(age);
+        //     console.log(this.value);
+        // }
+        // person.mycall(obj1,'jingrui',20);
+
+
+        // 实现apply
+    //     Function.prototype.myapply = function (obj,arr) {
+    //     var obj = Object(obj) || window;
+    //     obj.method = this;
+    //     var result;
+    //     if(!arr) {
+    //         result = obj.method();
+    //     }
+    //     else {
+    //         var args = [];
+    //         for(var i = 0; i < arguments.length; i ++) {
+    //             args.push('arr[' + i +']');
+    //         }
+    //         result = eval('obj.method(' + args + ')');
+    //     }
+    //     delete obj.method;
+    //     return result;
+    // }
+    // function method (name,age,sex) {
+    //     this.name = name;
+    //     this.age = age;
+    //     this.sex = sex;
+    // }
+    // function Test(name,age,sex,hobbit) {
+    //     method.myapply(this,arguments);
+    //     this.hobbit = hobbit;
+    // }
+    // var test = new Test('jingrui',20,'male','game');
+
+
+
+        
+
         
         
         
