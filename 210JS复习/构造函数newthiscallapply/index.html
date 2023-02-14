@@ -196,13 +196,13 @@
 
         // window绑定    //当没有任何东西调用方法的时候this指向window
         // function sayname() {
-        //     console.log(this.age);
+        //     console.log(this.name);
         // }
         // var obj = {
         //     name : 'jingrui',
         //     age : '20',
         // }
-        // sayname();//     ???????为什么这块放age就是undefined放name不应该也是undefined吗
+        // sayname();//     ???????为什么这块放age就是undefined放name不应该也是undefined吗,因为window属性里面有name
         
         
         //this总结
@@ -222,8 +222,9 @@
         //     obj.method = this;
         //     var args = [];
         //     for(var i = 1; i < arguments.length; i ++) {
-        //         args.push(' arguments[' + i +'] ');
+        //         args.push('arguments[' + i + ']');
         //     }
+        // // 执行字符串表达式并返回表达式的值
         //     var result = eval('obj.method(' + args + ')');
         //     delete obj.method;
         //     return result;
@@ -267,7 +268,6 @@
     //     this.hobbit = hobbit;
     // }
     // var test = new Test('jingrui',20,'male','game');
-
 
 
         

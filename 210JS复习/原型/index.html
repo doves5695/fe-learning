@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //根据下面这个例子我们可以试出,实例化出来的对象.__proto__ = 构造函数.prototype,一个对象一定具有__proto__属性,如果你没有手段设置prototype属性,那么它的prototype属性一定是undefined
+        //我们定义在实例化对象当中的值也可以在prototype上找到
+        // Person.prototype.hobbit = 'jing';
+        // function Person(name,age,sex) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.sex = sex;
+        // }
+        // var person = new Person('jingrui',20,'male');
+
+        
+        //原型本质就是一个对象,原型的作用是给其他对象提供共享属性
+        //构造函数的prototype属性的值是用于实现继承和共享属性的原型对象
+        // 所以对象都有一个内部属性,叫做[[prototype]],此属性的值为null或一个对象,用于实现继承,每个原型链必须具有有限的长度,(也就是从任一对象开始,递归访问[[prototype]]内部属性必须最终到头,并且值为null).
+
+        // Person.prototype.hobbit = 'jing';
+        // Person.prototype.sayName = function () {
+        //     console.log(`my name is ${this.name}`);
+        // }
+        // function Person(name,age,sex) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.sex = sex;
+        // }
+        // var person = new Person('jingrui',20,'male');
+        // 这也就验证了实例化出来的对象.__proto__ = 构造函数.prototype
+        // person.__proto__ === Person.prototype
+        // true
+        // __proto__其实是一种连接工具,我们可以依赖它来访问对象当中的[[prototype]]属性
+
+        //当我们去改变原型对象上的属性的时候,该对象的内部的原型也会发生改变
+        // 所有原型链的顶端一定是null
+
+        //原型总结
+        // __proto__是一个隐式的属性存在于所有的对象当中,prototype只存在于函数当中,构造函数实例化出来的对象可以通过调用__proto__来访问构造函数当的原型对象,但是__proto__并不是ECMAScript语法规范的标准,建议使用object.getPrototypeOf替代
+        // prototype用来表示使用此构造函数初始化的对象继承自哪个原型对象
+
+        //每个对象内部都有一个用来存放该对象原型的属性[[prototype]],可以通过__proto__,getPrototypeOf/setPrototypeOf来读写
+        // 原型本质就是对象,每个原型自身可能也有原型,所以产生了原型链
+        //原型链的长度是有限的,且最终一定指向null
+        //所有原型对象的根原对象是Object原型对象,它被内置在Object.prototype属性上
+        //每个函数都会有一个prototype属性,用来给其创建的对象赋予原型
+        //函数prototype属性值的constructor属性指向自身
+        //构造函数Fuction的prototype属性和其原型(__proto__)都指向Function原型对象
+        //Function原型对象比较特殊,是一个匿名函数,它可以先于/独立于Function产生,其原型依然是Object原型对象
+
+        //constructor 定义在原型上  是构造器的意思,构造函数构造出来的对象通过它来查看构造自己的函数
+        // function Person(name,age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // var person = new Person('jingrui',20);
+
+        // object.create()  //你可以新创建一个对象并且用这个方法让原型可以你自己指定,括号当中要写对象,括号当中不能写原始值非对象的值都不能填,但是null除外
+        //第一个参数是你自己指定的原型
+        // var obj = {name:'jingrui',age : 20};
+        // var obj1 = Object.create(obj);
+        // var obj = {
+        //     name : 'jingrui'
+        // };
+        // var newobj = Object.create(obj);
+        // var obj = {
+        //     name : 'jingrui'
+        // };
+        // var obj1 = Object.create(null);//如果你写null的时候会导致你找不到原型了,无法手动干预让一个对象的原型是null
+
+
+        // for...in   //对象枚举    in后面放对象
+        // var obj = {
+        //     name : 'jingrui',
+        //     age : 20,
+        //     sex : 'male',
+        //     hobbit : 'game'
+        // }
+        // for(var prop in obj) {
+        //     console.log(prop);
+        // }
+        
+        
+        // hasownProperty     用来过滤掉自己的原型上的属性
+        // Person.prototype.lastName = 'jing';
+        // function Person (name,age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // var person = new Person('jingrui',20);
+        // for(var prop in person) {
+        //     if(person.hasOwnProperty(prop)) {
+        //         console.log(person[prop]);
+        //     }
+        // }
+
+
+        // instanceof    
+        // a instanceof b 判断a的原型链上面有没有b的原型
+        // Person.prototype.lastName = 'jing';
+        // function Person(sex,age) {
+        //     this.sex = sex;
+        //     this.age = age;
+        // }
+        // var person = new Person('male',20);
+        // person instanceof Person //true
+
+
+        // constructor 和instanceof 可以判断object和array
+        // var obj = {};
+        // obj.constructor = Object
+        // var arr = [];
+        // arr.constructor = Array
+        // obj instanceof Array;//false
+        // arr instanceof Object;//true
+
+
+        //继承方式
+        // 1.传统的继承原型链继承
+        // grandFather.prototype.lastName = 'jing';
+        // function grandFather () {}
+        // var grandfather = new grandFather();
+        // Father.prototype = grandfather;
+        // function Father() {}
+        // var father = new Father();
+        // Son.prototype = father;
+        // function Son () {}
+        // var son = new Son();
+
+
+        // 2.借用构造函数,只是用call方法找其他工厂代加工,并不能算是真正的继承
+        // function test (name,age,sex) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.sex = sex;
+        // }
+        // function Person (name,age,sex,hobbit) {
+        //     test.apply(this,arguments);
+        //     this.hobbit = hobbit;
+        // }
+        // var person = new Person('jingrui','20','male','game');
+
+
+        // 3.共享原型
+        // Person.prototype.lastName = 'jing';
+        // function Person (name,age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // PersonOne.prototype = Person.prototype;
+        // function PersonOne () {
+
+        // }
+        // var personone = new PersonOne();
+
+
+        // 4.圣杯模式       相当于找一个中间商转手一下
+        // Person.prototype.lastName = 'jing';
+        // function Person () {}
+        // Xiaosan.prototype = Person.prototype;
+        // function Xiaosan() {}
+        // var xiaosan = new Xiaosan();
+        // PersonOne.prototype = xiaosan;
+        // function PersonOne() {};
+        // var personone = new PersonOne;
+    </script>
+</body>
+</html>
