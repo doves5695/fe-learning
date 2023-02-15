@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- <div id="jr" class="one"  style="width: 100px;height: 100px;background-color: yellow;"></div>
+<div id="jj" class="two" style="width: 100px;height: 100px;background-color: red;"></div> -->
+<!-- <div></div>
+<div class="demo"></div>
+<div></div> -->
+<div>
+    <span>
+        <a href=""></a>
+        <strong></strong>
+        <p></p>
+    </span>
+</div>
+<body>
+    <script>
+        // DOM操作四元素包括增删改查
+        // DOM也就是 Document Object Model
+        // Dom定义了表示和修改html文档的所需要的方法,Dom是宿主对象,是浏览器厂商定义的方法,是用来操作html和xml功能的一类对象的集合
+        // 它可以把js和html文档结合,它是用来让js处理html文档的方法集合
+        // Document对象
+        // 每个载入浏览器的HTML文档都会成为Document对象,Document对象可以让我们从脚本中对HTML页面中的所有元素进行访问
+        // Document对象是window对象的一部分,可以通过window.document属性对其进行访问
+
+
+        //document对象方法中的增删改查
+        // 查
+        // getELementById  它选的是你设置的元素的id的名字,可以选出来
+        // var divOne = document.getElementById('jr');
+        // divOne.style.width = '30px';
+        // divOne.style.height = '30px';
+        // divOne.style.backgroundColor = 'red';
+
+        // getELementByTagName     用tagname来选择查看的时候记得在后面的中括号当中写上你想要查询的位数,因为通过标签选择器选择出来的是一组,是一个类数组形式,它有索引位
+        // var divCol = document.getElementsByTagName('div')[0];
+        // divCol.style.width = '30px';
+        // divCol.style.height = '30px';
+        // divCol.style.backgroundColor = 'red';
+
+        // getELementByclassName   通过你想要查找元素的class名来查找元素,在ie8和ie8以下的ie版本中没有,可以多个class一起选择,所以还要加上索引位
+        // var divOne = document.getElementsByClassName('one')[0];
+        // divOne.style.width = '30px';
+        // divOne.style.height = '30px';
+        // divOne.style.backgroundColor = 'red';
+
+
+        // querySelector     只返回匹配的第一个元素,如果没有那么返回null,相当于在括号里面写css选择器
+        // var div = document.querySelector('div');
+        // div.style.backgroundColor = 'blue';
+        // 由例子可以看出来,第一个div最开始是黄色,我们通过querySelector方法来选择了div元素,但是只改变了第一个div元素的颜色
+        // var div = document.querySelector('span');
+        // console.log(div);//返回null
+
+
+        // querySelectorAll   返回匹配的元素集合,如果没有匹配项,返回空的节点数组(Nodelist),返回的结果是静态的,之后改变Document结构的改变不会影响到之前的取值结果,它选取出来的是一个组
+        
+
+
+        // querSelector和querSelecttorAll虽然很理想但是有缺点,1.是因为在ie7和ie7以下版本不适用(但是现在基本上不用ie6,ie7了,所以影响不大)
+        // 2.最致命的缺点,他们两选出来的都不是实时的
+        // var divCol = document.getElementsByTagName('div');
+        // var divDemo = document.getElementsByClassName('demo')[0];
+        // 当用getElementsByTagName这个方法选取出来的时候是实时的,删除修改会发生变化
+        // var divCol = document.querySelectorAll('div');
+        // var divDemo = document.getElementsByClassName('demo')[0];
+        // 用querSelector和querSelecttorAll方法来选取的时候是静态的,也就是说选出来之后再对document做一些改变并不会显示出来,就好像拍照一下,照完再去改变素材,已经拍出来的东西并不会发生改变
+
+
+
+        // 遍历节点树
+        // parentNode -> 父节点(节点的最顶层是document)
+        // childNodes -> 子节点(空格注射还有回车都算是子节点,标签节点不一定是子节点)
+        // firstChild -> 第一个子节点
+        // lastChild  -> 最后一个子节点
+        // nextSibling -> 后一个兄弟节点
+        // previousSibling  -> 前一个兄弟节点
+        // var div = document.getElementsByTagName('div')[0];
+        // var span = document.getElementsByTagName('span')[0];
+        // var strong = document.getElementsByTagName('strong')[0];
+        // var a = document.getElementsByTagName('a')[0];
+        // console.log(strong.parentNode);//span
+        // console.log(div.childNodes);//Nodelist[text,span,text];
+        // console.log(div.firstChild);//#text
+        // console.log(div.lastChild);//#text
+        // console.log(a.nextSibling);//#text
+        // console.log(strong.previousSibling);//#text
+        // 因为这些都是找节点,空格注释回车啥的都是节点如果写的时候不写空格回车啥的,就会出现我们属性的标签了
+        // console.log(a.previousSibling);
+        // console.log(div.firstChild);
+        
+
+        // 基于元素节点树的遍历(元素节点也就是我们常说的标签)
+        // 除child以为ie9以下全没有
+        // paremtElement -> 返回当前元素的父元素节点(IE不兼容)
+        // children -> 只返回当前元素的元素子节点
+        // node.childElementCount === node.children.length 当前元素节点的子元素节点个数(IE不兼容)
+        // firstElementChild -> 返回的是第一个元素节点(IE不兼容)
+        // lastElementChild  -> 返回的是最后一个元素节点(IE不兼容)
+        // nextElementSibling / previousElementSibling  返回后一个/前一个兄弟元素节点(IE不兼容)
+        // var div = document.getElementsByTagName('div')[0];
+        // var span = document.getElementsByTagName('span')[0];
+        // var strong = document.getElementsByTagName('strong')[0];
+        // var a = document.getElementsByTagName('a')[0];
+        // console.log(div.parentElement);//body
+        // console.log(div.children);
+        // console.log(div.childElementCount);//结果是当前元素节点的子元素节点个数
+        // console.log(div.children.length);//它与div.childElementCount完全相等(===);
+        // console.log(span.firstElementChild);//a标签
+        // console.log(span.lastElementChild);//p标签
+        // console.log(strong.nextElementSibling);//p标签
+        // console.log(strong.previousElementSibling);//a标签
+
+
+        // 节点的四大属性
+        // nodeName  元素的标签名字,以大写形式表示,只读(只能读取不能赋值)
+        // nodeValue   Text(文本)节点或Comment(注释)节点的文本内容,可以读写
+        // nodeType  该节点的类型,只读
+        // attribute   Element节点的属性集合(只有元素节点上面有)
+        // var div = document.getElementsByTagName('div')[0];
+        // var span = document.getElementsByTagName('span')[0];
+        // var strong = document.getElementsByTagName('strong')[0];
+        // var a = document.getElementsByTagName('a')[0];
+        // console.log(div.nodeName);//DIV
+        // console.log(div.firstChild.nodeType);//3
+
+
+        // 节点的类型(nodetype用来获取节点的类型)
+        // 元素类型 —— 1
+        // 属性节点 —— 2
+        // 文本节点 —— 3
+        // 注释节点 —— 8
+        // document —— 9
+        // DocumentFragment —— 11 
+
+
+        // Document 是 document的构造函数
+        // Document.prototype是document的原型
+
+        // dom当中的方法都是一级一级定义在原型链上的
+
+
+        // 节点的一个方法Node.hasChildNodes();
+        // 用来判断当前元素的子节点元素,文本也算哦
+        // var div = document.getElementsByTagName('div')[0];
+        // var span = document.getElementsByTagName('span')[0];
+        // var strong = document.getElementsByTagName('strong')[0];
+        // var a = document.getElementsByTagName('a')[0];
+        // console.log(div.firstChild.hasChildNodes);
+
+
+        // Dom元素的增删插替
+        // 增
+        // document.creatElement();   增加一个元素节点,括号里面依然是字符串
+        // document.creatTextNode();  增加一个文本节点,这个文本是可以插入到页面当中去展示的
+        // document.creatComment();   增加一个注释文本
+
+        // 删
+        // parent.removeChild();      这相当于一个剪切
+        // child.remove();            这个删了就真没了啊,控制台当中返回的是undefined
+
+        // 插
+        // PARENTNODE.appendChild();   让父节点去调用这个方法想让谁插进去就写谁,父节点的后面插入一个节点(这类似于一个push方法,在最后面加入),假如是你选择出来的标签也可以调用这个方法
+        // PARENTNDOE.insertBefore(a,b);   它叫做在b之前插入a
+
+        // 替
+        // parent.replaceChild(new,origin);   这也相当于剪切
+        // var div = document.getElementsByTagName('div')[0];
+        // var span = document.getElementsByTagName('span')[0];
+        // var strong = document.getElementsByTagName('strong')[0];
+        // var a = document.getElementsByTagName('a')[0];
+        // var b = document.createElement('b');//增加
+        // div.appendChild(b);//插
+        // div.removeChild(b);//删
+        // span.insertBefore(b,strong);//在strong标签之前插入b
+        // span.replaceChild(b,a);//把span当中的a标签用b标签去替换
+
+
+        // innerHtml方法   可以改变html当中的内容
+        // innerHtml = ???    是覆盖会把之前的html内容覆盖掉
+        // 当我们用innerHTML +=  的时候可以追加文本   
+        // 想要往里面加标签的时候记得用字符串形式
+        // 它甚至可以拿出来body里面的东西
+
+        // innerText(火狐不兼容) / textContent(老版本IE不好使)
+        // 当使用innerText的时候会把其他标签也砍掉,使用要慎重,当你修改innerText的时候其他带文本的标签也没了
+        // textContent也会改变带文本的标签
+
+        // Element节点的一些方法
+        // ele.setAttribute();
+        // ele.getAttribute();
+        // 这两个方法都是运用到行间,一个是设置,一个是访问,例如div.setAttribute('class','demo'); 这个方法就是在div当中设置一个行内属性叫做"class" = 'demo';
+        // div.getAttribute('class');  这个就是用来把刚才添加进去的行间属性,返回出来
+
+        // var div = document.getElementsByTagName('div')[0];
+        // var span = document.getElementsByTagName('span')[0];
+        // var strong = document.getElementsByTagName('strong')[0];
+        // var a = document.getElementsByTagName('a')[0];
+        // div.setAttribute('class','demo');
+        // div.getAttribute("class");
+
+
+        // Date其实是一个构造函数
+        // getDate() 告诉你代码运行的时候是哪天
+        // getMonth() 告诉你代码运行的时候是几月,但是它比较呆,它是从0开始算的
+        // getDay()   告诉你代码运行的时候是周几
+        // 1970年1月1日,是计算机的纪元年
+        // getFullyear()  才是最正确的返回year的方法
+        // getTime()返回自 1970 年 1 月 1 日午夜以来与指定日期的毫秒数。 
+
+        // parse方法写字Date上面的
+    </script>
+</body>
+</html>
