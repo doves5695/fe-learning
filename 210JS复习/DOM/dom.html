@@ -11,13 +11,24 @@
 <!-- <div></div>
 <div class="demo"></div>
 <div></div> -->
-<div>
+<!-- <div>
     <span>
         <a href=""></a>
         <strong></strong>
         <p></p>
     </span>
-</div>
+</div> -->
+<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+<!-- <div style="width: 100px;height: 100px;background-color: red;"></div> -->
+
+<!-- <div class="wai" style="width: 300px;height: 300px;background-color: red;">
+    <div class="zhong" style="width: 200px;height: 200px;background-color: yellow;">
+        <div class="nei" style="width: 100px;height: 100px;background-color: green;"></div>
+    </div>
+</div> -->
+
+
+<div style="width: 100px;height: 100px;background-color: red;"></div>
 <body>
     <script>
         // DOM操作四元素包括增删改查
@@ -214,6 +225,275 @@
         // getTime()返回自 1970 年 1 月 1 日午夜以来与指定日期的毫秒数。 
 
         // parse方法写字Date上面的
+
+
+        // var date = new Date;
+        // console.log(date.getDate());//16号
+        // console.log(date.getDay());//周四
+        // console.log(date.getMonth())//1月,因为是从0开始算的
+
+
+        //DOM的基本操作
+        // 求滚动条
+        // window.pageXOffset;   //求滚动条的x轴距离
+        // window.pageYOffset;   //求滚动条的Y轴距离
+        // 以上两个方法IE8及其IE8以下不兼容
+
+        // 在ie当中如何实现求滚动条(在ie中兼容性比较混乱,两种方式在一个ie版本中只能有一个好使)
+        // document.body.scrollTop  /  document.documentElement.scrollTop
+        // 因为兼容性比较混乱,用的时候我们用两个值相加,因为不可能存在两个同时有值
+        
+
+        // 查看视口的尺寸
+        // window.innerWidth;   //宽度
+        // window.innerHeight;  //高度
+        // 以上两个方法IE8及其IE8以下不兼容
+        // 在ie中的方法
+        // document.documentElement.clientWidth
+        // document.documentElement.clientHeight
+        // 标准模式下任何浏览器都兼容
+        // 怪异模式方法
+        // document.body.clientHeight;
+        // document.body.clientWidth;
+
+        // 当我们把<!DOCTYPE html>删掉,这个浏览器就变成了混杂模式,加上这个标签就是标准模式
+
+        // CSS1Compat    表示的是标准模式
+        // BackCompat    表示的是怪异(混杂)模式
+
+
+        // 查看元素的几何尺寸
+        // domElement.getBoundingClientRect();
+        // 兼容性很好
+        // 在你document内的元素调用该方法的时候,会返回一个对象,对象当中有left,top,right,buttom等属性
+        // left和top表示左上角的X和Y坐标
+        // right和buttom表示右下角的X和Y的坐标
+        // height和windth老版本ie并没有实现
+        // 返回的结果不是实时的它是一个静态的,当你调用之后改变元素的时候,它的结果不会发生改变
+        // var div = document.getElementsByTagName('div')[0];
+        
+        
+        // div.getBoundingClientRect();//查坐标
+        // div.offsetWidth;
+        // div.offsetHeight;
+        // 以上两个方法求的是展示区的宽高
+
+
+        // 查看元素的位置
+        // dom.offsetLeft   
+        // dom.offsetTop
+        // 他们两和position:absolute大概相同,都是去找最近的父集,如果最近的父集有定位,那么就返回该最近的父集的坐标,如果没有就相当于文档来返回坐标
+
+        // dom.offsetParent   返回最近的有定位的父集,如果没有,返回body,body.offsetParent返回null
+
+               
+        // 让滚动条滚动
+        // 这些也是在window上面
+        // Scroll(),ScrollTO()   让滚动条滚动到定点值
+        // ScrollBy()            让滚动条是累加滚动的 
+
+
+        // 脚本化css
+        // dom.style.prop
+        // 可读可写的行间样式,没有兼容性问题,碰到float这种保留字属性,前面应该加css
+        // 例如:float --> cssfloat
+        // 符合属性必须拆除,组合单词变成小驼峰式写法
+        // 例如:background-color   --> backgroundColor
+        // 写入的值必须是字符串形式
+
+
+        // 查询计算样式
+        // window.getComputedStyle(ele,null);
+        // 计算机样式只读
+        // 返回的计算样式都是绝对值,没有相对单位(IE8和IE8及以下不适用)
+        // 逗号后面放的是before和after,用来取伪元素的样式表
+
+        // ele.currentStyle
+        // 计算机样式只读
+        // 返回计算样式的值不是经过转化的绝对值
+
+
+        // window.getComputedStyle(div,null).width;
+
+        
+        // 事件
+        // 事件绑定的三种方法
+        // 1.最常见的方法
+        // ele.onXXX = function () {}
+        // 兼容性非常好,但是一个元素的同一个事件上只能绑定一个处理函数(如果你绑定了多个处理函数,那么下面的会覆盖掉上面的)
+        // 2.w3c标准方法
+        // ele.addEventListener(type,function(){},false); 这里面的type也是字符串类型
+        // IE9以下不兼容,可以为一个事件绑定多个函数,谁先绑定就是谁
+        // 3.IE独有的
+        // ele.attachEvent('on' + type,function(){});
+        // IE独有的,一个事件同样可以绑定多个处理此程序
+
+
+        // var div = document.getElementsByTagName('div')[0];
+        // div.onclick = function () {
+        //     div.style.backgroundColor = 'blue';
+        // }
+        // div.addEventListener('click',function() {
+        //     div.style.backgroundColor = 'yellow';
+        // },false);
+        
+
+        // 绑定事件了如何解除
+        // 1.因为最常见的方法只能绑定一个处理,所以我们可以覆盖它
+        // ele.onXXX = fasle / undefined / null;
+        // 2. ele.removeEventListener(type,function(){},false);
+        // 如果在函数当中想要解除可以用this.removeEventListener(type,function(){},false);
+        // 如果函数是匿名函数,我们可以用argument.calle方法
+        // 3.ele.detachEvent('on' + type,function(){})
+        // 如果绑定的是匿名函数那么基本上无法解除
+
+
+        // var div = document.getElementsByTagName('div')[0];
+        // // div.onclick = function () {
+        // //     div.style.backgroundColor = 'yellow';
+        // // }
+        // // div.onclick = false;
+        // div.addEventListener('click',method,false);
+        // function method() {
+        //     div.style.backgroundColor = 'yellow';
+        // }
+        // div.removeEventListener('click',method,false);
+
+
+        // 事件处理模型
+        // 事件冒泡
+        // 结构上(非视觉上)存在嵌套关系的元素,会存在事件冒泡功能,即同一事件,自子元素冒泡向父元素(自底向上)
+        // 事件捕获
+        // 结构上(非视觉上)存在嵌套关系的元素,会存在事件捕获功能,即同一事件,自父元素捕获至子元素(事件源对象) (自顶向下)
+        // 把addEventListener(type,fn,false)里面的false改成true就是捕获了,事件捕获只在w3c支持的里面有
+
+
+       //冒泡
+        // var wai = document.getElementsByTagName('div')[0];
+        // var zhong = document.getElementsByTagName('div')[1];
+        // var nei = document.getElementsByTagName('div')[2];
+        // wai.onclick = function () {
+        //     console.log('wai');
+        // }
+        // zhong.onclick = function () {
+        //     console.log('zhong');
+        // }
+        // nei.onclick = function () {
+        //     console.log('nei');
+        // }
+
+        //捕获    先把外面的抓住
+        // var wai = document.getElementsByTagName('div')[0];
+        // var zhong = document.getElementsByTagName('div')[1];
+        // var nei = document.getElementsByTagName('div')[2];
+        // wai.addEventListener('click',function () {
+        //     console.log('wai');
+        // },true);
+        // zhong.addEventListener('click',function () {
+        //     console.log('zhong');
+        // },true);
+        // nei.addEventListener('click',function () {
+        //     console.log('nei');
+        // },true);
+
+        // IE没有事件捕获,触发顺序是先捕获后冒泡
+
+        // focus,blur,change,submit,reset,select等事件不冒泡
+
+        // 取消冒泡和阻止默认事件
+        // 取消冒泡
+        // w3c标准event.stopPropagation();但不支持ie9以下版本
+        // IE独有,event.cancelBubble = true;
+
+
+        //取消冒泡
+        // var wai = document.getElementsByTagName('div')[0];
+        // var zhong = document.getElementsByTagName('div')[1];
+        // var nei = document.getElementsByTagName('div')[2];
+        // wai.onclick = function (e) {
+        //     e.stopPropagation();
+        //     console.log('wai');
+        // }
+        // zhong.onclick = function (e) {
+        //     e.stopPropagation();
+        //     console.log('zhong');
+        // }
+        // nei.onclick = function (e) {
+        //     e.stopPropagation();
+        //     console.log('nei');
+        // }
+
+
+        // var wai = document.getElementsByTagName('div')[0];
+        // var zhong = document.getElementsByTagName('div')[1];
+        // var nei = document.getElementsByTagName('div')[2];
+        // wai.onclick = function (e) {
+        //     e.cancelBubble = true;
+        //     console.log('wai');
+        // }
+        // zhong.onclick = function (e) {
+        //     e.cancelBubble = true;
+        //     console.log('zhong');
+        // }
+        // nei.onclick = function (e) {
+        //     e.cancelBubble = true;
+        //     console.log('nei');
+        // }
+
+
+        // 阻止默认事件
+        // 默认事件--表单提交,a标签跳转,右键菜单等
+        // 1.return false； 以对象属性的方式注册的事件才生效
+        // 2.event.preventDefault(); w3c标注,ie9以下不兼容
+        // 3.event.returnValue = false; 兼容IE
+        
+        // var div = document.getElementsByTagName('div')[0];
+        // div.oncontextmenu = function (e) {
+        //     e.returnValue = false;
+        // }
+
+
+        // 事件对象
+        // event || window.event 用于IE
+        // var event = e || window.event;
+        // 事件源对象
+        // event.target 火狐只有这个
+        // event.srcElement  Ie只有这个
+        // var target = event.target || event.srcElement
+
+        // 事件委托机制
+        // 利用事件冒泡,和事件源对象进行处理
+        // 优点:
+        // 1.性能 不需要循环所有的元素一个个绑定事件
+        // 2.灵活 当有新的子元素时不需要重新绑定事件
+
+
+        // 事件分类
+        // 鼠标事件
+        // click/mousedown/mousemove/mouseup/contextmenu/mouseover(mouseenter)/mouseout(mouseleave)
+        // click是敲击的意思,敲击相当于按下去放上来所有一个click等于mousedown + mouseup
+        // mouseenter和mouseleave相当于hover
+        // 用button来区分鼠标的按键,0/1/2
+        // DOM3标准规定:click事件只能监听左键,只能通过mousedown和mouseup来判断鼠标键
+
+
+        // 键盘事件
+        // keydown,keyup,keypress
+        // keypress = keydown + keyup
+        // press操作字符类按键
+        // down全都可以操作 
+        // keypress能够区分出所有的字符,能区分你是大写小写,keypress返回的是ASCII码
+        // keydown只能对应每一个按键
+
+
+        // 文本操作事件
+        // input,focus,blur,change
+        // onfocus  聚焦
+        // blur     失去焦点
+        // change   它观察的是你focus和blur的时候状态有没有什么差别,如果有差别就认为你change了就触发事件
+
+
+        // window上面的load事件,与异步加载js有关联
     </script>
 </body>
 </html>
