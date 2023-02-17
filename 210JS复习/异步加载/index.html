@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- <input type="text" value="时间:"> -->
+<div style="width: 100px;height: 100px;background-color: red;"></div>
+<body>
+    <!-- <script>
+        //定时器
+        // setInterval和setTimeout 去实现一个定时器功能不一定精准
+        // setTimeout是推出多长多次时间去执行函数
+        // 他们都是全局对象window上面的方法,内部函数this指向window
+
+        // setInterval
+        // var input = document.getElementsByTagName('input')[0];
+        // var minute = 0;
+        // var second = 0;
+        // input.onfocus = function() {
+        //     var timer = setInterval(function(){
+        //         second++;
+        //         if(second == 60) {
+        //             minute ++;
+        //             second = 0;
+        //         }
+        //         input.value = "时间" + minute + ":" + second;
+        //     },100);
+        // }
+           
+        // setTimeout    延迟去执行
+        // var div = document.getElementsByTagName('div')[0];
+        // div.onclick = function() {
+        //     var timer = setTimeout(function(){
+        //         div.style.backgroundColor = 'green';
+        //     },1000);
+        // }
+
+
+        // 异步加载
+        // 在最开始的时候前端和后端传输数据靠的是XML语言,xml语言比较特殊可以自定义标签,比如<student><name></name></student>,这也就导致了数据库语言都是xml
+        // 在传输数据的时候传的都是二进制的文本,其实也就是传的是字符串
+        // json对象当中的属性名必须要加双引号
+        // json.parse(); 从后端接收数据并且把他变成json形式
+        // json.stringify();  把数据传向后端
+
+
+        // dom树
+        // 生成dom树的过程叫做dom树节点的解析(解析指的是读完,看完并不是加载完毕,也就是说,如果有需要引入图片的时候,图片并不会加载出来,而是把它挂在树上)
+        // 遍历dom树用的是深度优先遍历方法
+        // dom树生成完毕的时候什么都不去做,css也会产生一个和dom树类似的css树
+        // domTree + cssTree = randerTree;
+        // reflow   重构
+        // dom元素的增删改查,dom节点的宽高发生改变,例如节点的display:none 变成 block,都会产生重构,重构对效率的影响非常大,因为在你改变的时候domTree都已经构建完了,当一个节点发生改变的时候,会重新构建domTree,进而randerTree也会发生改变
+        
+        // repaint  重绘
+        // 影响会比较小,因为只是改变cssTree当中的样式,并不会改变结构
+
+
+        // JS加载的缺点,当你希望加载一个作为工具的js文件的时候,因为这一个工具类文件没必要让js的加载阻塞整个页面css和html的加载,如果当你工具js文件,特别大的时候,会格外的影响加载效率
+
+        // 有些工具文件更是希望在需要的时候加载在不需要的时候就不加载,由此引出了的js的异步加载
+
+
+        // 异步加载js的方式
+        // 1.async 
+        // 它是加载完就立刻执行,并且不能在内部写入代码,ie9以下不适用
+        // 2.defer
+        // 这个方法是ie自创的异步加载方法,它是要等整个dom文档全部加载完再去执行,并且可以在内部写入代码(在使用此方法的时候不可以同时拥有src和写入标签的代码会产生冲突)
+        // 3.传参的方式,也就是自己创建script标签插入页面当中,加载完用函数名来返回
+
+
+        // js加载时间线
+        // 1.创建document对象,开始解析web页面,解析html元素和他们的文本内容然后添加Element和Text节点到文档当中,这个阶段的document.readyState = "loading";
+        // 2.遇到link外部CSS,创建线程加载,并继续解析文档
+        // 3.遇到script外部js,首先判断有没有async和defer,如果没有,加载js文件,阻塞进程,等待js文件加载完并执行然后解析文档
+        // 4.遇到script外部js,如果有async或defer,浏览器创建新的线程,并继续解析之前的文档,async属性的脚本文件,加载完立即执行(禁止使用document.write());
+        // 5.遇到img等,先正常解析dom结构,然后浏览器异步加载src,并继续解析文档
+        // 6.当文档解析完了,document.readyState = "interactive";
+        // 7.文档解析完成后,属性是defer的脚本,会按照顺序执行,同样禁止使用(document.write())
+        // 8.document对象触发DOMContentLoaded事件,这也就标志着程序执行从同步脚本执行阶段,转化为事件驱动阶段
+        // 9.当所有的async的脚本加载完毕并执行后、img等加载完成后,document.readyState = 'complete',window对象触发load事件
+        // 10.从此,以异步响应方式处理用户输入,网络事件等
+
+
+        // js加载时间线的过程大概可以分为三类: 对象 / 解析 / 加载
+        // 第一步说的是创建一个document对象并且它的状态是loading
+        // 第二三四五说的是当你碰见linkCSS应该做什么,碰见script的时候先检查有没有async和defer属性,碰见img等带src的标签的时候先异步加载src里面的东西,并且继续解析下面的文档
+        // 第六步就是当你东西都解析完了你此时的状态是iiteractive(活跃状态)
+        // 第七步就是根据defer的定义,等dom文档解析完再去执行
+        // 第八步相当于跨时代了
+        // 第九步就是所有东西都加载完毕,async执行完毕,现在的状态就变成了complete状态,onload事件可以运行了
+    </script> -->
+    <!-- defer -->
+    <!-- <script src="test.js" defer>
+        console.log('123'); //src和内部代码同时存在打印不出来的
+    </script> -->
+    
+    <!-- //async -->
+    <!-- <script src="test.js" async></script> -->
+
+    
+    
+    <!-- //参数形式 -->
+    <!-- <script>
+        // 在你创建一个新的script标签的时候,它就已经开始引入脚本链接了,但是只有你把新创建的标签插入body的时候才会运行
+        var script = document.createElement('script');
+        script.src = 'test.js';
+        //当在这里直接些一个函数执行,那么你打印出来的结果是undefined,因为这时候js是异步进行的,当你前面还在请求加载的时候,引入的脚本当中的内容就已经执行完了,所以在这里出现一个test是平白无故的
+        // test();
+        // 所以我们会用到计时器当中的setTimeout方法,来延迟代码的运行时间
+        // setTimeout(function(){
+        //     test();
+        // },1000)
+        // 但是计时器这种方法有不好的地方因为我们并不能准确的判断加载完的时间,所以有了onload事件方法
+        // script.onload = function () {
+        //     test();
+        // }
+        // 特别是在ie当中我们需要用到状态码这种东西,最开始状态码为loading,也就是加载中,它会根据script标签的加载速度来改变状态码
+        // script.readyState = 'loading';
+        // ie监测状态码的方法
+        // script.onreadystatechange = function () {
+        //     if(script.readyState == "complete" || script.readyState == "loaded") {
+        //         test();
+        //     }
+        // }
+
+
+
+        // 封装一个函数判断什么时候可以执行引入js当中的代码
+        // function load() {
+        //     if(script.onreadyState) {
+        //         script.onreadystatechange = function () {
+        //             if(script.onreadyState == "complete" || script.onreadystatechange == "loaded") {
+        //                 test();
+        //             }
+        //         }
+        //     } else {
+        //         script.onload = function () {
+        //             test();
+        //         }
+        //     }
+        // }
+        // load();
+        // document.body.appendChild(script);
+    </script> -->
+
+
+    <!-- <script>
+        //异步加载第三种方式,传参数
+        // function loadScript(url,callback) {
+        //     var script = document.createElement('script');
+        //     if(script.readyState) {
+        //         script.onreadystatechange = function () {
+        //             if(script.readyState == "complete" || script.onreadyState == "loaded") {
+        //                 // callback();
+        //                 // obj.method();
+        //                 //这里面可以传对象的属性值
+        //                 obj["method"]();
+        //             } 
+        //         }
+        //     } else {
+        //         script.onload = function () {
+        //             // callback();
+        //             // obj.method();
+        //             obj["method"]();
+        //         }
+        //     }
+        // 这里面要记得把src放在后面,因为放前面有可能你网速太好,在后面绑定事件的时候,你前面已经加载完了,事件就没法监测到你readyState的变化,因为前面已经加载过了
+        //     script.src = url;
+        // document.body.appendChild(script);
+        // }
+        //传函数的时候记得传的是函数表达式
+        // loadScript("test.js",function () {
+        //     test();
+        // });
+        //传对象的时候记得是字符串
+        // loadScript("test.js","method");
+    </script> -->
+
+
+    <script>
+        // DOMContentLoaded只有在addEventListener中好使
+        // document.addEventListener('DOMContentLoaded',function () {
+        //     console.log('a');
+        // },false);
+        //loading
+        // console.log(document.readyState);
+        //interactive 和loaded
+        // document.onreadystatechange = function () {
+        //     console.log(document.readyState);
+        // }
+        //complete
+        // window.onload = function () {
+        //     console.log(document.readyState);
+        // }
+    </script>
+</body>
+</html>

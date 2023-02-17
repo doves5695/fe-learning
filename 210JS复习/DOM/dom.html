@@ -329,6 +329,15 @@
         // IE独有的,一个事件同样可以绑定多个处理此程序
 
 
+        // 事件处理程序的运行环境
+        // 1.ele.onXXX = function () {}
+        // // 程序的this指向的是dom元素本身
+        // 2.ele.addEventListener(type,function(){}.false);
+        // // 程序的this指向的是dom元素本身
+        // 3.ele.attachEvent('on' + type,function(){});
+        // // 程序this指向window
+
+
         // var div = document.getElementsByTagName('div')[0];
         // div.onclick = function () {
         //     div.style.backgroundColor = 'blue';
