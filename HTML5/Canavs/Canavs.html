@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="400px" height="400px"></canvas>
+    <canvas width="100px" height="100px" >
+    </canvas>
+    <img src="../../JSAll/小作业/扫雷/img/lei.jpg" alt="">
+
+   
+         <!-- Canvas 最早在apple的safari 1.3当中引入的 -->
+         <!-- ie9之前的浏览器不支持Canvas -->
+         <!-- 写宽高的时候,不需要写px,如果写的话需要加上引号 -->
+         <!-- 上下文对象相当于我们的画笔 -->
+         <!-- 接下来的操作都是基于上下文对象的 -->
+         <!-- Canvas对象和上下文对象(通过getContext('2d')方法获取到的CanvasRendingContext2D对象) -->
+    <script>
+        // // 1.ctx.moveTo(x,y);  移动到x,y坐标点
+        // // 2.ctx.lineTo(x,y);  从当前点绘制直线到x,y点
+        // // 3.ctx.stroke();     描边
+        // // 4.ctx.lineWidth = 20; 设置线段宽度
+        // // 5.ctx.closePath();     闭合当前路径,和回到起始点的区别
+        // // 6.ctx.fill();        填充
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var ctx = canvas.getContext("2d");
+        // // 为什么不是3d呢,当你想要绘制一个3D画像,我们需要用到webgl方法
+        // ctx.lineWidth = 10;
+        // //让这根笔移动到了100,100的位置
+        // ctx.moveTo(100,100);
+        // ctx.lineTo(200,100);
+        // ctx.lineTo(200,200);
+        // ctx.closePath();
+        // // ctx.lineTo(100,200);
+        // // ctx.lineTo(100,100);
+        // ctx.strokeStyle = "red";
+        // ctx.stroke();
+        // //填充的时候颜色默认是黑
+        // ctx.fillStyle = "yellow";
+        // ctx.fill();
+        // //这种方法产生的图形是可以保存的图片样式,保存之后发生背景是黑的,但是我们看是白的
+
+
+
+        //重点
+        // 1.fill和stroke方法都是作用在当前的所有子路径
+        // 2.完成一条路径后要重新开始另一条路径的时候,必须使用beginPath();方法,beginPath()开始子路径的一个新的集合
+
+
+        //矩形
+        // 前两个参数是原点,后面两个是宽高
+        // 1.ctx.rect(x,y,dx,dy);
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var ctx = canvas.getContext("2d");
+        // ctx.beginPath();
+        // ctx.rect(100,100,200,100);
+        // ctx.fill();
+        // 2.ctx.fillRect(x,y,dx,dy);    // 这个方法把第一个方法和 ctx.fill();结合起来了
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var ctx = canvas.getContext("2d");
+        // ctx.beginPath();
+        // ctx.fillRect(100,100,200,100);
+        // 3.ctx.strokeRect(x,y,dx,dy);  // 这个方法把第一个方法和 ctx.stroke();结合起来
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var ctx = canvas.getContext("2d");
+        // ctx.beginPath();
+        // ctx.strokeRect(100,100,200,100);
+
+
+
+        //擦除当前区域
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var ctx = canvas.getContext("2d");
+        // ctx.beginPath();
+        // ctx.fillRect(100,100,200,100);
+        // ctx.clearRect(100,100,200,50);
+        
+        // 矩形方块落地
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var ctx = canvas.getContext("2d");
+        // ctx.beginPath();
+        // ctx.fillStyle = "yellow";
+        // var y = 0;
+        // function drawRect(y) {
+        //     ctx.fillRect(100,y,200,100);
+        // }
+        // var timer = setInterval(function () {
+        //     ctx.clearRect(100,0,200,300);
+        //     drawRect(y);
+        //     y+=10;
+        //     if(y > 300) {
+        //         clearInterval(timer);
+        //     }
+        // },100);
+
+
+
+        //弧形
+        // 1.arc(x,y,r,起始弧度,结束弧度,弧形的方向)
+        // 2.(0顺时针,1顺时针)
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var ctx = canvas.getContext("2d");
+        // ctx.beginPath();
+        // ctx.strokeStyle = "pink";
+        // ctx.arc(150,150,100,0,Math.PI/180 * 90,0);
+        // ctx.stroke();
+
+        // 练习1
+        // 画圆
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var ctx = canvas.getContext("2d");
+        // ctx.beginPath();
+        // ctx.strokeStyle = "pink";
+        // ctx.arc(150,150,100,0,Math.PI/180 * 360,0);
+        // ctx.stroke();
+
+
+        // 画四分之一圆
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var ctx = canvas.getContext("2d");
+        // ctx.beginPath();
+        // ctx.strokeStyle = "pink";
+        // ctx.moveTo(150,150);
+        // ctx.lineTo(250,150);
+        // ctx.arc(150,150,100,0,-Math.PI/180 * 45,1);
+        // ctx.closePath();
+        // ctx.stroke();
+
+        
+        // 画四分之三圆
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var ctx = canvas.getContext("2d");
+        // ctx.beginPath();
+        // ctx.strokeStyle = "pink";
+        // ctx.moveTo(150,150);
+        // ctx.lineTo(250,150);
+        // ctx.arc(150,150,100,0,-Math.PI/180 * 45,0);
+        // ctx.closePath();
+        // ctx.stroke();
+
+
+        // 圆角
+        // 1.ctx.arcTO(x1,y1,x2,y2,r)
+        // 2.绘制的弧线与当前点和x1,y1连线,x1,y1和x2,y2都相切;
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var ctx = canvas.getContext("2d");
+        // ctx.beginPath();
+        // ctx.moveTo(150,150);
+        // ctx.arcTo(250,150,250,250,50);
+        // ctx.stroke();
+
+
+        // 绘制圆角矩形
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var ctx = canvas.getContext("2d");
+        // ctx.beginPath();
+        // ctx.moveTo(100,50);
+        // ctx.arcTo(200,100,200,200,30);
+        // ctx.arcTo(200,200,100,200,30);
+        // ctx.arcTo(100,200,100,100,30);
+        // ctx.arcTo(100,100,200,100,30);
+        // ctx.stroke();
+
+        //贝塞尔曲线    //svg再讲
+        // 1.quadraticCurveTo(x1,y1,ex,ey)二次贝塞尔曲线
+        // x1,y1控制点
+        // ex,ey结束点
+        // 2.bezierCurveTo(x1,y1,x2,y2,ex,ey)三次贝塞尔曲线
+        // x1,y1,x2,y2控制点
+        // ex,ey结束点
+
+
+
+        // 坐标轴旋转
+        // 1.translate(dx,dy)   重新映射画布上的(0,0)位置
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var ctx = canvas.getContext("2d");
+        // ctx.beginPath();
+        // ctx.translate(150,150);
+        // ctx.rect(50,50,200,100);
+        // ctx.stroke();
+        
+        
+        // 2.scale(sx,sy)  缩放当前绘图
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var ctx = canvas.getContext("2d");
+        // ctx.beginPath();
+        // ctx.rect(50,50,200,100);
+        // ctx.scale(50,50);
+        // ctx.stroke();
+        
+        
+        // 3.rotate(Math.PI)  旋转当前的绘图     旋转的是画布
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var ctx = canvas.getContext("2d");
+        // ctx.beginPath();
+        // ctx.rotate(Math.PI/180*30);
+        // ctx.rect(100,100,100,50);
+        // ctx.stroke();
+        // 4.save() restore()  保存当前图像状态的一份拷贝,从栈中弹出存储的图形状态并恢复
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var ctx = canvas.getContext("2d");
+        // ctx.beginPath();
+        // ctx.rect(50,50,200,100);
+        // ctx.save();
+        // ctx.rotate(Math.PI/180*30);
+        // ctx.rect(100,100,200,100);
+        // ctx.restore();
+        // ctx.rect(200,200,30,30);
+        // ctx.stroke();
+        // 5.seTransform(a,b,c,d,e,f)先重置再变换
+        // 6.teansform(a,b,c,d,e,f)在之前的基础上变换
+
+
+
+
+        //填充图案
+        // 1.createPattern(image,"repeat|repeat-x|repeat-y|no-repeat");
+        // 2.img元素(image对象),canvas元素,video元素(有图形的)
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var canvas1 = document.getElementsByTagName("canvas")[1];
+        // var ctx = canvas.getContext("2d");
+        // var ctx1 = canvas1.getContext("2d");
+        // ctx.beginPath();
+        // ctx1.beginPath();
+        // ctx1.fillRect(0,0,50,50);
+        // //把小的canvas作为图片传进去
+        // ctx.fillStyle = ctx1.createPattern(canvas1,"repeat-y");
+        // ctx.fillRect(0,0,400,400);
+
+
+        // 练习
+        // var canvas = document.getElementsByTagName("canvas")[0];
+        // var canvas1 = document.getElementsByTagName("canvas")[1];
+        // var img = document.getElementsByTagName("img")[0];
+        // var ctx = canvas.getContext("2d");
+        // var ctx1 = canvas1.getContext("2d");
+        // ctx.beginPath();
+        // ctx1.beginPath();
+        // img.style.width = "400px";
+        // img.style.height = "400px";
+        // img.onload = function () {
+        //     ctx.fillStyle = ctx1.createPattern(img,"no-repeat");
+        //     ctx.fillRect(0,0,400,400);
+        // }
+    </script>
+</body>
+</html>
