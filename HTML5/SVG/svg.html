@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        svg {
+            border: 1px solid black;
+        }
+        line {
+            stroke: #000;
+        }
+        rect {
+            stroke: #000;
+            fill: transparent;
+        }
+        polyline {
+            fill: transparent;
+            stroke: #000;
+        }
+        polygon {
+            fill: transparent;
+            stroke: #000;
+        }
+        circle {
+            fill: transparent;
+            stroke: #000;
+        }
+        .lit {
+            fill: #000;
+        }
+        ellipse {
+            fill: transparent;
+            stroke: #000;
+        }
+        path {
+            stroke: #000;
+            fill: transparent;
+        }
+    </style>
+</head>
+<body>
+    <svg width="500px"height="500px">
+    <!-- 1.直线 -->
+    <!-- <line x1="100"y1="100"x2="300"y2="100"></line> -->
+
+    <!-- 矩形   rx和ry是改变圆润的 -->
+    <!-- <rect x="200"y="200"width="200"height="100"rx="50"ry="30"></rect> -->
+
+    <!-- 圆形 -->
+    <!-- <circle r="50"cx="150"cy="150"></circle> -->
+
+    <!-- 椭圆    rx和ry表示的是长轴短轴,cx和cy表示的是圆心 -->
+    <!-- <ellipse rx="200"ry="100"cx="200"cy="200"></ellipse> -->
+
+    <!-- 折线  也是默认填充-->
+    <!-- <polyline points="80 70,65 90,105 130,110 190,75 10" ></polyline> -->
+
+    <!-- 多边形 -->
+    <!-- <polygon points="120 120,130 145,120 140,150 160"></polygon> -->
+
+    <!-- 文本 -->
+    <!-- <text x="100"y="200">jingrui</text> -->
+
+
+    <!-- 绘图 -->
+    <!-- <rect x="200"y="200"width="150"height="150"rx="10"ry="10"></rect>
+    <circle r="20"cx="250"cy="250"></circle>
+    <circle r="20"cx="300"cy="250"></circle>
+    <circle class="lit"  r="5"cx="255"cy="255"></circle>
+    <circle class="lit"  r="5"cx="305"cy="255"></circle>
+    <polygon points="275 280,265 300,285 300"></polygon>
+    <polyline points="205 200,225 180,250 200,275 180,300 200,325 180,344 200"></polyline>
+    <ellipse rx="30"ry="10"cx="275"cy="320"></ellipse> -->
+
+
+
+    <!-- path元素 -->
+    <!-- 1.M指令和L指令 -->
+    <!-- <path d="M 0 0 L 100 100"/> -->
+    <!-- 2.m指令和l指令   小写的m和l是相对的,相对于小m加上小l的值去画线  -->
+    <!-- <path d="m 0 0 l 200 200"/> -->
+    <!-- 3.H和V指令   小写的也是绝对的 -->
+    <!-- <path d="M 100 100 H 200 V 200"/> -->
+    <!-- <path d="M 100 100 h 200 v 200"/> -->
+    <!-- 4.z命令   z无大小写区分相对于闭合 -->
+    <!-- <path d="M 100 100 H 200 V 200 z"/> -->
+
+
+
+    <!-- 圆弧指令 -->
+    <!-- A命令  七个参数
+    rx ry x-axis-rotation large-arc-flag sweep-flag x y
+    rx ry 圆弧的x轴半径和y轴半径
+    x-axis-rotation 圆弧相对x轴的旋转角度,默认是顺时针,可以设置负值
+    large-arc-flag 表示圆弧路路径是大圆弧还是小圆弧 1大圆弧
+    sweep-flag 表示从起点到终点是顺时针还是逆时针,1表示顺时针,0表示逆时针
+    x y 表示终点坐标,绝对或相对 -->
+    <!-- <path d="M 100 100 A 50 20 0 1 0 200 200"> -->
+    </svg>
+    <script>
+        // svg(Scalable Vector Graphics)可缩放矢量图形   
+        // svg放大之后不会失真
+        // canvas是位图
+        // 应用场景
+        // 1.图表
+        // 2.图标icon
+        // 3.动效
+        // 4.矢量图
+        // 处理静态的比较好,因为放大不会失真,因为svg是以标签形式来实现的,处理动态会导致卡顿
+        // 样式属性
+        // 1.fill
+        // 2.stroke
+        // 3.stroke-width
+        // 4.stroke-opacity/fill-opacity
+        // 5.stroke-linecap
+        // 6.stroke-linejoin
+    </script>
+</body>
+</html> 
