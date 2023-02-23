@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<div></div>
+<body>
+    <script>
+        //让方块动   可以写动画
+        // var div = document.getElementsByTagName("div")[0];
+        // var pos = 0;
+        // var callback;
+        // function move () {
+        //     pos+=10;
+        //     if(pos < 1000) {
+        //         div.style.left = pos + 'px';
+        //         requestAnimationFrame(move);
+        //     } else {
+        //         div.style.left = "1000px";
+        //         cancelAnimationFrame(callback);
+        //     }
+        // }
+        // move();
+
+
+        // 客户端存储问题
+        // 1.storage
+        // localStorage
+        // localStorage.name = "jingrui";
+        // var obj = {
+        //     name : 'nihao',
+        //     age : 20
+        // }
+        // localStorage.obj = JSON.stringify(obj);
+        
+        
+        // sessionStorage
+        // sessionStorage.age = 20;
+        
+
+        // localStorage和sessionStorage区别
+        // 会有一个窗口的限制,localStorage设置了可以在另外一个窗口中找到它,sessionStorage不可以
+        // localStorage是永久了的,就算关闭了窗口下次也可以找到,除非你手动删除它
+        // sessionStorage是临时的,窗口只要关闭就没有了
+
+
+        // 如何取出数据
+        // localStrorage.name
+        // JSON.parse(localStorage.info)
+
+
+
+        // API
+        // 1.setitem(name,val)  //设置属性值
+        // console.log(localStorage.setItem("number","2020020706"));
+        // 2.getitem(name)   //获得属性值
+        // console.log(localStorage.getItem("number"));
+        // 3.removeitem(name)   //移除属性
+        // console.log(localStorage.removeItem("name"));
+        // 4.clear()    //清除属性       
+        // console.log(localStorage.clear());
+
+
+        
+        // Cookie
+    </script>
+</body>
+</html>
