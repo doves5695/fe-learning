@@ -76,6 +76,65 @@
 
         
         // Cookie
+        //用谷歌测试的时候记得把服务器打开
+        // 1.设置cookie值
+        // document.cookie = "name=aimee";
+        // (每次只能设置一个值,因为浏览器会认为后面的键值对是这个cookie的属性)
+        // 2.获得cookie值
+        // document.cookie
+        // 转义方式
+        // 1.encodeURIComponent()    //   转义
+        // 2.decodeURIComponent()    //  通过这个方法再转回来
+        // 不建议出现分号,逗号,空格等奇怪的符号
+
+        // 1.设置cookie存储期限
+        // document.cookie = "name=scott;max-age=1000";
+        // 2.expires当前时间加上保存时间
+        // var timestamp = (new Date()).getTime() + 10000;
+        // var expires = new Date(timestamp).toGMTString();
+        // document.cookie = "name=scott;expires = "+expires;
+        // 一般现在都使用toUTCString
+
+
+        // 删除cookie max-age=0
+        // 需要带上键值对
+        // document.cookie = "name=scott;max-age=0";
+
+        
+        // history
+        // history.back() // 往回翻
+        // history.forward()   //往前翻
+        // history.go()    //翻页跳转
+        // 通过修改hash和hashchange事件来实现历史记录管理
+        // 1.pushState
+        // history.pushState(state,title,url);   // 添加一条历史记录
+        // 2.replaceStatehistory.replaceState(state,title,url);   //替换当前的历史记录
+
+
+        // 参数
+        // state: 一个与指定网址相关的状态对象,popstate事件触发时,该对象会传入回调函数中,如果不需要这个对象,此处可以填null
+        // title: 新页面的标题,但是所有浏览器目前都忽略这个值,因此这里可以填null
+        // url : 新的网址,必须与当前页面处在同一个域m浏览器的地址栏将显示这个网址
+
+
+        // 1.popstate事件
+        // 历史记录发生改变时触发
+        // 调用history.pushState() 或者history.replaceState()不会触发popstate
+        // 2.hashchange事件
+        // 当页面的hash值改变的时候触发,常用于构建单页面应用
+
+
+
+
+        // Worker
+        // Worker相对于一个外包,如果你一个处理的程序很复习阻塞其他进程很久,worker就相对于新开一个进程
+        // var worker = new Worker("worker.js");
+        // worker文件必须和主文件满足同源策略
+
+
+        // worker和主线程之间的通信
+        // 1.postMessage方法()
+        // 2.message方法
     </script>
 </body>
 </html>
