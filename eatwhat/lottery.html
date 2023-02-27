@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .out-square {
+            width: 500px;
+            height: 500px;
+            border: 15px solid #778899;
+            border-radius: 20px;
+            margin:20px auto;
+        }
+        .content {
+            width: auto;
+            height: 500px;
+            background-color: #c0c0c0;
+        }
+        .content .square {
+            float: left;
+            background-color: white;
+            width: 149px;
+            height: 149px;
+            border-radius: 20px;
+            margin: 8px 8px;
+        }
+        .content #begin {
+            font-size: 64px;
+            font-weight: bold;
+            line-height: 146px;
+            text-align: center;
+            cursor: pointer;
+            color: red;
+        }
+        .content .square {
+            font-size: 32px;
+            font-weight: bold;
+            line-height: 146px;
+            text-align: center;
+            color: rgb(222, 12, 124);
+        }
+    </style>
+</head>
+<div class="out-square">
+    <div class="content">
+        <div class="square">烤肉拌饭</div>
+        <div class="square">麻辣烫</div>
+        <div class="square">清真</div>
+        <div class="square">面条</div>
+        <div class="square" id="begin">开始</div>
+        <div class="square">烤盘饭</div>
+        <div class="square">锡纸饭</div>
+        <div class="square">小炒</div>
+        <div class="square">再来一次</div>
+    </div>
+</div>
+<body>
+    <script src="lottery.js"></script>
+</body>
+</html>
