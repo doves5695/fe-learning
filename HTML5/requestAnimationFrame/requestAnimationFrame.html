@@ -18,6 +18,7 @@
 </head>
 <div></div>
 <body>
+    <script src="worker.js"></script>
     <script>
         //让方块动   可以写动画
         // var div = document.getElementsByTagName("div")[0];
@@ -135,6 +136,33 @@
         // worker和主线程之间的通信
         // 1.postMessage方法()
         // 2.message方法
+
+
+
+        // 主进程代码
+        // var worker = new Worker("worker.js");
+        // worker.onmessage = function (e) {
+        //     console.log(e.data);
+        // }
+        // worker.postMessage(50);
+
+
+        // 结束一个worker
+        // close()在worker作用域中调用(worker.js)       这个相对于自己辞职,老板并不能实时的知道你干到哪块了所以不推荐
+        // terminate()在worker对象上调用(主进程的worker对象上worker.terminate);                 这个是老板给你开除了,老板什么都知道比较推荐
+
+
+
+        // worker的其他特性
+        // 1.importScripts('./mat1.js','./math2.js')
+        // worker只是window的子集,自能实现部分功能,不能获取到window.document,所以这里不要引jueryzepto,可以引入一些计算类的库
+
+        // 2.作用域globalWorkerScope
+        // 可以继续生成woker对象(暂时还不支持)
+        // navigator
+        // XMLhttpRequest
+        // setTimeout/setInterval
+
     </script>
 </body>
 </html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <audio src="./音乐.mp3" controls autoplay loop></audio> -->
+    <!-- <video src="./视频.mp4" poster="xiaolian.jpg" width="400px" height="300px"   controls autoplay></video> -->
+    <script>
+        // 音频
+        //自动播放  autoplay
+        // 控件 controls
+        // 预加载 preload(none/metadata/auto)
+        // node不需要传数据
+        // Metadata  元数据诸如时长,比特率,帧大小这样的原数据而不是媒体内容需要加载的
+        // auto  浏览器应当加载它认为适量的媒体内容
+        // loop   是否循环播放音频或者视频
+        // poster(video 独有)
+        // 当视频不可用的时候用一张图片代替  
+
+        // 脚本化
+        // 用dom设置音频
+
+        // currentSrc 资源链接,媒体数据的url地址
+
+        //  暂停   pause
+        //  开始   play
+        //  加载   load
+
+        // volume属性,表示播放音量,介于0(静音)~1(最大音量之间),默认1.将muted属性设置为true则会进入静音模式,设置为false则会恢复之前指定的音量继续播放,[0,1]是闭区间超过会报错
+
+
+        // 播放速率playbackRate
+        // 用于指定媒体播放的速度.该属性值为1.0表示正常速度,大于1则表示快进,0~1表示慢放,负值表示回放(浏览器还不支持)
+
+        // currentTime/duration属性
+        // currentTime 设置返回音频/视频播放的当前位置
+        // duration返回当前音频/视频的时长
+
+
+        // played属性返回已经播放的时间段,buffered属性返回当前已经缓冲的时间段,seekable属性则返回用户可以跳转的时间段.这三个属性都是timeRanges对象,每个对象都有一个length属性以及start和end方法,length属性表示当前的一个时间段,start()与end()分别返回当前时间段的起始时间点和结束时间点(单位是秒,起始参数是0)
+
+
+        // pause/seeling/ended
+        // 这三个属性用来查询媒体播放状态,pause为true表示播放器暂停,seeking为true表示播放器正在调到一个新的播放点,如果播放器播放完媒体并且停下来,则ended属性为true
+
+
+        var audio = new Audio('./音乐.mp3');
+        document.body.appendChild(audio);
+        window.onload = function () {
+            audio.controls = true;
+            audio.autoplay = true;
+            audio.loop = true;
+            console.log(audio.currentSrc);
+        }
+        var button = document.createElement("button");
+        var button1 = document.createElement("button");
+        var button2 = document.createElement("button");
+        var volumeup = document.createElement("button");
+        var volumedown = document.createElement("button");
+        var rateup = document.createElement("button");
+        var ratedown = document.createElement("button");
+        var currentTime = document.createElement("button");
+        var BT = document.createElement("button");
+        document.body.appendChild(button);
+        document.body.appendChild(button1);
+        document.body.appendChild(button2);
+        document.body.appendChild(volumeup);
+        document.body.appendChild(volumedown);
+        document.body.appendChild(rateup);
+        document.body.appendChild(ratedown);
+        document.body.appendChild(currentTime);
+        document.body.appendChild(BT);
+        button.innerHTML = "play";
+        button1.innerHTML = "pause";
+        button2.innerHTML = "load";
+        volumeup.innerHTML = "up";
+        volumedown.innerHTML = "down";
+        rateup.innerHTML = "rateup";
+        ratedown.innerHTML = "ratedown";
+        currentTime.innerHTML = "currentTime";
+        BT.innerHTML = "button";
+        button.addEventListener('click',function () {
+            audio.play();
+            console.log(audio.played);
+        },false);
+        button1.addEventListener('click',function () {
+            audio.pause();
+        },false);
+        button2.addEventListener('click',function () {
+            audio.load();
+        },false);
+        volumeup.addEventListener('click',function () {
+            audio.volume = 0.5;
+            audio.volume += 0.1;
+        },false);
+        volumedown.addEventListener('click',function() {
+            audio.volume = 0.5;
+            audio.volume -= 0.1;
+        },false)
+        rateup.addEventListener('click',function () {
+            audio.playbackRate += 0.2;
+        },false)
+        ratedown.addEventListener('click',function() {
+            audio.playbackRate -= 0.2;
+        },false)
+        currentTime.addEventListener('click',function () {
+            console.log(audio.currentTime);
+        },false);
+        // window.onload = function () {
+        //     console.log(audio.duration);
+        // }
+        BT.addEventListener('click',function(){
+            if(audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        },false);
+       audio.addEventListener('play',function () {
+            console.log("play");
+       },false)
+       audio.addEventListener('pause',function () {
+        console.log("pause");
+       },false)
+       audio.onloadedmetadata = function () {
+        console.log(666);
+       }
+       audio.onloadeddata = function () {
+        console.log(999);
+       }
+       audio.onended = function () {
+        console.log(ended);
+       }
+    </script>
+</body>
+</html>
