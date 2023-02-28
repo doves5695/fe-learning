@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        /* .drag {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+        .box {
+            width: 300px;
+            height: 300px;
+            border: 2px solid #000;
+        } */
+
+
+        /* li {
+            width: 100px;
+            height: 50px;
+            background-color: #c0c0c0;
+            margin-top: 20px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 32px;
+            font-weight: bolder;
+        }
+        #box {
+            width: 300px;
+            height: 300px;
+            border: 2px solid #000;
+        } */
+
+    </style>
+</head>
+<!-- <div class="drag" draggable="true"></div>
+<div class="box"></div> -->
+
+
+<!-- <ul>
+    <li draggable="true">1</li>
+    <li draggable="true">2</li>
+    <li draggable="true">3</li>
+    <li draggable="true">4</li>
+    <li draggable="true">5</li>
+</ul>
+<div id="box">删除:</div> -->
+
+
+
+<body>
+    <script>
+        //draggable
+        //dragstart
+        // var drag = document.getElementsByClassName("drag")[0];
+        // var box = document.getElementsByClassName("box")[0];
+    //     drag.addEventListener("dragstart",function (e) {
+    //         console.log("start");
+    //         e.dataTransfer.setData("data",5);
+    //     })
+    //     //dragend
+    //     drag.addEventListener("dragend",function () {
+    //         console.log("end");
+    //     })
+    //     //dragenter
+    //     box.addEventListener("dragenter",function () {
+    //         console.log("dragenter");
+    //     })
+    //     //dragover
+    //     box.addEventListener("dragover",function (e) {
+    //         console.log("over");
+    //         e.preventDefault();
+    //     })
+    //     //drop    需要阻止dragover的默认事件才可以触发
+    //     box.addEventListener("drop",function (e) {
+    //         console.log(e.dataTransfer.getData("data"));
+    //         console.log("drop");
+            
+    //         // box.appendChild(drag);     //    拖进去
+    //     })
+
+
+    // 拖拽列表
+    // var li = document.getElementsByTagName("li");
+    // var box = document.getElementById("box");
+    // var ul = document.getElementsByTagName("ul")[0];
+    // var box = document.getElementById("box");
+    // function bindEvent () {
+    //     for(var i = 0; i < li.length; i ++) {
+    //         li[i].addEventListener("dragstart",function (e) {
+    //             var a = index(li,this);
+    //             e.dataTransfer.setData("data",a);
+    //         })
+    //         li[i].addEventListener("dragover",function (e) {
+    //             e.preventDefault();
+    //         })
+    //         li[i].addEventListener("drop",function (e) {
+    //             var num = e.dataTransfer.getData("data");
+    //             console.log(num);
+    //             ul.insertBefore(li[num],this);
+    //         })
+    //     }
+        
+    // }
+    // bindEvent();
+    // function index (arr,x) {
+    //     for(var i = 0; i < arr.length; i ++) {
+    //         if(arr[i] === x) {
+    //             return i;
+    //         }
+    //     }
+    // }
+    // function dele () {
+    //     box.addEventListener("dragover",function (e) {
+    //         e.preventDefault();
+    //     })
+    //     box.addEventListener("drop",function (e) {
+    //         var value = e.dataTransfer.getData("data");
+    //         li[value].remove();
+    //     })
+    // }
+    // dele();
+
+
+
+    // FileReader方法
+    // abort()终止读取
+    // readAsBinaryString(File)  将文件读取为二进制编码
+    // readAsDataURL(file)    将文件读取为DataURL编码
+    // readAsText(file,[encoding])   将文件读取为文本
+    // readAsArrayBuffer(file)    将文件读取为arraybuffer
+    // 通过不同方式读取文件
+
+
+
+    // FileReader事件
+    // onloadstart     读取事件开始时触发
+    // onprogress     读取中
+    // onloadend      读取完成触发无论成功失败
+    // onload         文件读取成功时触发
+    // onabort         中断时触发
+    // onerror         出错时触发
+
+
+    
+    // WebSocket
+    // WebSocket对象提供了一组api,用于创建和管理webSocket链接以及通过连接发送和接收数据
+    // WebSocket其实是一个新的协议,跟http协议基本没有关系,只是为了兼容现有浏览器的握手规范,借用了http的协议来完成握手
+
+    // WebSocket服务器和客户端均可主动发送数据
+
+
+    // 如何创建WebSocket
+    // var Socket = new WebSocket(URL);
+
+    // WebSocket方法
+    // 1.socket.send()
+    // send(data) 方法使用连接传输数据
+    // 2.socket.close
+    // close()方法用于终止任何现有连接
+
+    // WebSocket事件
+    // open   建立socket连接时触发这个事件
+    // message   客户端从服务器接收数据时触发
+    // error     连接发生错误的时候触发
+    // close    连接被关闭时触发
+
+
+    // WebSocket.org 提供了一个专门用来测试WebSocket的服务器"ws://echo.websocket.org"
+
+
+    // var socket = new WebSocket("ws://echo.websocket.org");
+    // socket.onopen = function () {
+    //     socket.send("你好");
+    // }
+    // socket.onmessage = function (e) {
+    //     console.log("我是");
+    //     console.log(e);
+    //     socket.close();
+    // }
+    // socket.onclose = function () {
+    //     console.log("close");
+    // }
+    // socket.onerror = function (e) {
+    //     console.log(e);
+    // }
+    </script>
+</body>
+</html>
