@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var pop = parseInt(window.prompt("请输入数字"));
+        var tail = pop % 10;
+        var mid = (pop % 100 - tail) / 10;
+        var head = (pop % 1000 - mid * 10 - tail) / 100;
+        var newnumber = tail*100 + mid*10 + head;
+        // console.log(head,mid,tail);
+        function judgment() {
+            if(pop < 0 || tail === 0) {
+                alert("不是回文数");
+            } else if(pop >= 0) {
+                // console.log(newnumber);
+                if(tail == head) {
+                    alert("是回文数");
+                } else {
+                    alert("不是回文数");
+                }
+            }
+        }
+        judgment();
+    </script>
+</body>
+</html>

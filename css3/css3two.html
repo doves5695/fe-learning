@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       /* li[class^="demo"] {
+        background-color: red;
+        margin-top: 20px;
+       } */
+       /* li[class*="li"] {
+        background-color: red;
+       } */
+       /* :root {
+        background-color: yellow;
+       } */
+
+       /* li:not([class="demo"]) {
+        background-color: green;
+       } */
+
+        /* li:empty {
+            background-color: red;
+        } */
+        /* li:target {
+            background-color: red;
+        } */
+        /* li:nth-child(2n) {
+            background-color: blue;
+        } */
+
+        /* li:nth-of-type(2n) {
+            background-color: deeppink;
+        } */
+
+        /* span:only-child {
+            background-color: red;
+        } */
+        /* span:only-of-type {
+            background-color: darkblue;
+        } */
+        /* p:only-of-type {
+            background-color: deeppink;
+        } */
+
+        /* input:enabled {
+            background-color: deeppink;
+        }
+        input:disabled {
+            background-color: gray;
+        } */
+
+        /* span {
+            display: none;
+        }
+        input:radio + span {
+            display: inline-block;
+            background-color: red;
+        } */
+
+        /* #two:checked + span {
+            background-color: red;
+        } */
+
+
+        /* input:read-write {
+            background-color: #000;
+        } */
+
+
+        /* span::selection {
+            background-color: red;
+            color: #fff;
+        } */
+
+
+        /* div + span {
+            background-color: red;
+        } */
+
+        /* div ~ span,strong {
+            background-color: green;
+        } */
+
+        div {
+            position: relative;
+            display: none;
+            width: 100px;
+            height: 100px;
+            background-color: deeppink;
+        }
+        input:checked + div {
+            position: absolute;
+            display: block;
+        }
+    </style>
+</head>
+<!-- <a href="#only">点我</a> -->
+<!-- <li class="demo"></li>
+<li class="demoli">1</li>
+<li class="delimo" id="only">2</li> -->
+
+
+<!-- <div>
+    <li></li>
+    <li></li>
+    <li></li>
+    <span>666</span>
+    <li></li>
+    <li></li>
+    <li></li>
+    <p>999</p>
+    <li></li>
+    <li></li>
+    <span>666</span>
+    <p>999</p>
+</div> -->
+
+
+<!-- <input id="one" type="radio" name="11">
+<input id="two" type="radio" name="11"> -->
+
+<!-- <input type="text" readonly="readonly"> -->
+<!-- <input type="text"> -->
+<!-- <span>aaaaannnnkkk</span> -->
+
+
+<!-- <div>
+    <span>111</span>
+    <p>
+        <span>222</span>
+    </p>
+    <strong>粗</strong>
+</div>
+<span>333</span>
+<span>444</span>
+<strong>222</strong> -->
+
+
+<input type="radio" checked="checked" name="11">
+<div>111</div>
+<input type="radio" checked="checked" name="11">
+<div>222</div>
+<input type="radio" checked="checked" name="11">
+<div>333</div>
+<body>
+    <script>
+        //CSS3选择器
+        // E[att^=“val”] {…}  选择匹配元素E, 且E元素定义了属性att, 其属性值以val开头的任何字符串
+
+        // E[att$=“val”]{…}选择匹配元素E, 且E元素定义了属性att, 其属性值以val结尾的任何字符串
+
+        // E[att*=“val”]{…}选择匹配元素E, 且E元素定义了属性att, 其属性值任意位置出现了“val”。即属性值包含了“val”，位置不限。
+
+
+        // .root 跟标签选择器
+        // “:root”选择器等同于<html>元素,它和html效果等同但是建议使用root
+
+        // not 否定选择器
+        // 用法和jQuery 中的not类似，可以排除某些特定条件的元素
+
+
+        // 伪类和伪元素的区别
+        // 伪类可以通过添加一个实际的类来达到效果
+        // 伪元素则需要添加一个实际的元素才能达到目的
+
+
+
+        // 初级伪类选择器
+        // empty 空标签选择器
+        // 用来选择没有任何内容的元素，这里的没有内容指的是一点内容都没有，哪怕是一个空格
+        // target 目标元素选择器
+        // 用来匹配被location.hash 选中的元素(即锚点元素)
+
+
+        // 伪类选择器
+        // :first-child 第一个子元素
+        // :last-child 最后一个子元素
+        // :nth-child(){} 第xxx个子元素，n代表变量自然数
+        // :nth-last-child(){}  从后往前数
+
+        // 以上四个选择器均有弊端，即如果当前位置元素不是前面所修饰的元素，那么无效
+        
+
+
+        // :first-of-type 第一个子元素
+        // :last-of-type 最后一个子元素
+        // :nth-of-type(){} 第xxx个子元素，n代表变量自然数
+        // :nth-last-of-type(){}  从后往前数
+
+        // 此种选择器，限制了类型，即在所修饰元素的类型下选择特定位置的元素。也就是说前面修饰的元素是什么那么就找什么
+
+
+
+        // only-child  唯一子元素选择器
+        // 选择是独生子的子元素，即该子元素不能有兄弟元素，它的父元素只有他一个直接子元素。就是父元素当中只有一个标签
+
+        // 注意：选择的元素是独生子子元素，而非有唯一子元素的父元素。
+
+        // :only-of-type
+        // 如果要选择第某类特定的子元素(p) 在兄弟节点中是此类元素唯一个的话 就需要用到这个属性了,也就是说父元素当中的子元素只有一个这个标签,那么就可以用
+
+
+
+        // :enabled  可用的元素
+        // :disabled 不可用的元素
+        // 在web的表单中，有些表单元素有可用（“enabled”）和不可用（“disabled”）状态，比如输入框，密码框，复选框等。在默认情况下，这些表单元素都处在可用状态。那么我们可以通过伪类选择器 enabled 进行选择，disabled则相反
+
+        
+        // :checked
+        // 选择框的被选中状态
+
+        // 注：checkbox, radio 的一些默认状态不可用属性进行改变，如宽高颜色。
+
+
+        // :read-only  选中只读的元素
+        // eg:<input type=“text” readonly=“readonly”/>
+
+        // :read-write 选中非只读的元素
+        // eg:<input type=“text”/>
+
+
+        // 伪元素选择器
+        // ::selection
+        // “::selection” 选择器是用来匹配突出显示的文本（用鼠标选择文本的时候）。浏览器默认情况下，用鼠标选择网页文本是以“蓝色的北京，白色的字体”显示的。
+
+
+        // 注：火狐下必须加-moz-
+        // -moz-::selection
+
+
+
+        // 条件选择
+        // E > F  an F element child of an E element
+        // 直接子元素
+        // E + F an F element immediately preceded by an E element 
+        // 后面的紧挨着的兄弟节点
+        // E ~ F an F element preceded by an E element
+        // 后面的兄弟节点
+
+    </script>
+</body>
+</html>
