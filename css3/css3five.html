@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* div {
+            width: 500px;
+            height: 200px;
+            border: 2px solid #000;
+            column-width: 200px;
+            column-count: 2;
+        } */
+        /* div h1 {
+            column-span: all;
+        } */
+
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .wrapper .content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .wrapper .content .pic {
+            flex-grow: 1;
+            width: 20%;
+        }
+        .wrapper .content .pic img {
+            width: 100%;
+        }
+        @media screen and (min-width: 800px) and (max-width:1000px) {
+            .wrapper .content .pic {
+                width: 25%;
+            }
+        }
+        @media screen and (min-width: 500px) and (max-width:800px) {
+            .wrapper .content .pic {
+                width: 33.333%;
+            }
+        }
+        @media screen and (min-width:30px) and (max-width:500px) {
+            .wrapper .content .pic {
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+<!-- <div>
+    <h1>标题</h1>
+    <p>你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好</p>
+    <p>你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好</p>
+</div> -->
+
+
+
+<div class="wrapper">
+    <div class="content">
+        <div class="pic"><img src="./lei.jpg" alt=""></div>
+        <div class="pic"><img src="./luosi.jpg" alt=""></div>
+        <div class="pic"><img src="./qizi.jpg" alt=""></div>
+        <div class="pic"><img src="./wenhao.jpg" alt=""></div>
+        <div class="pic"><img src="./淘宝小人.jpg" alt=""></div>
+        <div class="pic"><img src="./img/start.png" alt=""></div>
+        <div class="pic"><img src="../JSAll/IMG/fifth.jpg" alt=""></div>
+        <div class="pic"><img src="../JSAll/IMG/five.jpg" alt=""></div>
+        <div class="pic"><img src="../JSAll/IMG/first.jpg" alt=""></div>
+        <div class="pic"><img src="../JSAll/小作业/贪吃蛇/img/food.jpg" alt=""></div>
+        <div class="pic"><img src="../JSAll/小作业/贪吃蛇/img/snake.jpg" alt=""></div>
+        <div class="pic"><img src="../JSAll/IMG/four.jpg" alt=""></div>
+        <div class="pic"><img src="../JSAll/IMG/two.jpg" alt=""></div>
+        <div class="pic"><img src="../JSAll/IMG/three.jpg" alt=""></div>
+        <div class="pic"><img src="../JSAll/小作业/扫雷/img/xiaolian.jpg" alt=""></div>
+    </div>
+</div>
+<body>
+    <script>
+        //colums多列布局
+        // 语法
+        // columns: [column-width] [column-count];
+        // column-width:指每一列的宽度 根据容器宽度自适应 （最小宽度） 
+        // column-count:指规定的列数 唯一精准的是列数
+        // 不要两一起使用 会乱
+        // column-gap:设置列与列之间的宽度，直接用数值表示即可
+        // column-gap主要用来设置列与列之间的间距  如果没有显示设置column-gap值时，其值大小会根据浏览器默认的font-size来定
+        // column-span:设置多列布局元素内的子元素，可以跨列，类似标题效果。即一个新闻标题要横跨所有内容列。注：此属性要在子元素上设置
+
+        // hack
+
+
+        //盒模型
+        // W3C标准盒模型
+        // element空间高度（盒子） = width + padding + border;
+        // width 为内容高度。即width不包括padding 和 border
+        // IE6混杂模式盒模型
+        // 内容高度 （盒子）= width - padding - border
+        // 即 设置width的数值就是element 的空间高度，width包含padding 和border
+
+
+        // css3中有一个可以选择盒模型的属性。
+        // box-sizing : border-box/content-box
+
+        // content-box为W3C标准盒子
+        // border-box为IE6混杂模式的盒子
+
+
+        
+
+        // 弹性盒子display:flex
+        // flex为复合属性,且必须配合父元素display:flex使用
+        // flex:flew-grow  flew-shrink  flex-basis
+        // flex-grow:根据所设置的比例分配盒子所剩余的空间
+        // 拓展：左右两栏布局 默认值0；
+        // flex-shrink:设置元素的收缩比例— 多出盒子的部分，按照比例的大小砍掉相应的大小，即比例越大，被砍的越大
+        // eg:盒子400px; 三个子元素200px; 多出200px; 
+        // 缩减的宽度=(flex-shrink1 * width1) /( flex-shrink1 * width1 + flex-shrink2 * width2)  *  moreWidth
+        // flex-basis:伸缩基准值.
+        // 该属性设置元素的宽度当然width也可以用来设置元素宽度，如果元素上同时出现了width 和flex-basis那么flex-basis会覆盖width的值
+        // 子元素宽度尽可能按照basis来如果基准值相加大于容器宽度那么 下面由下面公式分配宽度给子元素
+        // ( flex-basis/(flex-basis相加) ) * 容器的宽度
+
+
+
+    </script>
+</body>
+</html>

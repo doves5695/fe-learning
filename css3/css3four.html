@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 音乐转盘 -->
+    <!-- <style>
+        button {
+            cursor: pointer;
+        }
+        .pole {
+            display: block;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            margin-left: -5px;
+            width: 10px;
+            height: 120px;
+            background-color: #c0c0c0;
+            z-index: 2;
+            transform-origin: 0% 0%;
+            transform: rotate(-45deg);
+            transition: all 1s linear;
+        }
+        .wrapper {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: red;
+            text-align: center;
+            line-height: 100px;
+            border: 40px solid black;
+            top: 180px;
+            left: 50%;
+            margin-top: -65px;
+            margin-left: -140px;
+            animation: move 5s linear 0s infinite;
+        }
+        @keyframes move {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .stop {
+            transform: rotate(0deg);
+        }
+    </style> -->
+
+
+<!-- css3动画 -->
+<style>
+.wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    perspective: 1200px;
+    /* border: 1px solid black; */
+}
+.square {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -100px;
+    margin-top: -100px;
+    transform-style: preserve-3d;
+    transform: translateZ(-100px);
+    animation: move 3s linear infinite both;
+}
+@keyframes move {
+    0% {
+        transform: translateZ(-100px) rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+        transform: translateZ(-100px) rotateX(180deg) rotateY(180deg);
+    }
+    100% {
+        transform: rotateZ(-100px) rotateX(360deg) rotateY(360deg);
+    }
+}
+.square:hover {
+    animation-play-state: paused;
+}
+.square div {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+    font-size: 32px;
+    color: #fff;
+    backface-visibility: hidden;
+}
+.box .div1  { background: hsla(   0, 100%, 50%, 0.7 ); }
+.box .div2  { background: hsla(  60, 100%, 50%, 0.7 ); }
+.box .div3  { background: hsla( 120, 100%, 50%, 0.7 ); }
+.box .div4  { background: hsla( 180, 100%, 50%, 0.7 ); }
+.box .div5  { background: hsla( 240, 100%, 50%, 0.7 ); }
+.box .div6  { background: hsla( 300, 100%, 50%, 0.7 ); }	
+.square .div1 {
+    transform: translateZ(100px);
+}
+.square .div2 {
+    transform: rotateX(90deg) translateZ(100px);		
+}
+.square .div3 {
+    transform: rotateX(180deg) translateZ(100px);			
+}
+.square .div4 {
+    transform: rotateX(-90deg) translateZ(100px);				
+}
+.square .div5 {
+    transform: rotateY(90deg) translateZ(100px);				
+}
+.square .div6 {
+    transform: rotateY(-90deg) translateZ(100px);	
+}
+</style>
+</head>
+<!-- 音乐转盘 -->
+<!-- <button>点击</button>
+<span class="pole"></span>
+<div class="wrapper">歌曲</div> -->
+
+
+<!-- css3动画 -->
+<div class="wrapper box">
+    <div class="square">
+        <div class="div1">1</div>
+        <div class="div2">2</div>
+        <div class="div3">3</div>
+        <div class="div4">4</div>
+        <div class="div5">5</div>
+        <div class="div6">6</div>
+    </div>
+</div>
+<body>
+    <script>
+        // 音乐转盘
+        // var span = document.getElementsByTagName("span")[0];
+        // var button = document.getElementsByTagName("button")[0];
+        // var div = document.getElementsByTagName("div")[0];
+        // var stop = true;
+        // var timer = null;
+        // function bindEvent () {
+        //     button.addEventListener("click",function () {
+        //        clearInterval(timer);
+        //        stop = !stop;
+        //        if(stop) {
+        //           span.className = "pole";
+        //           div.style.animationPlayState = "paused";
+        //        } else {
+        //         span.className="pole stop";
+        //         timer = setTimeout(function () {
+        //             div.style.animationPlayState = 'running';
+        //         },1000);
+        //        }
+        //     })
+        // }
+        // bindEvent();
+
+
+
+
+
+        //css3动画
+        // transform-style: flat|preserve-3d
+        // 注：transform-style 属性需要设置在父元素中, 高于任何嵌套的变形元素
+        // 设置了transform-style:preserve-3d的元素，就不能防止子元素溢出设置overflow：hidden；否则会导致preserve-3d失效
+
+
+        // perspective: 默认none
+        // perspective-origin:默认值是50% 50%
+
+    </script>
+</body>
+</html>
