@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+        .box {
+            width: 300px;
+            height: 300px;
+            border: 2px solid black;
+            margin: 10px auto;
+        }
+        .box .top {
+            display: flex;
+            width: 300px;
+            height: 100px;
+        }
+        .box .top button {
+            flex-grow: 1;
+            cursor: pointer;
+        }
+        .box .bottom {
+            width: 300px;
+            height: 200px;
+            background-color: #ccc;
+        }
+        .box .bottom div {
+            display: none;
+            width: 300px;
+            height: 200px;
+            background-color: coral;
+        }
+        .box .top .active {
+            background-color: green;
+        }
+        .box .bottom .show {
+            display: block;
+        } */
+
+
+
+/* .wrapper {
+    width: 400px;
+    height: 400px;
+    background-color: #ccc;
+    border: 5px solid #000;
+}
+.wrapper div {
+    width: 100px;
+    height: 100px;
+}
+.wrapper .item1 {
+    background-color: deeppink;
+}
+.wrapper .item2 {
+    background-color: orange;
+}
+.another {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+} */
+
+
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: -200px;
+    width: 400px;
+    height: 400px;
+    border: 5px solid #000;
+}
+.box div {
+    width: 200px;
+    height: 20px;
+    margin-top: 10px;
+}
+.box button {
+    margin-top: 20px;
+}
+.box .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+    </style>
+</head>
+<body>
+    <!-- <div class="box">
+        <div class="top">
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+        </div>
+        <div class="bottom">
+            <div class="show">11111</div>
+            <div>22222</div>
+            <div>33333</div>
+        </div>
+    </div> -->
+
+
+    <!-- <div class="wrapper">
+        <div class="item1">111</div>
+        <div class="item2">222</div>
+    </div>
+    <div class="another">333</div> -->
+
+
+    <button class="click">click</button>
+    <!-- <div class="box">
+        <form action="">
+            <div class="item1">
+                <input type="text">
+            </div>
+            <div class="item2">
+                <input type="text">
+            </div>
+            <button>提交</button>
+            <button class="close">X</button>
+        </form>
+    </div> -->
+    <script src="./jquery-3.1.1.js"></script>
+    <script>
+        //  $('button').click(function () {
+        //      $('button').removeClass('active');
+        //      $(this).addClass('active');
+
+        //      $('.bottom div').removeClass('show');
+        //      $('.bottom div').eq($(this).index()).addClass('show');
+        // })
+
+
+        // var arr = [];
+        // $('.item1').click(function () {
+        //     arr.push($('.item1').remove());
+        // })
+        // $('.item2').click(function () {
+        //     arr.push($('.item2').detach());
+        // })
+        // $('.another').click(function () {
+        //     arr.forEach(function (item,index) {
+        //         item.appendTo($('.wrapper'));
+        //     })
+        // })
+
+
+
+
+        var $appear = $( '<div class="box"><form action=""><div class="item1"><input type="text"></div><div class="item2"><input type="text"></div><button>提交</button><button class="close">X</button></form></div>');
+        $('.click').click(function () {
+            document.body.appendChild($appear.get(0));
+            $('.close').click(function () {
+                $appear.detach();
+            })
+        })
+    </script>
+</body>
+</html>
