@@ -70,7 +70,7 @@
 } */
 
 
-.box {
+/* .box {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -92,7 +92,20 @@
     position: absolute;
     top: 0;
     right: 0;
-}
+} */
+
+
+
+/* .demo {
+    position: absolute;
+    bottom:  50px;
+    left: 50%;
+    margin-left: -50px;
+    width: 100px;
+    height: 300px;
+    background-color: green;
+    border-bottom: 20px solid brown;
+} */
     </style>
 </head>
 <body>
@@ -117,7 +130,7 @@
     <div class="another">333</div> -->
 
 
-    <button class="click">click</button>
+    <!-- <button class="click">click</button> -->
     <!-- <div class="box">
         <form action="">
             <div class="item1">
@@ -130,7 +143,14 @@
             <button class="close">X</button>
         </form>
     </div> -->
-    <script src="./jquery-3.1.1.js"></script>
+
+
+
+    <!-- <button class="one">偷能量</button>
+    <button class="two">浇水</button>
+    <div class="demo"></div> -->
+    <!-- <script src="./jquery-3.1.1.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script>
         //  $('button').click(function () {
         //      $('button').removeClass('active');
@@ -157,13 +177,34 @@
 
 
 
-        var $appear = $( '<div class="box"><form action=""><div class="item1"><input type="text"></div><div class="item2"><input type="text"></div><button>提交</button><button class="close">X</button></form></div>');
-        $('.click').click(function () {
-            document.body.appendChild($appear.get(0));
-            $('.close').click(function () {
-                $appear.detach();
-            })
-        })
+        // var $appear = $( '<div class="box"><form action=""><div class="item1"><input type="text"></div><div class="item2"><input type="text"></div><button>提交</button><button class="close">X</button></form></div>');
+        // $('.click').click(function () {
+        //     document.body.appendChild($appear.get(0));
+        //     $('.close').click(function () {
+        //         $appear.detach();
+        //     })
+        // })
+
+
+
+    //    $('.one').on('steal',function () {
+    //     if($('.demo').height() > 400) {
+    //         $('.demo').css('height',600);
+    //     } else {
+    //         $('.demo').css('height',$('.demo').height() + 3 + 'px');
+    //     }
+    //    })
+    //    $('.two').on('water',function () {
+    //         $('.demo').css('height',$('.demo').height() + 10 + 'px');
+    //    })
+    //    $('.one').click(function () {
+    //     $('.one').trigger('steal');
+    //    })
+    //    $('.two').click(function () {
+    //     $('.two').trigger('water');
+    //    })
+
+        
     </script>
 </body>
 </html>
