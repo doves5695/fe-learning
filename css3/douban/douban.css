@@ -4,3 +4,17 @@
     list-style: none;
     text-decoration: none;
 }
+.top-nav {
+    width: auto;
+    height: 28px;
+    background-color: #545652;
+}
+.top-nav .top-nav-left {
+     width: 100%;
+     height: 28px;
+}
+.top-nav .top-nav-left a {
+    float: left;
+    color: #d5d5d5;
+    margin: 3px 15px;
+}

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li {
+            background-color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<body>
+    <script>
+        //块级作用域
+        // ES6里增加了let和const声明
+        // ES6当中let不存在变量声明提升
+        // console.log(a);
+        // let a = 1;
+
+        // 块级作用域特点
+        // let声明变量,声明周期为块级作用域内里面的可以用外面的外面的不能用里面的,一旦let在作用域中声明了变量,那么将统治这个作用域(不能重复声明)
+        // var a = 1;
+        // {
+        //     console.log(a);
+        //     let a = 2;
+        // }
+        // console.log(b);
+
+        
+        //用let来解决闭包
+        // var li = document.getElementsByTagName('li');
+        // for(let i = 0; i < li.length; i++) {
+        //     li[i].onclick = function () {
+        //         console.log(i);
+        //     }
+        // }
+
+        // 用let定义还可以防止变量污染,因为let不能重复定义
+
+
+        // 练习
+        // {
+        //     function a() {
+        //         console.log('函数块级作用域');//函数块级作用域
+        //     }
+        //     let b = 10;//报错
+        // }
+        // a();
+        // console.log(b);
+
+
+
+        // function f1() {
+        //     let n = 5;
+        //     if(true) {
+        //         let n = 10;
+        //         console.log(n);//10
+        //     }
+        //     console.log(n);//5
+        // }
+        // f1();
+
+
+
+        // const
+        // 一旦声明常量的值就不能改变了
+        // const PI = 3.14;
+        // PI = 3.16;//   你给值改了就会报错了
+
+
+        //声明一个常量之后必须马上初始化
+        // const PI ;
+        // PI = 3.14;
+        // console.log(PI);
+
+
+        // let和const一样不能重复声明
+        // let b = 1;
+        // let b = 2;
+        // const value = 56;
+        // const value = 34;
+
+
+        // const: 引用类型变量 变量名不指向数据,而是指向数据所在的地址const命令只是保证变量名引用的地址不变
+        // const obj = {name : ['jingrui','666','999']};
+        // obj.name[0] = 'nihao';
+        // console.log(obj.name);
+
+
+
+        // 解构赋值
+        // ES6允许按照一定模式,从数组和对象中提取,对(var let const) 变量进行赋值,这被称为解构
+        // var [a,b,c] = [1,2,3];
+        // console.log(a,b,c);
+
+        // let [a,b,c] = [1,2,3];
+        // console.log(a,b,c);
+
+        // const arr = ['nihao','666','999'];
+        // const [name1,name2,name3] = arr;
+        // console.log(name1,name2,name3);
+        // name3 = "888";
+        // console.log(name3);
+
+
+        // let arr = ['11','22','33'];
+        // let [name1,name2,name3] = arr;
+        // console.log(name1,name2,name3);
+        // name3 = '555';
+        // console.log(name3);
+
+        // let one = '666';
+        // // console.log(one);
+        // one = '999';
+        // console.log(one);
+
+
+        // 解构赋值本质上属于一种模式匹配,也就是只要等号两边的模式相同,左边的变量就会被赋予对应的值
+        // let [a,[b,[c]]] = [1,[2,[3]]];
+        // console.log(a,b,c);
+
+        // 解构失败算是一个术语就是右面的值少(会出现undefined)
+        // let [a,b,c] = [1,2];
+        // console.log(a,b,c);
+
+        // var [foo1] = [];
+        // var [bar,foo2] = [1];
+        // console.log(foo1,foo2);
+
+
+        // 不完全解构-> 右面的值多
+        // let [a,b,c,d] = [1,2,3,4,5];
+        // console.log(a,b,c,d);
+
+        // let [x,y] = [1,2,3];
+        // let [a,[b],d] = [1,[2,3],4];
+        // console.log(x,y);
+        // console.log(a,b,d);
+
+
+        // ...会把后面的变成数组
+        // let [x,y] = [1,2,3];
+        // ...tail 把后续元素当成数组,如果没有那么就是空数组
+        // let [head,...tail] = [1,2,3,4,5];
+        // let [a,b,...z] = ['a'];
+        // console.log(x,y);
+        // console.log(head,tail);
+        // console.log(a,b,z);
+
+
+        // 以下情况会报错,右边不是数组(严格来说不是可以遍历的结构)
+        // let [foo] = 1;
+        // let [foo] = false;
+        // let [foo] = NaN;
+        // let [foo] = undefined;
+        // let [foo] = null;
+        // let [foo] = {};
+ 
+
+
+        // 解构函数当中的默认赋值
+        // 只有右侧的值严格等于undefined的时候才生效
+        // var [foo = true] = [];
+        // console.log(foo);
+        // function test(a=10,b=20) {
+        //     console.log(a,b);
+        // }
+        // test();
+
+        //null不等于undefined所以不生效
+        // var [x = 1] = [null];
+        // console.log(x);
+        // function val() {
+        //     return 20;
+        // }
+        // let [a=5,b=val()] = [null];
+        // console.log(a,b);
+
+
+        // 惰性求值
+        // function a() {
+        //     return '66';
+        // }
+        // let [x = a()] = [1];
+        // console.log(x);
+        // let [x = a()] = [];
+        // console.log(x);
+
+
+        // 默认赋值可以应用解构赋值的其他变量
+        // 首先看右侧有无和左侧对应的值，没有的话看左侧从左到右解析
+        // let [x1 = 1,y1 = x1] = [];
+        // console.log(x1,y1);1 1
+        // let [x2 = 2 , y2 = x2 ] = [3];
+        // console.log(x2,y2); 3 3 
+        // let [x3 = 3 , y3 = x3 ] = [5,6];
+        // console.log(x3,y3);//5 6
+        // let [x4 = y4 , y4 = 4 ] = [];
+        // var [x4 = y4 , y4 = 4] = [];
+        // console.log(x4,y4);// 报错因为y4还没有赋值
+        // console.log(x4,y4); // undefinded  4
+
+
+
+        // 对象的解构赋值 对象的解构赋值是按照属性名称决定的
+        // var {foo,bar} = {foo:'aaa',bar : 'bbb'};
+        // // console.log(foo);
+        // // console.log(bar);
+        // var {baa} = {foo:'aaa',bar : 'bbb'};
+        // console.log(baa);
+
+
+        // 对象赋值注意,应一个已经声明的变量用于结构赋值必须非常小心
+        // js引擎会将{x} 理解成一个代码块，从而发生语法错误。只有不将大括号写在行首可以避免这个问题(可以在外面加一层括号)
+
+        // var x;
+        // ({x} = {x:1});
+        // console.log(x);
+
+
+        // 如果变量名称和属性名称不一致 必须写成下面这个样子
+        // 记住属性名称不是变量 我们可以理解成一种模式
+        // let {foo:bar} = {foo:'123'};
+        // console.log(foo);
+        // console.log(bar);
+
+
+        // 重点不能重复申请变量
+        // let foo;
+        // let {foo} = {foo:1};
+        // let baz;
+        // let {bar : baz} = {baz : 1};
+
+
+
+        // let obj = {
+        //     p : [
+        //         'hello',
+        //         {y : 'world'}
+        //     ]
+        // }
+        // let {p:[x,{y}]} = obj;
+        // console.log(x,y);
+
+
+
+        // 对象结构也可以自定默认值 默认生效条件和数组一样都是undefined
+        // var {x = 6} = [];
+        // console.log(x);
+        // var {x,y=x} = {x:1};
+        // console.log(x,y);
+
+        // 字符串的解构赋值  字符串会转化成一个类数组的对象
+        // const [a,b,c,d,e] = 'hello';
+        // console.log(a,b,c,d,e);
+
+        // 类数组对象有length属性 所以len是5
+        // let {length : len} = 'helloni';
+        // console.log(len);
+
+
+
+        // 数值和布尔值得解构赋值 如果等号左边是数值或是布尔值，则会先转为对象
+        // let {toString : a} = 123;
+        // let {toString : b} = true;
+        // console.log(a === Number.prototype.toString);
+        // console.log(b === Boolean.prototype.toString);
+
+
+
+        // undefined和null不能转成对象所以会出错
+        // let {toString : x } = undefined;
+        // let {toString : y } = null;
+        
+
+
+
+
+        //练习
+        // function move({x = 0, y = 0} = {}) {
+        //     console.log(x,y);
+        // }
+        // move({x:3,y:8});//3 8 
+        // move({x:3});//3 0
+        // move({});//0 0
+        // move();//00
+
+
+        // function deal({x,y} = {x:0,y:0}) {
+        //     console.log([x,y]);
+        // }
+        // deal({x:3,y:8});//3 8 
+        // deal({x:3});// 3 undefined
+        // deal({});// undefinded undefinded
+        // deal();//0 0
+
+
+
+        // 1.交换变量
+        // var x = 1;
+        // var y = 2;
+        // [x,y] = [y,x];
+        // console.log(x,y);
+
+
+        // 从函数返回多个值
+        // function example () {
+        //     return [1,2,3];
+        // }
+        // var [a,b,c] = example();
+        // console.log(a,b,c);
+
+        // let obj = {
+        //     name : 'jingrui',
+        //     method : function () {
+        //         return [4,5,6];
+        //     }
+        // }
+        // let [a,b,c] = obj.method();
+        // console.log(a,b,c);
+
+
+        // 函数参数的定义
+        // function f({x,y,z}) {
+        //     console.log(x,y,z);
+        // }
+        // f({z:5,x:4,y:6});
+
+
+        // 提交json数据
+        // var jsonData = {
+        //     id : 18,
+        //     status : 'ok',
+        //     data : [888,999]
+        // }
+        // let {id,status,data:x} = jsonData;
+        // console.log(id,status,x);
+
+
+        // 数组扩张
+        // Aaary.from方法用于两类对象转为真正的数组:类似数组的对象(所谓类似数组的对象，本质特征只有一点，即必须有length属性。因此，任何有length属性的对象，都可以通过Array.from方法转为数组) 和 可遍历的对象（ES6新增的数据结构 Set和Map
+
+
+        // Array.from方法会将数组的空位,转为undefined,也就是说这个方法不会忽略空位
+        // let obj = {
+        //     0 : 1,
+        //     1 : 2,
+        //     2 : 3,
+        //     length : 3
+        // }
+        // var arr = Array.from(obj,function (value,index,arr) {
+        //         return  value + 10;
+        // });
+        // console.log(arr);
+
+
+        // let arraylike = {
+        //     0 : 'a',
+        //     1 : 'b',
+        //     2 : 'c',
+        //     length : 3
+        // }
+        // let arr1 = Array.prototype.slice.call(arraylike);
+        // let arr2 = Array.from(arraylike);
+        // console.log(arr1);
+        // console.log(arr2);
+
+
+        // 如果参数是一个真正的数组，Array.from会返回一个一模一样的新数组
+
+
+        // var arr3 = [1,2,3];
+        // var arr4 = Array.from(arr3);
+        // arr4[0] = 4;
+        // console.log(arr3);
+
+
+
+
+        // Array.of方法用于一组值,转换为数组
+        // console.log(Array.of(3,11,6));
+        // 这个方法的主要目的，是弥补数组构造函数Array()的不足。因为参数个数的不同，会导致Array()的行为有差异
+        // console.log(Array.of(3));
+        // console.log(Array.of(undefined));
+        // console.log(Array.of());
+
+
+
+
+        // 数组实例的copyWithin方法 在当前数组内部，将指定位置的成员复制到其他位置（会覆盖原有成员），然后返回当前数组。也就是说，使用这个方法，会修改当前数组。
+
+        // 它接受三个参数。
+        // target（必需）：从该位置开始替换数据。
+        // start（可选）：从该位置开始读取数据，默认为0。如果为负值，表示倒数。
+        // end（可选）：到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数
+
+
+        // var arr = [1,2,3,4,5,6,7];
+        // arr.copyWithin(1,3,7);
+        // console.log(arr);
+
+
+
+        // 数组实例的find() 和 findIndex()
+
+        // find
+         // 数组实例的find方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为true的成员，然后返回该成员。如果没有符合条件的成员，则返回undefined
+        // var arr = [1,4,7,10 ,19];
+        // var val = arr.find(function (value,index,arr) {
+        //     return value > 10;
+        // })
+        // console.log(val);
+
+
+        // findindex
+        // 数组实例的findIndex方法的用法与find方法非常类似，返回第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回-1。
+        // var arr = [1,4,7,10,19];
+        // var val = arr.findIndex(function (value,index,arr) {
+        //         return value >  10;
+        // })
+        // console.log(val);
+
+
+        
+    </script>
+</body>
+</html>
