@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<div></div>
+<div></div>
+<div></div>
+<body>
+    <script>
+        // set和map数据结构
+        // Set
+        // ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值
+        // Set 本身是一个构造函数，用来生成 Set 数据结构。
+        // 用set可以很简单的完成数组去重
+        // set当中用add向里面添加元素
+        // var arr = [1,1,2,2,3,3];
+        // var set = new Set();
+        // arr.forEach(function (value,index,arr) {
+        //     set.add(value);
+        // })
+        // console.log(set);
+
+        // Set 函数可以接受一个数组（或类似数组的对象）作为参数，用来初始化。
+
+        // var mydiv = document.getElementsByTagName('div');
+        // var set = new Set(mydiv);
+        // console.log(set);
+
+        // 传对象进去会报错
+        // var arr = [1,1,2,2,3,3];
+        // var set = new Set(arr);
+        // console.log(set);//这样传出来的是一个对象
+        // console.log([...set]);//这样传出来的是一个数组
+
+
+        // set的操作方法
+        // Set 结构的实例有以下属性。
+        // Set.prototype.constructor：构造函数，默认就是Set函数。
+        // Set.prototype.size：返回Set实例的成员总数。
+        // console.log(Set.prototype.constructor);
+        // var set = new Set([1,2,3,4,5]);
+        // console.log(set.size);
+
+        
+        // 四个操作方法。
+        // add(value)：添加某个值，返回Set结构本身。
+        // delete(value)：删除某个值，返回一个布尔值，表示删除是否成功。
+        // has(value)：返回一个布尔值，表示该值是否为Set的成员。
+        // clear()：清除所有成员，没有返回值。
+
+        // var set = new Set([1,2,3,4,5]);
+        // set.add({1:5});
+        // console.log(set);
+        // set.delete(7);
+        // console.log(set.delete(1)); 删除没有的值会报undefined
+        // set.has(3);
+        // console.log(set.has(3));
+        // set.clear();
+        // console.log(set);
+
+
+        // const list = new Set([1,1,2,2,3,3,4,4]);
+        // const arr = Array.from(list);
+        // console.log(arr);
+        // 另一种数组去重的方法
+        // function gochong(arr) {
+        //     return console.log(Array.from(new Set(arr)));
+        // }
+        // gochong([1,1,2,2,3,3]);
+
+
+        // Set 结构的实例有四个遍历方法，可以用于遍历成员。
+        // keys()：返回键名的遍历器
+        // values()：返回键值的遍历器
+        // entries()：返回键值对的遍历器
+        // forEach()：使用回调函数遍历每个成员
+        // 由于 Set 结构没有键名，只有键值（或者说键名和键值是同一个值），所以keys方法和values方法的行为完全一致。
+        // Set结构的实例的forEach方法，用于对每个成员执行某种操作，没有返回值。
+
+        
+        // var arr = [1,2,3,4];
+        // var set = new Set(arr);
+        // console.log(set.keys());// 可以理解为没有键名所以用键值替代
+        // console.log(set.values());
+        // console.log(set.entries());
+        // set.forEach(function (value) {
+        //     console.log(value);
+        // })
+
+
+
+
+        // Map
+        // JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。
+        // 为了解决这个问题，ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。也就是说，Object 结构提供了“字符串—值”的对应，Map结构提供了“值—值”的对应，是一种更完善的 Hash 结构实现。如果你需要“键值对”的数据结构，Map 比 Object 更合适。
+
+        // console.log(Object.prototype.toString.call([])); // [object Array]
+        // console.log(Object.prototype.toString.call({})); //[object Object]
+
+
+        // var m = new Map([[{a:1},'jingrui'],['age',20]]); //传的必须是二维数组
+        // console.log(m);
+
+        //set和map都可以生产新的Map
+        // var set = new Set([['name','jr']]);
+        // console.log(set);
+        // var map1 = new Map(set);
+        // console.log(map1);
+        // var map2 = new Map(map1);
+        // console.log(map1);
+
+        // 如果对同一个键多次赋值，后面的值将覆盖前面的值。
+        
+
+        // （1）size属性
+        // size属性返回 Map 结构的成员总数。
+        // （2）set(key, value)
+        // set方法设置键名key对应的键值为value，然后返回整个 Map 结构。如果key已经有值，则键值会被更新，否则就新生成该键。
+        // set方法返回的是当前的Map对象，因此可以采用链式写法。
+        // （3）get(key)
+        // get方法读取key对应的键值，如果找不到key，返回undefined。
+        // （4）has(key)
+        // has方法返回一个布尔值，表示某个键是否在当前 Map 对象之中。
+        // （5）delete(key)
+        // delete方法删除某个键，返回true。如果删除失败，返回false。
+        // （6）clear()
+        // clear方法清除所有成员，没有返回值。
+        
+        var set = new Set([['name','jr'],['age','18'],['sex','male']]);
+        var map = new Map(set);
+        // console.log(map.size);
+        // map.set({name},'jr');
+        // console.log(map);
+        // map.get(name);
+        // console.log(map.get('name'));
+        // console.log(map.has('sex'));
+        // console.log(map.delete('name'));
+        // console.log(map.clear());
+
+        // 遍历方法
+        // Map 结构原生提供三个遍历器生成函数和一个遍历方法。
+
+        // keys()：返回键名的遍历器。
+        // values()：返回键值的遍历器。
+        // entries()：返回所有成员的遍历器。
+        // forEach()：遍历 Map 的所有成员。
+        // console.log(map.keys());
+        // console.log(map.values());
+        // console.log(map.entries());
+        map.forEach(function (value) {
+            console.log(value);
+        })
+
+
+    </script>
+</body>
+</html>
