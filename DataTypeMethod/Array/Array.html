@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<p id="demo"></p>
 <body>
     <script>
         // Array属性
@@ -76,9 +77,24 @@
 
         
         // every()// 检查数组中的每个元素是否通过测试。
+        // every()方法对数组中存在的每一个元素执行一次函数
+        // 如果找到返回false值的数组元素,every()返回false(并且不检查剩余值)
+        // 如果没有出现false,every()返回true 
+        // 注意:every()不对没有值的数组元素执行函数
+        // every()不改变原始数组
+        // function(value,index,arr)
+        // value   必须 ,传入的是当前数组的值
+        // index   可选, 当前元素数组的索引位
+        // arr     可选, 当前元素所属的数组对象
+        // var arr = [1,2,3,4,5,6,7,8];
+        // let result = arr.every(function (val,index) {
+        //      return  index < 7;
+        // })
+        // console.log(result);
         
 
         // fill()
+        
         // filter()
         // find()
         // findIndex()
