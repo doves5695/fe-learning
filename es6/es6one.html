@@ -153,13 +153,13 @@
 
 
         // ...会把后面的变成数组
-        // let [x,y] = [1,2,3];
+        let [x,y] = [1,2,3];
         // ...tail 把后续元素当成数组,如果没有那么就是空数组
-        // let [head,...tail] = [1,2,3,4,5];
-        // let [a,b,...z] = ['a'];
-        // console.log(x,y);
-        // console.log(head,tail);
-        // console.log(a,b,z);
+        let [head,...tail] = [1,2,3,4,5];
+        let [a,b,...z] = ['a'];
+        console.log(x,y);
+        console.log(head,tail);
+        console.log(a,b,z);
 
 
         // 以下情况会报错,右边不是数组(严格来说不是可以遍历的结构)

@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -40px;
+  margin-top: -70px;
+}
+
+.pointer {
+  position: fixed;
+  left: 100px;
+  top: 100px;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+  border: 2px solid #f40;
+  border-radius: 50%;
+  animation: ripple 0.3s linear forwards;
+}
+
+@keyframes ripple {
+  to {
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: #081620;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #fff;
+}
+h1 {
+  margin-bottom: 1em;
+}
+.container {
+  display: flex;
+}
+.panel {
+  margin: 1em;
+  color: #081620;
+  width: 150px;
+  text-align: center;
+}
+.panel .title {
+  color: #fff;
+  font-size: 2em;
+  border: 1px solid #fff;
+}
+.panel .score {
+  background: #fff;
+  margin-top: 1em;
+  font-size: 3em;
+  height: 100px;
+  line-height: 100px;
+}

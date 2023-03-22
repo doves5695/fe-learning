@@ -1,0 +1,2 @@
+/*! For license information please see index2.js.LICENSE.txt */
+(()=>{var __webpack_modules__={"./src/js/entry2.js":()=>{eval("console.log(4444);\n\n//# sourceURL=webpack://nodejs/./src/js/entry2.js?")}},__webpack_exports__={};__webpack_modules__["./src/js/entry2.js"]()})();
